@@ -32,7 +32,7 @@ async function loadContent(pageUrl) {
     const html = await response.text();
     
     // Insert HTML into page
-    document.getElementById('content-container').innerHTML = html;
+     document.getElementById('content-wrapper').innerHTML = html;
   } catch (error) {
     // Error handling type shi
     console.error('Error loading content:', error);
