@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // Load the default content to be shown
-    loadContent('includes/dashboard.php');
+    loadContent(['includes/dashboard.php']);
 
     // Get all tabs
     const tabs = document.querySelectorAll('[role="tab"]');
@@ -11,23 +11,23 @@ document.addEventListener('DOMContentLoaded', () => {
     tabs.forEach(tab => {
         tab.addEventListener('click', function(e){
             e.preventDefault();
+            const targetPage = [this.dataset.page];
 
-            const targetPage = this.dataset.page;
+
 
             loadContent(targetPage);
 
             updateActiveTab(this);
             
+        
         });
 
     });
 });
-
 async function loadContent(pageUrl) {
   try {
     // Fetch request to server
-    const response = await fetch(pageUrl);
-    
+    const response = await fetch(pageUrl[0]+"?"+pageUrl[1]+"="+pageUrl[2]);
     // Get HTML content from response
     const html = await response.text();
     
@@ -51,13 +51,22 @@ function updateActiveTab(activeTab){
     // set the active tab active
     activeTab.setAttribute('aria-selected', 'true');
     activeTab.classList.add('active');
+    
 
     // Updating url without reloading, tnx gpt
     history.pushState(null, '', `?tab=${activeTab.dataset.page}`);
 }
 
+//The employee listing!
+// what the fuck is going on here even
+function employeeListDetect(){
+                document.getElementById("employee_offset_go").addEventListener("click",function() {
+                offset = document.getElementById('employee_offset').value;
+                loadContent(["includes/employees.php","offset",offset]);
+                });
+            }
 
-
+//mine
 
 // document.querySelectorAll('.tab-btn').forEach(link => {
 //     link.addEventListener('click', function(e) {
