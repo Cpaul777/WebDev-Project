@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;800&display=swap" rel="stylesheet">
+
     
 </head>
 <body>
@@ -51,12 +52,11 @@
                     
                     <li><a role="tab" aria-selected="false" 
                     aria-controls="employee-panel" class="tab-btn" 
-                    data-page="includes/employee.php" aria-label="Employees Tab">
+                    data-page="includes/employees.php" data-key="offset" aria-label="Employees Tab">
                             <i class="bi bi-person-vcard"></i> 
                             <p>Employees</p>
                         </a>
                     </li>
-
                     <li><a role="tab" aria-selected="false" 
                     aria-controls="payroll-panel" class="tab-btn" 
                     data-page="includes/payroll.php" aria-label="Payroll Tab">
@@ -86,12 +86,10 @@
         </div>
 
         <!-- Tab Content -->
-        <div class="content-container">
-                <div class="content-wrapper" id="content-wrapper">
-                
-            </div>
+        <div class="content-container" id="content-container">
+            
         </div>
-
+<!-- why -->
     </div>
     <script src="index.js" charset="UTF-8"></script>
 </body>
