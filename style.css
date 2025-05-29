@@ -1,0 +1,203 @@
+*{
+     margin: 0;
+     padding:0;
+}
+body{
+   
+    background-color: #F8F8F8;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Top Bar */
+.top-menu{
+    background-color: #008F05;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.2rem .5%;
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    
+}
+
+.top-menu a{
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 1%;
+    margin-left: 30px;
+    font-weight: 400;
+    
+}
+.top-menu a i {
+    margin-right:5px;
+    font-size: 29px;    
+    vertical-align: middle;
+}
+
+.top-menu .right{
+    display: flex;
+    margin-right: 2%;
+    vertical-align: middle;
+    align-items: center;
+}
+
+.top-menu .right #notif-bell{
+    color: white;
+    font-size: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: auto;
+}
+
+.top-menu .right p {
+    margin-left: 14px;
+}
+
+.top-menu .right .profile-pic #profile-button{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.top-menu .right .profile-pic{
+    position:relative;
+    background-color: aliceblue;
+    width: 50px;
+    height: 50px;
+    margin-left: 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #0af312;
+   
+}
+
+.top-menu .right .profile-pic i{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+}
+
+.top-menu .right .profile-pic img{
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+
+/* Main content */
+.main-content{
+    width: 100%;
+    height: 88vh;
+    background-color: #F8F8F8;
+    display: flex;
+}
+
+/* Side Bar */
+.side-bar{
+    background-color: rgb(255, 255, 255);
+    box-shadow: 3px 1px 11px 1px rgb(202, 202, 202);
+    width: 48vh;
+    height: auto;
+    padding: 12px;
+}
+
+.side-bar-content{
+    left: 0;
+    padding: 10px;
+    padding-right: 0px;
+    color: black;
+    font-size: 14px;
+}
+
+
+/* For higher height screen and width */
+@media only screen and (min-width: 1500px){
+    .side-bar{
+    width: 20%;
+    height: auto;
+}
+
+    .side-bar-content{
+    font-size: 1.3rem;
+}
+}
+
+
+/* For lower width screen */
+@media only screen and (max-width: 1115px){
+    .side-bar{
+    width: 32%;
+}
+
+    .side-bar-content{
+    font-size: .85rem;
+}
+}
+
+.side-bar-content ul{
+    list-style-type: none;
+}
+
+.side-bar-content ul li {
+    line-height: 50px;
+}
+
+.side-bar-content ul a {
+    display: flex;
+    padding: 17px 0 17px 10px; 
+    text-decoration: none;
+    color: black;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    text-shadow: 0px 4px 4px rgba(0,0,0,.25);
+    cursor: pointer;
+}
+
+.side-bar-content ul a:hover,
+.side-bar-content ul li:hover{
+    color: #5FC903;
+    padding-left: 15px;
+    transition: .4s ease;
+}
+
+.side-bar-content ul i{
+    font-size: 27px;
+    margin-right: 15px;
+    vertical-align: middle;
+}
+
+
+/* .side-bar .sign-out{
+    margin-top: 90px;
+    display: flex;
+    font-size: 15px;
+}
+
+.side-bar .sign-out i{
+    font-size: 27px;
+    margin-right: 17px;
+    vertical-align: middle;
+} */
+
+.content-container{
+    background-color: red;
+    width: 100%;
+    height: auto;
+    margin: 25px 50px 5px 50px;
+    margin-bottom: 0px;
+    padding: 20px;
+ }
