@@ -1,94 +1,77 @@
-*{
-     margin: 0;
-     padding:0;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-body{
-   
+
+body {
     background-color: #F8F8F8;
     font-family: "Poppins", sans-serif;
+    height: 100vh;
+    overflow: hidden;
 }
 
 /* Top Bar */
-.top-menu{
+.top-menu {
     background-color: #008F05;
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.2rem .5%;
+    padding: 0.5rem 1.5%;
     font-family: "Poppins", sans-serif;
     font-weight: 200;
-    font-style: normal;
-    
 }
 
-.top-menu a{
+.top-menu a {
     color: white;
     text-decoration: none;
     cursor: pointer;
-    margin: 1%;
-    margin-left: 30px;
+    margin-left: 20px;
     font-weight: 400;
-    
-}
-.top-menu a i {
-    margin-right:5px;
-    font-size: 29px;    
-    vertical-align: middle;
-}
-
-.top-menu .right{
     display: flex;
-    margin-right: 2%;
-    vertical-align: middle;
     align-items: center;
 }
 
-.top-menu .right #notif-bell{
+.top-menu a i {
+    margin-right: 8px;
+    font-size: 24px;
+}
+
+.top-menu .right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.top-menu .right #notif-bell {
     color: white;
     font-size: 20px;
     background: none;
     border: none;
     cursor: pointer;
-    width: auto;
 }
 
-.top-menu .right p {
-    margin-left: 14px;
-}
-
-.top-menu .right .profile-pic #profile-button{
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-}
-
-.top-menu .right .profile-pic{
-    position:relative;
-    background-color: aliceblue;
-    width: 50px;
-    height: 50px;
-    margin-left: 15px;
+.top-menu .right .profile-pic {
+    position: relative;
+    background-color: #f0f0f0;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     overflow: hidden;
     border: 2px solid #0af312;
-   
 }
 
-.top-menu .right .profile-pic i{
+.top-menu .right .profile-pic i {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 24px;
-    font-weight: bold;
-    color: black;
+    font-size: 22px;
+    color: #666;
 }
 
-.top-menu .right .profile-pic img{
-    cursor: pointer;
+.top-menu .right .profile-pic img {
     position: relative;
     width: 100%;
     height: 100%;
@@ -96,108 +79,121 @@ body{
     z-index: 1;
 }
 
-
 /* Main content */
-.main-content{
-    width: 100%;
-    height: 88vh;
-    background-color: #F8F8F8;
+.main-content {
     display: flex;
+    height: calc(100vh - 60px); /*  based on height of top menu*/
 }
 
 /* Side Bar */
-.side-bar{
-    background-color: rgb(255, 255, 255);
-    box-shadow: 3px 1px 11px 1px rgb(202, 202, 202);
-    width: 48vh;
-    height: auto;
-    padding: 12px;
+.side-bar {
+    background-color: #ffffff;
+    box-shadow: 3px 0 8px rgba(202, 202, 202, 0.3);
+    width: 280px;
+    height: 100%;
+    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
 }
 
-.side-bar-content{
-    left: 0;
-    padding: 10px;
-    padding-right: 0px;
-    color: black;
-    font-size: 14px;
+.side-bar-content {
+    padding: 0 10px;
+    flex-grow: 1;
 }
 
-
-/* For higher height screen and width */
-@media only screen and (min-width: 1500px){
-    .side-bar{
-    width: 20%;
-    height: auto;
-}
-
-    .side-bar-content{
-    font-size: 1.3rem;
-}
-}
-
-
-/* For lower width screen */
-@media only screen and (max-width: 1115px){
-    .side-bar{
-    width: 32%;
-}
-
-    .side-bar-content{
-    font-size: .85rem;
-}
-}
-
-.side-bar-content ul{
+.side-bar-content ul {
     list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 .side-bar-content ul li {
-    line-height: 50px;
+    margin-bottom: 4px;
+    position: relative;
 }
 
 .side-bar-content ul a {
     display: flex;
-    padding: 17px 0 17px 10px; 
+    align-items: center;
+    padding: 14px 15px;
     text-decoration: none;
-    color: black;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    text-shadow: 0px 4px 4px rgba(0,0,0,.25);
-    cursor: pointer;
+    color: #333;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
 }
 
-.side-bar-content ul a:hover,
-.side-bar-content ul li:hover{
+.side-bar-content ul a:hover {
     color: #5FC903;
+    background-color: rgba(95, 201, 3, 0.08);
+}
+
+/* active tab */
+.side-bar-content ul .tab-btn.active {
+    color: #5FC903;
+    background-color: rgba(95, 201, 3, 0.12);
+    font-weight: 500;
     padding-left: 15px;
-    transition: .4s ease;
+    transform: translateX(8px);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.side-bar-content ul i{
-    font-size: 27px;
-    margin-right: 15px;
-    vertical-align: middle;
+.side-bar-content ul .tab-btn.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: #008F05;
+    border-radius: 0 4px 4px 0;
 }
 
-
-/* .side-bar .sign-out{
-    margin-top: 90px;
-    display: flex;
-    font-size: 15px;
+.side-bar-content ul i {
+    font-size: 22px;
+    margin-right: 12px;
+    width: 24px;
+    text-align: center;
 }
 
-.side-bar .sign-out i{
-    font-size: 27px;
-    margin-right: 17px;
-    vertical-align: middle;
-} */
-
-.content-container{
-    background-color: red;
-    width: 100%;
-    height: auto;
-    margin: 25px 50px 5px 50px;
-    margin-bottom: 0px;
+/* Content area */
+.content-container {
+    background-color: #ffffff;
+    flex-grow: 1;
+    margin: 20px;
     padding: 20px;
- }
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    overflow-y: auto;
+}
+
+.content-wrapper {
+    padding: 15px;
+}
+
+/* for high monitor type shi */
+@media only screen and (min-width: 1500px) {
+    .side-bar {
+        width: 300px;
+    }
+
+    .side-bar-content {
+        font-size: 1.1rem;
+    }
+    
+    .side-bar-content ul a {
+        padding: 16px 20px;
+    }
+}
+
+/* Low screen viewport or smth */
+@media only screen and (max-width: 1115px) {
+    .side-bar {
+        width: 220px;
+    }
+    
+    .side-bar-content ul a {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+}

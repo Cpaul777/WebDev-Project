@@ -86,8 +86,10 @@
         </div>
 
         <!-- Tab Content -->
-        <div class="content-container" id="content-container">
-            
+        <div class="content-container">
+                <div class="content-wrapper" id="content-wrapper">
+                
+            </div>
         </div>
 
     </div>
