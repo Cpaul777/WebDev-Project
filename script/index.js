@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
  
    // Load the default content to be shown
-  loadContent('includes/dashboard.php', 'dashboard');
+  loadContent(['includes/dashboard.php', 'dashboard']);
     // Get all tabs
     const tabs = document.querySelectorAll('[role="tab"]');
 
@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
         tab.addEventListener('click', function(e){
             e.preventDefault();
 
-            const targetPage = this.dataset.page;
-            const tabName = this.dataset.tabName;
+            const targetPage = [this.dataset.page];
+            const tabName = [this.dataset.tabName];
 
             loadContent(targetPage, tabName);
             updateActiveTab(this);
@@ -40,7 +40,7 @@ async function loadContent(pageUrl, tabName) {
     if(tabName) loadTabResources(tabName);
 
     // Fetch request to server
-    const response = await fetch(pageUrl);
+    const response = await fetch(pageUrl[0]+"?"+pageUrl[1]+"="+pageUrl[2]);
     
     // Get HTML content from response
     const html = await response.text();
@@ -87,6 +87,7 @@ function updateActiveTab(activeTab){
     activeTab.setAttribute('aria-selected', 'true');
     activeTab.classList.add('active');
 
+
     // Updating url without reloading, tnx gpt
     history.pushState(null, '', `?tab=${activeTab.dataset.page}`);
 }
@@ -108,3 +109,4 @@ function toggleMobileMenu() {
     }
 }
 
+// mine
