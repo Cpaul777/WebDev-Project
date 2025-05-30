@@ -1,5 +1,5 @@
-
-<div class="tab-content dashboard-tab" id="dashboard-panel" role="panel">
+<!-- SAMPLE PAGE -->
+<div class="tab-content calendar-tab" id="calendar-panel" role="panel">
     <div class="top-cards">
         <div class="card total-employees" >
             <div class="header">
@@ -9,7 +9,6 @@
                 <h3>856</h3>
             </div>
         </div>
-        
         <div class="card payroll">
             <div class="header">
                 <p>Upcoming Payroll</p>

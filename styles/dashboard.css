@@ -1,0 +1,200 @@
+
+
+/* .card {
+  background: #FFFFFF;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border: 2px solid #ECEEF6;
+  padding: 20px;
+  margin-bottom: 20px;
+  align-items: center;
+  
+} */
+
+.top-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.top-cards .card {
+  width: 250px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  border: 2px solid #ECEEF6;
+}
+
+.dashboard-tab .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, auto));
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+}
+
+.dashboard-tab .top-cards .header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dashboard-tab .top-cards .total-employees .header p{
+    color: #343434;
+    font-size: 14px;
+}
+
+.dashboard-tab .top-cards .total-employees .content h3{
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.dashboard-tab .top-cards .total-employees i{
+    background-color: rgba(12, 182, 212, .2);
+    border-radius: 15px;
+    width: 40px;
+    text-align: center;
+    font-size: 25px;
+    color: blue;
+    margin-right: 12px;
+}
+
+/* Payroll */
+
+.dashboard-tab .top-cards .payroll .header p{
+    color: #343434;
+    font-size: 14px;
+}
+.dashboard-tab .top-cards .payroll .header i{
+    background-color: rgba(224, 42, 224, 0.2);
+    border-radius: 15px;
+    width: 40px;
+    text-align: center;
+    font-size: 25px;
+    color: rgba(234, 0, 255, 0.822);
+    margin-right: 12px;
+}
+
+.dashboard-tab .top-cards .payroll .content h3{
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.dashboard-tab .top-cards .payroll .content p{
+    font-size: 14px;
+    color: #949494;
+    font-weight: 400;
+}
+
+/* Mid cards */
+.mid-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.dept-distribution, .off-today{
+    flex: 1 1 300px;
+    max-width: 650px;
+}
+
+.dashboard-tab .dept-distribution .content{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.dashboard-tab .dept-distribution  {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    border: 2px solid #ECEEF6;
+}
+
+.dashboard-tab .dept-distribution .grid{
+    background: #FFFFFF;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border: 2px solid #ECEEF6;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.dashboard-tab .dept-distribution .dept-header{
+    font-size: 20;
+    font-weight: 600;
+    display: flex;
+}
+
+.dashboard-tab .dept-distribution .header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.dashboard-tab .dept-distribution .administration .header i{
+    background-color: rgba(42, 136, 224, 0.2);
+    border-radius: 14px;
+    width: 36px;
+    text-align: center;
+    font-size: 22px;
+    color: rgba(69, 103, 250, 0.822);
+    margin-right: 12px;
+}
+
+.dashboard-tab .dept-distribution .legislative .header i{
+    background-color: rgba(13, 243, 5, 0.2);
+    border-radius: 14px;
+    width: 36px;
+    text-align: center;
+    font-size: 22px;
+    color: rgba(0, 179, 54, 0.822);
+    margin-right: 12px;
+}
+
+.dashboard-tab .dept-distribution .sanggunian .header i{
+    background-color: rgba(231, 235, 39, 0.2);
+    border-radius: 14px;
+    width: 36px;
+    text-align: center;
+    font-size: 22px;
+    color: rgba(191, 212, 0, 0.822);
+    margin-right: 12px;
+}
+
+.dashboard-tab .dept-distribution .safety-health .header i{
+    background-color: rgba(154, 5, 184, 0.2);
+    border-radius: 14px;
+    width: 36px;
+    text-align: center;
+    font-size: 22px;
+    color: rgba(139, 2, 167, 0.822);
+    margin-right: 12px;
+}
+
+
+.dashboard-tab .dept-distribution p {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.dashboard-tab .dept-distribution .stuff{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.dashboard-tab .dept-distribution .stuff h3{
+    font-size: 23px;
+    font-weight: 600;
+}
+

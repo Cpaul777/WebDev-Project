@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page1</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
     <style></style>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
@@ -43,7 +43,7 @@
                     <!-- The tab role lists them as tab so when and its control is based on the id of the div of the other file -->
                     <li><a role="tab" aria-selected="true" 
                     aria-controls="dashboard-panel" class="tab-btn active" 
-                    data-page="includes/dashboard.php" aria-label="Dashboard Tab">
+                    data-page="includes/dashboard.php" data-tab-name="dashboard" aria-label="Dashboard Tab">
                             <i class="bi bi-view-stacked"></i>
                             <p>Dashboard</p>
                         </a>
@@ -51,7 +51,7 @@
                     
                     <li><a role="tab" aria-selected="false" 
                     aria-controls="employee-panel" class="tab-btn" 
-                    data-page="includes/employee.php" aria-label="Employees Tab">
+                    data-page="includes/employee.php" data-tab-name="employee" aria-label="Employees Tab">
                             <i class="bi bi-person-vcard"></i> 
                             <p>Employees</p>
                         </a>
@@ -59,7 +59,7 @@
 
                     <li><a role="tab" aria-selected="false" 
                     aria-controls="payroll-panel" class="tab-btn" 
-                    data-page="includes/payroll.php" aria-label="Payroll Tab">
+                    data-page="includes/payroll.php" data-tab-name="payroll" aria-label="Payroll Tab">
                             <i class="bi bi-cash-stack"></i> 
                             <p>Payroll</p>
                         </a>
@@ -67,15 +67,15 @@
 
                     <li><a role="tab" aria-selected="false" 
                     aria-controls="calendar-panel" class="tab-btn" 
-                    data-page="calendar.php" aria-label="Calendar Tab">
+                    data-page="includes/calendar.php" data-tab-name="calendar" aria-label="Calendar Tab">
                             <i class="bi bi-calendar-check"></i> 
                             <p>Calendar</p>
                         </a>
                     </li>
 
                     <li><a role="tab" aria-selected="false" 
-                    aria-controls="forms-panel" class="tab-btn" 
-                    data-page="forms.php" aria-label="Forms Tab">
+                    aria-controls="leave_management-panel" class="tab-btn" 
+                    data-page="includes/leave_management.php" data-tab-name="leave_management" aria-label="Forms Tab">
                             <i class="bi bi-file-earmark-text"></i> 
                             <p>Leave Application</p>
                         </a>
@@ -93,6 +93,6 @@
         </div>
 
     </div>
-    <script src="index.js" charset="UTF-8"></script>
+    <script src="/script/index.js" charset="UTF-8"></script>
 </body>
 </html>

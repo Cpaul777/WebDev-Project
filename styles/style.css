@@ -99,6 +99,7 @@ body {
 .side-bar-content {
     padding: 0 10px;
     flex-grow: 1;
+    overflow-y:auto;
 }
 
 .side-bar-content ul {
@@ -186,7 +187,7 @@ body {
     }
 }
 
-/* Low screen viewport or smth */
+/* Low screen viewport or smth only tried in mine tho*/
 @media only screen and (max-width: 1115px) {
     .side-bar {
         width: 220px;
@@ -197,3 +198,6 @@ body {
         font-size: 0.9rem;
     }
 }
+
+
+
