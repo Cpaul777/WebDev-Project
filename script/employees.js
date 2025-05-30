@@ -3,6 +3,6 @@ function employeeListDetect(){
                 const employees = "employees"
                 document.getElementById("employee_offset_go").addEventListener("click",function() {
                 offset = document.getElementById('employee_offset').value;
-                loadContent(["includes/employees.php","?offset=",offset],employees);
+                loadContent(["includes/employees.php","offset",offset],employees);
                 });
             }
