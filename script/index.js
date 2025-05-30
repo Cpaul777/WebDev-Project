@@ -38,7 +38,8 @@ async function loadContent(pageUrl, tabName) {
     if(tabName) loadTabResources(tabName);
 
     // Fetch request to server
-    const response = await fetch(pageUrl);
+    const response = await fetch(pageUrl[0]+"?"+pageUrl[1]+"="+pageUrl[2]);
+
     
     // Get HTML content from response
     const html = await response.text();
