@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
         tab.addEventListener('click', function(e){
             e.preventDefault();
 
-            const targetPage = [this.dataset.page];
+            const targetPage = [this.dataset.page,"",""];
             const tabName = [this.dataset.tabName];
-
+            
             loadContent(targetPage, tabName);
             updateActiveTab(this);
             
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Load content
 async function loadContent(pageUrl, tabName) {
   try {
-
+    
     const oldCss = document.querySelector('link[data-tab-css]');
     if(oldCss) oldCss.remove();
     const oldScript = document.querySelector('script[data-tab-js]');
@@ -38,7 +38,7 @@ async function loadContent(pageUrl, tabName) {
     if(tabName) loadTabResources(tabName);
 
     // Fetch request to server
-    const response = await fetch(pageUrl);
+    const response = await fetch(pageUrl[0]+pageUrl[1]+pageUrl[2]);
     
     // Get HTML content from response
     const html = await response.text();
@@ -106,14 +106,3 @@ function toggleMobileMenu() {
         });
     }
 }
-
-//The employee listing!Add commentMore actions
-// what the fuck is going on here even
-function employeeListDetect(){
-                document.getElementById("employee_offset_go").addEventListener("click",function() {
-                offset = document.getElementById('employee_offset').value;
-                loadContent(["includes/employees.php","offset",offset]);
-                });
-            }
-
-// mine
