@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
  
    // Load the default content to be shown
-  loadContent(['includes/dashboard.php', 'dashboard']);
+  loadContent(['includes/dashboard.php'], ['dashboard']);
     // Get all tabs
     const tabs = document.querySelectorAll('[role="tab"]');
 
