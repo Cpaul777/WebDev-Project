@@ -56,7 +56,7 @@
                     
                     <li><a role="tab" aria-selected="false" 
                     aria-controls="employee-panel" class="tab-btn" 
-                    data-page="includes/employees.php" data-key="offset" data-tab-name="employee" aria-label="Employees Tab">
+                    data-page="includes/employees.php" data-key="offset" data-tab-name="employees" aria-label="Employees Tab">
                             <i class="bi bi-person-vcard"></i> 
                             <p>Employees</p>
                         </a>
