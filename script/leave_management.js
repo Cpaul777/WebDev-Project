@@ -1,3 +1,8 @@
+
+document.getElementById('leave_management').addEventListener('click', () => {
+    location.reload();
+})
+
 const leaveRequests = [
     {
         id: 10,
@@ -137,12 +142,11 @@ const mobileMenuToggle = document.getElementById('mobileMenuToggle');
 const sidebar = document.querySelector('.side-bar');
 
 // Initialize the page
-function initLeaveManagement(){ 
+
     renderTable(leaveRequests);
     setupEventListeners();
     addInteractiveFeatures();
-    // setupMobileMenu();
-};
+    setupMobileMenu();
 
 
 // Setup event listeners for filtering
@@ -228,6 +232,7 @@ function addInteractiveFeatures() {
 // Handle page navigation
 function handlePageNavigation(page) {
     const contentContainer = document.querySelector('.content-container');
+    
     switch(page) {
         case 'dashboard':
             contentContainer.innerHTML = `

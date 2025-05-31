@@ -3,37 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page1</title>
+    <title>HR Management</title>
     <link rel="stylesheet" href="styles/style.css">
-    <style></style>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;800&display=swap" rel="stylesheet">
 
-    
 </head>
 <body>
 
     <!--Top Bar-->
     <div class="top-menu">
-        <a href="#"><i class="bi bi-layout-three-columns"></i> HR Dashboard</a>
+        <a href="index.php"><i class="bi bi-layout-three-columns"></i> HR Dashboard</a>
         <div class="right">
             <button id="notif-bell"><i class="bi bi-bell"></i></button>
             <p>Name</p>
-            <div class="profile-pic">
-            <button id="profile-button">
+            <div class="profile-pic" id="profile-button" onclick="profileDropDown()">
+                <!-- onclick="document.location='includes/login.php'" -->
                 <i class="bi bi-person placeholder-icon"></i>
-            </button>
             </div>
         </div>
     </div>
 
-    <div class="profile-drop-down">
-    <!-- TO DO -->
+    <div class="profile-drop-down" id="profile-drop-down">
+        <div style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb;">
+            <p style="font-weight: 500; color: #111827;">John Doe</p>
+            <p style="font-size: 12px; color: #6b7280;">Administrator</p>
+        </div>
+        <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #374151; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'">Profile Settings</a>
+        <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #374151; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'">Account Settings</a>
+        <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #374151; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'">Help & Support</a>
+        <hr style="margin: 8px 0; border: none; border-top: 1px solid #e5e7eb;">
+        <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #dc2626; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'" onclick="handleSignOut()">Sign Out</a>
     </div>
-
 
 <!-- ARIA (Accessible Rich Internet Applications) implemented its basically for improving accessibility-->
     <div class="main-content">
@@ -73,9 +77,9 @@
                         </a>
                     </li>
 
-                    <li><a role="tab" aria-selected="false" 
+                    <li><a id="leave_management" role="tab" aria-selected="false" 
                     aria-controls="leave_management-panel" class="tab-btn" 
-                    data-page="includes/leave_management.php" data-tab-name="leave_management" aria-label="Forms Tab">
+                    data-page="includes/leave_management.php" data-tab-name="leave_management" aria-label="Leave Management Tab">
                             <i class="bi bi-file-earmark-text"></i> 
                             <p>Leave Application</p>
                         </a>
@@ -93,6 +97,6 @@
         </div>
 <!-- why -->
     </div>
-    <script src="/script/index.js" charset="UTF-8"></script>
+    <script src="script/index.js" charset="UTF-8"></script>
 </body>
 </html>

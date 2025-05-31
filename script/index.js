@@ -1,12 +1,26 @@
 // Make sure that html is loaded
 document.addEventListener('DOMContentLoaded', () => {
- 
-   // Load the default content to be shown
-  loadContent(['includes/dashboard.php'], ['dashboard']);
-    // Get all tabs
-    const tabs = document.querySelectorAll('[role="tab"]');
 
-    // function for the tabs when clicked
+  // Get all tabs
+  const tabs = document.querySelectorAll('[role="tab"]');
+
+   // Check for saved tab state
+  const urlParams = new URLSearchParams(location.search);
+  const savedTab = urlParams.get('tab');
+  
+  if (savedTab) {
+    const targetTab = document.querySelector(`[role="tab"][data-page="${savedTab}"]`);
+    if (targetTab) {
+      // Activate saved tab
+      loadContent([savedTab], [targetTab.dataset.tabName]);
+      updateActiveTab(targetTab);
+      
+    }
+  } else {
+    loadContent(['includes/dashboard.php'], ['dashboard']);
+  }
+
+  // function for the tabs when clicked
     tabs.forEach(tab => {
         tab.addEventListener('click', function(e){
             e.preventDefault();
@@ -14,11 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetPage = [this.dataset.page];
             const tabName = [this.dataset.tabName];
 
-            loadContent(targetPage, tabName);
+            loadContent([targetPage], [tabName]);
             updateActiveTab(this);
-            
-        });
-
+      });
     });
 
     // Mobile menu toggle
@@ -29,13 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
 // Load content
 async function loadContent(pageUrl, tabName) {
   try {
-
     const oldCss = document.querySelector('link[data-tab-css]');
     if(oldCss) oldCss.remove();
     const oldScript = document.querySelector('script[data-tab-js]');
     if (oldScript) oldScript.remove();
-
-    if(tabName) loadTabResources(tabName);
 
     // Fetch request to server
     const response = await fetch(pageUrl[0]+"?"+pageUrl[1]+"="+pageUrl[2]);
@@ -45,11 +54,10 @@ async function loadContent(pageUrl, tabName) {
     const html = await response.text();
     
     // Insert HTML into page
-     document.getElementById('content-wrapper').innerHTML = html;
+    document.getElementById('content-wrapper').innerHTML = html;
 
-    //  Load tab specfici css/js
+    // Load resources
     loadTabResources(tabName);
-
   } catch (error) {
     // Error handling type shi
     console.error('Error loading content:', error);
@@ -57,8 +65,11 @@ async function loadContent(pageUrl, tabName) {
   }
 }
 
-// Loading css and JS
+// Loading css and JSe
 function loadTabResources(tabName){
+  // Prevent duplicate loading
+  if (document.querySelector(`link[href="styles/${tabName}.css"]`)) return;
+
   // For that tab's css
   const cssLink = document.createElement('link');
   cssLink.rel = 'stylesheet';
@@ -66,11 +77,18 @@ function loadTabResources(tabName){
   cssLink.setAttribute('data-tab-css', 'true');
   document.head.appendChild(cssLink);
 
-  //For that tab's JS
-  const jsScript = document.createElement('script');
-  jsScript.src = `script/${tabName}.js`;
-  jsScript.setAttribute('data-tab-js', 'true');
-  document.body.appendChild(jsScript);
+
+
+    if (document.querySelector(`script[src="script/${tabName}.js"]`)) return;
+
+    //For that tab's JS
+    const jsScript = document.createElement('script');
+    jsScript.src = `script/${tabName}.js`;
+    jsScript.setAttribute('data-tab-js', 'true');
+    document.body.appendChild(jsScript);
+ 
+  
+  
 
 }
 
@@ -86,9 +104,9 @@ function updateActiveTab(activeTab){
     activeTab.setAttribute('aria-selected', 'true');
     activeTab.classList.add('active');
 
-
     // Updating url without reloading, tnx gpt
-    history.pushState(null, '', `?tab=${activeTab.dataset.page}`);
+    const tabName = activeTab.dataset.tabName;
+    history.pushState(null, '', `?tab=${activeTab.dataset.page}&tabName=${tabName}`);
 }
 
 function toggleMobileMenu() {
@@ -108,6 +126,25 @@ function toggleMobileMenu() {
     }
 }
 
+
+
+  console.log("before entering");
+// SIGN OUT FUNCTION TYPE SHI
+function profileDropDown(){
+  console.log("It entered here");
+  const dropDown = document.getElementById('profile-drop-down');
+  if(dropDown.style.display == 'block'){
+    console.log("IT entered the firt if")
+    document.getElementById('profile-drop-down').style.display = 'none';
+  } else{ 
+    document.getElementById('profile-drop-down').style.display = 'block';
+  }
+}
+
+function handleSignOut() {
+  window.location.href = 'includes/login.php';
+}
+
 //The employee listing!Add commentMore actions
 // what the fuck is going on here even
 function employeeListDetect(){
@@ -118,3 +155,5 @@ function employeeListDetect(){
             }
 
 // mine
+
+

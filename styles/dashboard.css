@@ -8,7 +8,6 @@
   padding: 20px;
   margin-bottom: 20px;
   align-items: center;
-  
 } */
 
 .top-cards {
@@ -26,14 +25,6 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   padding: 20px;
   border: 2px solid #ECEEF6;
-}
-
-.dashboard-tab .stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, auto));
-  gap: 20px;
-  padding: 20px;
-  justify-content: center;
 }
 
 .dashboard-tab .top-cards .header{
@@ -78,16 +69,44 @@
     margin-right: 12px;
 }
 
-.dashboard-tab .top-cards .payroll .content h3{
+.dashboard-tab .top-cards .pending-approval .content h3{
     font-size: 28px;
     font-weight: 600;
 }
 
-.dashboard-tab .top-cards .payroll .content p{
+.dashboard-tab .top-cards .pending-approval .content p{
     font-size: 14px;
     color: #949494;
     font-weight: 400;
 }
+
+/* Pending Approval */
+
+.dashboard-tab .top-cards .pending-approval .header p{
+    color: #343434;
+    font-size: 14px;
+}
+.dashboard-tab .top-cards .pending-approval .header i{
+    background-color: rgba(221, 224, 42, 0.2);
+    border-radius: 15px;
+    width: 40px;
+    text-align: center;
+    font-size: 25px;
+    color: rgba(149, 160, 0, 0.822);
+    margin-right: 12px;
+}
+
+.dashboard-tab .top-cards .pending-approval .content h3{
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.dashboard-tab .top-cards .pending-approval .content p{
+    font-size: 14px;
+    color: #949494;
+    font-weight: 400;
+}
+
 
 /* Mid cards */
 .mid-card {
@@ -95,18 +114,28 @@
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+    padding: 20px;
 }
 
-.dept-distribution, .off-today{
-    flex: 1 1 300px;
+.mid-card .dept-distribution .percentage {
+    font-size: 14px;
+    font-weight: 600;
+    color: #949494;
+    /* background: rgba(78, 115, 223, 0.1); */
+    padding: 4px 14px;
+    border-radius: 20px;
+}
+
+.dept-distribution{
+    flex: 1 1 550px;
     max-width: 650px;
 }
 
 .dashboard-tab .dept-distribution .content{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 20px;
-    padding: 20px;
+    padding: 15px;
 }
 
 .dashboard-tab .dept-distribution  {
@@ -140,46 +169,40 @@
     gap: 20px;
 }
 
-.dashboard-tab .dept-distribution .administration .header i{
-    background-color: rgba(42, 136, 224, 0.2);
+.dashboard-tab .dept-distribution .header i{
+    margin-right: 7px;
     border-radius: 14px;
     width: 36px;
     text-align: center;
-    font-size: 22px;
+    font-size: 20px;
+}
+
+.dashboard-tab .dept-distribution .administration .header i{
+    background-color: rgba(42, 136, 224, 0.2);
+    
+    
+    
     color: rgba(69, 103, 250, 0.822);
-    margin-right: 12px;
+   
 }
 
 .dashboard-tab .dept-distribution .legislative .header i{
     background-color: rgba(13, 243, 5, 0.2);
-    border-radius: 14px;
-    width: 36px;
-    text-align: center;
-    font-size: 22px;
     color: rgba(0, 179, 54, 0.822);
-    margin-right: 12px;
+   
 }
 
 .dashboard-tab .dept-distribution .sanggunian .header i{
     background-color: rgba(231, 235, 39, 0.2);
-    border-radius: 14px;
-    width: 36px;
-    text-align: center;
-    font-size: 22px;
     color: rgba(191, 212, 0, 0.822);
-    margin-right: 12px;
+    
 }
 
 .dashboard-tab .dept-distribution .safety-health .header i{
     background-color: rgba(154, 5, 184, 0.2);
-    border-radius: 14px;
-    width: 36px;
-    text-align: center;
-    font-size: 22px;
     color: rgba(139, 2, 167, 0.822);
-    margin-right: 12px;
-}
 
+}
 
 .dashboard-tab .dept-distribution p {
     font-size: 14px;
@@ -198,3 +221,355 @@
     font-weight: 600;
 }
 
+.dashboard-tab .dept-distribution .progress-container {
+    height: 12px;
+    background-color: #f0f0f0;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.dashboard-tab .dept-distribution .employee-count {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.dashboard-tab .dept-distribution .progress-bar {
+    height: 100%;
+    border-radius: 6px;
+
+}
+
+.administration .progress-bar{
+    background-color: rgb(42, 136, 224);
+    width: 25%;
+}
+
+.legislative .progress-bar{
+    background-color: rgb(13, 243, 5);
+    width: 36%;
+}
+
+.sanggunian .progress-bar{
+    background-color: rgb(231, 235, 39);
+    width: 22%;
+}
+.safety-health .progress-bar{
+    background-color: rgb(154, 5, 184);
+    width: 17%;
+}
+
+
+/* WHOS OFF TODAY PART */
+.mid-card .off-today {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    border: 2px solid #ECEEF6;
+    flex: 1 1 550px;
+    max-width: 650px;
+}
+
+.mid-card .off-today .header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mid-card .off-today .header p{
+    color: #232323;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.mid-card .off-today .header .view-all{
+    font-size: 18px;
+    color: #6366F1;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.mid-card .off-today .header .view-all:hover{
+    color: #0003c7;
+    text-decoration: none;
+}
+.mid-card .off-today .content{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 15px;
+}
+
+.mid-card .off-today .content .entry{
+    width: auto;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    border: 2px solid #ECEEF6;
+}
+
+.off-today .content .entry .name{
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.off-today .content .entry .date{
+    font-size: 15px;
+    color: #777676;
+}
+
+/* The pop up when view all is pressed under "whos off today" card */
+.off-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.336);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.off-modal-content{
+    background: white;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 670px;
+    height: 77%;
+    overflow: auto;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(0px);
+    opacity: 1;
+    animation: modalAppear 0.4s forwards;
+}
+
+@keyframes modalAppear {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.off-modal .modal-header{
+    justify-content: space-between;
+    position: relative;
+    padding: 12px 20px;
+}
+
+.off-modal .modal-header .modal-title{
+    font-size: 27px;
+    font-weight: 600;
+    text-align: center;
+    border-bottom: 3px solid gray;
+}
+
+.off-modal .modal-header .modal-title i{
+    font-size: 38px;
+    font-weight: 700;
+    padding-right: 12px;
+}
+
+.modal-header .date{
+    font-size: 20px;
+    font-weight: 500;
+} 
+
+.modal-header .date i{
+    font-size: 28px;
+    vertical-align: center;
+    padding-right: 15px;
+    
+}
+
+.modal-header .below-words{
+    display: flex;
+    flex-direction: column;
+    font-size: 21px;
+    font-weight: 500;
+}
+
+.modal-header .below-words i{
+    font-size: 27px;
+    font-weight: 500;
+}
+
+.modal-header .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: rgb(0, 0, 0);
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 26px;
+    height: 17px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.modal-header .close-btn i{
+    font-size: larger;
+}
+
+.modal-header .close-btn i:hover {
+    background: rgba(15, 12, 12, 0.397);
+    color: #000000;
+}
+
+.off-modal-content .off-modal-body{
+    padding: 17px 25px;
+}
+
+.off-modal-body .inside-entry{
+    display: flex;
+    flex-direction: row;
+    padding: 7px;
+    gap: 20px;
+    align-items: center;
+}
+
+.off-modal-body .inside-entry .profile-picture{
+    position: relative;
+    background-color: #f0f0f0;
+    width: 41px;
+    height: 41px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #000000;
+}
+
+.inside-entry .profile-picture i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 42px;
+    color: #666;
+}
+
+.inside-entry .details{
+    display: flex;
+    flex-direction: column;
+}
+
+.inside-entry .details .inside-name{
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.inside-entry .details .date{
+    font-size: 14px;
+}
+
+.inside-entry .details .role{
+    font-size: 14px;
+}
+
+
+/* Bottom Card */
+.bottom-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.bottom-card .employee-status {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    border: 2px solid #ECEEF6;
+    flex: 1 1 100%;
+    max-width: 100%;
+}
+
+.bottom-card .employee-status .header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   
+}
+
+.bottom-card .employee-status .header .all{
+    font-size: 18px;
+    color: #6366F1;
+    font-weight: 400;
+    cursor: pointer;
+    
+    
+}
+
+.employee-status .header .filter i{
+    padding-left: 11px;
+    font-size: 20px;
+    font-weight: 500;
+    
+}
+
+.employee-status .employee-content{
+   overflow-x: auto;
+    border-radius: 5px;
+}
+
+
+.employee-content .leave-table {
+  width: 100%;
+  border-collapse: collapse;
+  
+}
+
+.employee-content .leave-table thead{
+    border: 0px;
+}
+
+.employee-content .leave-table th {
+    background-color: #f9fafb;
+    padding: 12px 24px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 500;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.employee-content .leave-table td {
+    padding: 16px 24px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 15px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.leave-table tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+/* 
+.employee-content tbody .employee-name{
+    font-size: 18px;
+    font-weight: 500;
+    color: #111827;
+}
+
+.employee-content tbody .employee-name{
+    font-size: 18px;
+    font-weight: 500;
+    color: #111827;
+}
+
+.employee-content tbody .employee-name{
+    font-size: 18px;
+    font-weight: 500;
+    color: #111827;
+} */

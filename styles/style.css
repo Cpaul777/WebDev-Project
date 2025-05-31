@@ -4,11 +4,14 @@
     box-sizing: border-box;
 }
 
-body {
-    background-color: #F8F8F8;
-    font-family: "Poppins", sans-serif;
+html, body { 
     height: 100vh;
     overflow: hidden;
+}
+
+body{
+    background-color: #F8F8F8;
+    font-family: "Poppins", sans-serif;
 }
 
 /* Top Bar */
@@ -60,6 +63,7 @@ body {
     border-radius: 50%;
     overflow: hidden;
     border: 2px solid #0af312;
+    cursor: pointer;
 }
 
 .top-menu .right .profile-pic i {
@@ -69,6 +73,7 @@ body {
     transform: translate(-50%, -50%);
     font-size: 22px;
     color: #666;
+    cursor: pointer;
 }
 
 .top-menu .right .profile-pic img {
@@ -78,6 +83,22 @@ body {
     object-fit: cover;
     z-index: 1;
 }
+
+.profile-drop-down {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    z-index: 1000;
+    padding: 8px 0;
+}
+
+
 
 /* Main content */
 .main-content {

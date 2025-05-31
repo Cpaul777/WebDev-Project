@@ -1,13 +1,13 @@
 
 /* Main content */
-/* .content-container {
+.content-container {
   background-color: #F8F8F8;
   width: 95%;
   height: auto;
   margin: 25px 20px 5px 50px;
   padding: 20px;
   padding-top: 0;
-} */
+} 
 
 .summary-cards {
   display: grid;
@@ -191,6 +191,7 @@
   background-color: #fef3c7;
   color: #92400e;
 }
+
 
 .status-approved {
   background-color: #d1fae5;
