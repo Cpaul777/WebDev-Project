@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tab.addEventListener('click', function(e){
             e.preventDefault();
 
-            const targetPage = [this.dataset.page,"",""];
+            const targetPage = [this.dataset.page];
             const tabName = [this.dataset.tabName];
             
             loadContent([targetPage], [tabName]);
