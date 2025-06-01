@@ -4,52 +4,70 @@
     box-sizing: border-box;
 }
 
+:root {
+    --top-bar-height: 60px;
+    --sidebar-width: 250px;
+    --dark-green:#008F05;
+    --light-green:#5FC903;
+    --very-light-green:#0af312;
+    --bg-color:#F8F8F8;
+
+    --dark-color:#333;
+    --white-color:white;
+}
+
 html, body { 
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
 }
 
 body{
     background-color: #F8F8F8;
     font-family: "Poppins", sans-serif;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Top Bar */
 .top-menu {
+    height: var(--top-bar-height);
+    color: black;
     background-color: #008F05;
-    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 1.5%;
-    font-family: "Poppins", sans-serif;
-    font-weight: 200;
+    padding: 0 20px;
+    /* font-weight: 200; */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 100;
 }
 
 .top-menu a {
-    color: white;
+    color: var(--white-color);
     text-decoration: none;
-    cursor: pointer;
     margin-left: 20px;
-    font-weight: 400;
+    font-weight: 600;
     display: flex;
     align-items: center;
+    gap: 10px;
+
 }
 
 .top-menu a i {
     margin-right: 8px;
-    font-size: 24px;
+    font-size: 1.7rem;
 }
 
 .top-menu .right {
+    color: var(--white-color);
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
 }
 
 .top-menu .right #notif-bell {
-    color: white;
-    font-size: 20px;
+    color: var(--white-color);
+    font-size: 1.2rem;
     background: none;
     border: none;
     cursor: pointer;
@@ -57,13 +75,15 @@ body{
 
 .top-menu .right .profile-pic {
     position: relative;
-    background-color: #f0f0f0;
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    overflow: hidden;
-    border: 2px solid #0af312;
+    background-color: var(--dark-color);
+    border: 2px solid var(--very-light-green);
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .top-menu .right .profile-pic i {
@@ -72,7 +92,7 @@ body{
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 22px;
-    color: #666;
+    color: #ffffff;
     cursor: pointer;
 }
 
@@ -84,49 +104,51 @@ body{
     z-index: 1;
 }
 
+/* DROP DOWN */
 .profile-drop-down {
     display: none;
     position: absolute;
-    top: 60px;
+    top: calc(var(--top-bar-height) + 10px);
     right: 20px;
     background: white;
     border: 1px solid #e5e7eb;
     border-radius: 8px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    width: 200px;
-    z-index: 1000;
+    width: 250px;
+    z-index: 200;
     padding: 8px 0;
 }
-
-
 
 /* Main content */
 .main-content {
     display: flex;
-    height: calc(100vh - 60px); /*  based on height of top menu*/
+    flex: 1;
+    overflow: hidden;
 }
 
 /* Side Bar */
 .side-bar {
     background-color: #ffffff;
-    box-shadow: 3px 0 8px rgba(202, 202, 202, 0.3);
-    width: 280px;
+    width: var(--sidebar-width);
     height: 100%;
+    overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
     padding: 15px 0;
+    transition: all .3s ease;
+    z-index: 50;
     display: flex;
     flex-direction: column;
 }
 
 .side-bar-content {
-    padding: 0 10px;
+    padding: 20px 0;
     flex-grow: 1;
-    overflow-y:auto;
 }
 
-.side-bar-content ul {
-    list-style-type: none;
-    padding: 0;
+.side-bar ul {
+    list-style: none;
     margin: 0;
+    padding: 0;
 }
 
 .side-bar-content ul li {
@@ -140,24 +162,25 @@ body{
     padding: 14px 15px;
     text-decoration: none;
     color: #333;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    position: relative;
+    gap: 15px;
+    transition: all 0.3s ease;    
+    border-left: 4px solid transparent;
 }
 
 .side-bar-content ul a:hover {
-    color: #5FC903;
+    color: var(--light-green);
     background-color: rgba(95, 201, 3, 0.08);
 }
 
 /* active tab */
 .side-bar-content ul .tab-btn.active {
-    color: #5FC903;
+    color: var(--light-green);
     background-color: rgba(95, 201, 3, 0.12);
     font-weight: 500;
     padding-left: 15px;
     transform: translateX(8px);
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+            
 }
 
 .side-bar-content ul .tab-btn.active::after {
@@ -167,59 +190,107 @@ body{
     top: 0;
     height: 100%;
     width: 4px;
-    background-color: #008F05;
+    background-color: var(--dark-green);
     border-radius: 0 4px 4px 0;
 }
 
-.side-bar-content ul i {
-    font-size: 22px;
-    margin-right: 12px;
+.side-bar-content li a i {
+    font-size: 1.2rem;
+    /* margin-right: 12px;
     width: 24px;
-    text-align: center;
+    text-align: center; */
 }
 
 /* Content area */
 .content-container {
-    background-color: #ffffff;
+    background: white;
     flex-grow: 1;
-    margin: 20px;
     padding: 20px;
+    margin: 20px;
     padding-top: 0;
     border-radius: 15px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); */
     overflow-y: auto;
 }
 
 .content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
     padding: 12px;
 }
 
-/* for high monitor type shi */
-@media only screen and (min-width: 1500px) {
+
+
+/* for high or low scale monitor view type shi */
+@media (max-width: 992px) {
     .side-bar {
-        width: 300px;
+        position: fixed;
+        left: -100%;
+        top: var(--top-bar-height);
+        bottom: 0;
     }
 
-    .side-bar-content {
-        font-size: 1.1rem;
+    .side-bar.active {
+        left: 0;
     }
-    
-    .side-bar-content ul a {
-        padding: 16px 20px;
+
+    .content-container {
+        padding: 15px;
     }
 }
 
-/* Low screen viewport or smth only tried in mine tho*/
-@media only screen and (max-width: 1115px) {
-    .side-bar {
-        width: 220px;
+@media (max-width: 768px) {
+    :root {
+        --top-bar-height: 50px;
+    }
+
+    .top-menu {
+        padding: 0 15px;
     }
     
-    .side-bar-content ul a {
-        padding: 12px 15px;
-        font-size: 0.9rem;
+    .top-menu .right p {
+        display: none;
     }
 }
 
+@media (max-width: 576px) {
+    :root {
+        --sidebar-width: 80%;
+    }
+    .content-container {
+        padding: 10px;
+    }
+}
+
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+@media (max-width: 992px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+}
+
+.mobile-overlay {
+    display: none;
+    position: fixed;
+    top: var(--top-bar-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 40;
+        }
+
+.mobile-overlay.active {
+    display: block;
+}
 
 

@@ -16,6 +16,9 @@
 
     <!--Top Bar-->
     <div class="top-menu">
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <i class="bi bi-list"></i>
+        </button>
         <a href="index.php"><i class="bi bi-layout-three-columns"></i> HR Dashboard</a>
         <div class="right">
             <button id="notif-bell"><i class="bi bi-bell"></i></button>
@@ -42,7 +45,7 @@
 <!-- ARIA (Accessible Rich Internet Applications) implemented its basically for improving accessibility-->
     <div class="main-content">
         <!-- Side Bar -->
-        <div class="side-bar">
+        <div class="side-bar" id="sidebar">
             <div class="side-bar-content" role="tablist">
                 <ul>
                     <!-- The tab role lists them as tab so when and its control is based on the id of the div of the other file -->
@@ -85,7 +88,7 @@
                         </a>
                     </li>
                 </ul>
-            <!-- <div class="sign-out"><a href="#"><i class="bi bi-box-arrow-right"></i> Sign Out</a></div> -->
+            
             </div>
         </div>
 
@@ -95,7 +98,8 @@
                 
             </div>
         </div>
-<!-- why -->
+    <div class="mobile-overlay" id="overlay"></div>
+<!-- why --> <!-- why what -->
     </div>
     <script src="script/index.js" charset="UTF-8"></script>
 </body>

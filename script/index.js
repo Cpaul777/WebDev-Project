@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const targetTab = document.querySelector(`[role="tab"][data-page="${savedTab}"]`);
     if (targetTab) {
       // Activate saved tab
-      console.log(targetTab);
       loadContent([savedTab], [targetTab.dataset.tabName]);
       updateActiveTab(targetTab);
     }
@@ -27,7 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const targetPage = [this.dataset.page];
             const tabName = [this.dataset.tabName];
-            
+            if(window.innerWidth <= 992){
+              document.getElementById('sidebar').classList.remove('active');
+              document.getElementById('overlay').classList.remove('active');
+            }
             loadContent([targetPage], [tabName]);
             updateActiveTab(this);
       });
@@ -49,7 +51,6 @@ async function loadContent(pageUrl, tabName) {
 
     // Fetch request to server
     const response = await fetch(pageUrl[0]+"?"+pageUrl[1]+"="+pageUrl[2]);
-    console.log(response);
     // Get HTML content from response
     const html = await response.text();
     
@@ -68,8 +69,6 @@ async function loadContent(pageUrl, tabName) {
 // Loading css and JSe
 function loadTabResources(tabName){
   // Prevent duplicate loading
-
-  console.log(tabName);
   if (document.querySelector(`link[href="styles/${tabName}.css"]`)) return;
   if (document.querySelector(`script[src="script/${tabName}.js"]`)) return;
 
@@ -104,33 +103,28 @@ function updateActiveTab(activeTab){
 
     // Updating url without reloading, tnx gpt
     const tabName = activeTab.dataset.tabName;
-    console.log(tabName);
     history.pushState(null, '', `?tab=${activeTab.dataset.page}&tabName=${tabName}`);
 }
 
 function toggleMobileMenu() {
-    const sidebar = document.querySelector('.side-bar');
-    sidebar.classList.toggle('active');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
     
-    // Handle overlay
-    let overlay = document.querySelector('.overlay');
-    if (!overlay) {
-        overlay = document.createElement('div');
-        overlay.className = 'overlay';
-        document.body.appendChild(overlay);
-        overlay.addEventListener('click', () => {
-            sidebar.classList.remove('active');
-            overlay.remove();
-        });
+      sidebar.classList.toggle('active');
+      overlay.classList.toggle('active');
+
+    if(overlay){
+      overlay.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+      })
     }
 }
 
 // SIGN OUT FUNCTION TYPE SHI
 function profileDropDown(){
-  console.log("It entered here");
   const dropDown = document.getElementById('profile-drop-down');
   if(dropDown.style.display == 'block'){
-    console.log("IT entered the firt if")
     document.getElementById('profile-drop-down').style.display = 'none';
   } else{ 
     document.getElementById('profile-drop-down').style.display = 'block';

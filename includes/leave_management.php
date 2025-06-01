@@ -1,5 +1,6 @@
+
 <div class="tab-content leave_management-tab" id="leave_management-panel" role="panel">
-    <div class="content-container" >
+    <div class="in-container" >
         <h2 class="section-title">Leave Management</h2>
 
         <div class="summary-cards">

@@ -7,6 +7,8 @@
 html, body { 
     height: 100vh;
     overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 body{
@@ -28,7 +30,7 @@ body{
 
 .login-left::before {
   content: "";
-  position: absolute;
+  position:relative;
   top: 0; left: 0; right: 0; bottom: 0;
   background: linear-gradient(135deg, 
     rgba(168, 224, 99, 0.5),  /* light green */

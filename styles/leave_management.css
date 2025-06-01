@@ -1,13 +1,8 @@
 
 /* Main content */
-.content-container {
-  background-color: #F8F8F8;
-  width: 95%;
-  height: auto;
-  margin: 25px 20px 5px 50px;
-  padding: 20px;
-  padding-top: 0;
-} 
+.content-container .in-container{
+
+}
 
 .summary-cards {
   display: grid;
