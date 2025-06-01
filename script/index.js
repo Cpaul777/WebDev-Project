@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const targetTab = document.querySelector(`[role="tab"][data-page="${savedTab}"]`);
     if (targetTab) {
       // Activate saved tab
+      console.log(targetTab);
       loadContent([savedTab], [targetTab.dataset.tabName]);
       updateActiveTab(targetTab);
-      
     }
   } else {
     loadContent(['includes/dashboard.php'], ['dashboard']);
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tab.addEventListener('click', function(e){
             e.preventDefault();
 
-            const targetPage = [this.dataset.page,"",""];
+            const targetPage = [this.dataset.page];
             const tabName = [this.dataset.tabName];
             
             loadContent([targetPage], [tabName]);
@@ -49,8 +49,7 @@ async function loadContent(pageUrl, tabName) {
 
     // Fetch request to server
     const response = await fetch(pageUrl[0]+"?"+pageUrl[1]+"="+pageUrl[2]);
-
-    
+    console.log(response);
     // Get HTML content from response
     const html = await response.text();
     
@@ -69,7 +68,10 @@ async function loadContent(pageUrl, tabName) {
 // Loading css and JSe
 function loadTabResources(tabName){
   // Prevent duplicate loading
+
+  console.log(tabName);
   if (document.querySelector(`link[href="styles/${tabName}.css"]`)) return;
+  if (document.querySelector(`script[src="script/${tabName}.js"]`)) return;
 
   // For that tab's css
   const cssLink = document.createElement('link');
@@ -79,17 +81,12 @@ function loadTabResources(tabName){
   document.head.appendChild(cssLink);
 
 
-
-    if (document.querySelector(`script[src="script/${tabName}.js"]`)) return;
-
-    //For that tab's JS
-    const jsScript = document.createElement('script');
-    jsScript.src = `script/${tabName}.js`;
-    jsScript.setAttribute('data-tab-js', 'true');
-    document.body.appendChild(jsScript);
+  //For that tab's JS
+  const jsScript = document.createElement('script');
+  jsScript.src = `script/${tabName}.js`;
+  jsScript.setAttribute('data-tab-js', 'true');
+  document.body.appendChild(jsScript);
  
-  
-  
 
 }
 
@@ -107,6 +104,7 @@ function updateActiveTab(activeTab){
 
     // Updating url without reloading, tnx gpt
     const tabName = activeTab.dataset.tabName;
+    console.log(tabName);
     history.pushState(null, '', `?tab=${activeTab.dataset.page}&tabName=${tabName}`);
 }
 
@@ -127,9 +125,6 @@ function toggleMobileMenu() {
     }
 }
 
-
-
-  console.log("before entering");
 // SIGN OUT FUNCTION TYPE SHI
 function profileDropDown(){
   console.log("It entered here");
