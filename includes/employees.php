@@ -5,20 +5,26 @@ session_start();
 // Check if the user is logged in, if
 // not then redirect them to the login page
 
+$records_per_page = 5;
+
 if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
     $offset = 0;
 } else {
-    $offset = ($_GET['offset']-1)*3;
+    $offset = ($_GET['offset']-1)* $records_per_page;
 }
-$query = "SELECT * FROM Workers LIMIT 3 OFFSET $offset";
+$query = "SELECT * FROM Workers LIMIT 7 OFFSET $offset";
+
+$total_records = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM workers"));
+$total_pages = ceil($total_records[0] / $records_per_page);
+
 ?>
+
 
 <div class="table-container">
     <table class="employee-table">
                 <thead>
                     <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
+                        <th>Name</th>
                         <th>Email</th>
                         <th>Role</th>
                         <th>Gender</th>
@@ -47,8 +53,7 @@ $query = "SELECT * FROM Workers LIMIT 3 OFFSET $offset";
                             $department = $row["department"];
                             $hiredate = $row["hireDate"];
                             echo '<tr> 
-                                    <td>'.$firstname.'</td> 
-                                    <td>'.$lastname.'</td> 
+                                    <td>'.$firstname. ' '.$lastname.' </td> 
                                     <td>'.$email.'</td> 
                                     <td>'.$role.'</td>
                                     <td>'.$gender.'</td>
@@ -63,7 +68,10 @@ $query = "SELECT * FROM Workers LIMIT 3 OFFSET $offset";
                     }
                     ?>
                     
-            <span>Page</span><input type="text" name="page" id="employee_offset" value="1"> <button id="employee_offset_go" onclick="employeeListDetect()"> go </button>
                 </tbody>
     </table>
+    <div class="page">
+        <span >Page</span><input type="text" name="page" id="employee_offset" value="1"> <button id="employee_offset_go" onclick="employeeListDetect()"> go </button>
+    </div>
+            
 </div>
