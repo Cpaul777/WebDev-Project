@@ -1,0 +1,112 @@
+/* Table Container */
+.table-container {
+    margin-top: 28px;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  overflow-x: auto;
+}
+
+/* Table */
+.employee-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Poppins', sans-serif;
+}
+
+.employee-table th, 
+.employee-table td {
+  text-align: left;
+  padding: 14px 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.employee-table th {
+  background-color: #f9fafb;
+  color: #374151;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.employee-table td {
+  font-size: 14px;
+  color: #374151;
+}
+
+.employee-table tr:hover {
+  background-color: #f1f5f9;
+}
+
+/* Buttons */
+.employee-table button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.employee-table button[type="submit"] {
+  background-color: #3b82f6;
+  color: white;
+  margin-right: 4px;
+}
+
+.employee-table a button {
+  background-color: #ef4444;
+  color: white;
+}
+
+/* Status Labels */
+/* .status-label {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+  text-align: center;
+}
+
+.status-active {
+  background-color: #dcfce7;
+  color: #22c55e;
+}
+
+.status-inactive {
+  background-color: #fee2e2;
+  color: #ef4444;
+}
+
+.status-onleave {
+  background-color: #fef9c3;
+  color: #eab308;
+} */
+
+/* Pagination Input */
+#employee_offset {
+  width: 40px;
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-left: 10px;
+  margin-right: 6px;
+  text-align: center;
+}
+
+#employee_offset_go {
+  padding: 4px 10px;
+  border: none;
+  background-color: #2563eb;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+.page{
+  margin-top: 30px;
+  text-align: center;
+}
