@@ -10,8 +10,9 @@ if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
 } else {
     $offset = ($_GET['offset']-1)*3;
 }
+$query = "SELECT * FROM Workers LIMIT 4 OFFSET $offset";
+$total_count = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM Workers"));
 
-$query = "SELECT * FROM Workers LIMIT 5 OFFSET $offset";
 ?>
 
 <body>
@@ -22,7 +23,7 @@ $query = "SELECT * FROM Workers LIMIT 5 OFFSET $offset";
                 <p>Total Employees </p> <i class="bi bi-person"></i>
             </div>
             <div class="content">
-                <h3>856</h3>
+                <?php echo '<h3>' . $total_count[0] . '</h3>'; ?>
             </div>
         </div>
         
@@ -64,8 +65,7 @@ $query = "SELECT * FROM Workers LIMIT 5 OFFSET $offset";
                         <p>Administration</p>
                     </div>
                     <div class="stuff">
-                       <div class="employee-count">4</div>
-                        
+                        <div class="employee-count">4</div>
                     </div>
                     <div class="progress-container">
                         <div class="progress-bar"></div>
@@ -80,8 +80,8 @@ $query = "SELECT * FROM Workers LIMIT 5 OFFSET $offset";
                     </div>
                     <div class="stuff">
                         <div class="employee-count">7</div>
-                        
                     </div>
+
                     <div class="progress-container">
                         <div class="progress-bar"></div>
                     </div>
@@ -165,14 +165,10 @@ $query = "SELECT * FROM Workers LIMIT 5 OFFSET $offset";
                         <?php
                         if ($result = $conn->query($query)) {
                             while ($row = $result->fetch_assoc()) {
-                                $id = $row["workerId"];
                                 $firstname = $row["firstName"];
                                 $lastname = $row["lastName"];
-                                $emailid = $row["emailId"];
                                 $role = $row["role"];
-                                $gender = $row["gender"];
                                 $department = $row["department"];
-                                $hiredate = $row["hireDate"];
                                 echo '<tr>
                                         <td class="employee-name">'.$firstname.' '.$lastname.'</div></td>
                                         <td class="department">'.$department.'</td>

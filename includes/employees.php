@@ -10,7 +10,7 @@ if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
 } else {
     $offset = ($_GET['offset']-1)*3;
 }
-$query = "SELECT * FROM Workers LIMIT 3 OFFSET $offset";
+$query = mysqli_query(,"SELECT * FROM Workers LIMIT 3 OFFSET $offset");
 ?>
 
 <div class="table-container">
