@@ -12,6 +12,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;800&display=swap" rel="stylesheet">
 
 </head>
+<?php
+if(!isset($_SESSION)) session_start();
+
+// Check if the user is logged in, if
+// not then redirect them to the login page
+if (!isset($_SESSION['email'])) {
+    header("Location: includes/login.php");
+    exit();
+}
+if (!($_SESSION['role'] == 'administrator')) {
+    header("Location: bad.php");
+    exit();
+}
+if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
+    $offset = 0;
+} else {
+    $offset = $_GET['offset'];
+}
+
+
+?>
 <body>
 
     <!--Top Bar-->
@@ -22,7 +43,7 @@
         <a href="index.php"><i class="bi bi-layout-three-columns"></i> HR Dashboard</a>
         <div class="right">
             <button id="notif-bell"><i class="bi bi-bell"></i></button>
-            <p>Name</p>
+            <p><?php echo $_SESSION['email'];?></p>
             <div class="profile-pic" id="profile-button" onclick="profileDropDown()">
                 <!-- onclick="document.location='includes/login.php'" -->
                 <i class="bi bi-person placeholder-icon"></i>
@@ -32,14 +53,14 @@
 
     <div class="profile-drop-down" id="profile-drop-down">
         <div style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb;">
-            <p style="font-weight: 500; color: #111827;">John Doe</p>
+            <p style="font-weight: 500; color: #111827;"><?php echo $_SESSION['firstname']," ",$_SESSION['lastname'] ;?></p>
             <p style="font-size: 12px; color: #6b7280;">Administrator</p>
         </div>
         <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #374151; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'">Profile Settings</a>
         <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #374151; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'">Account Settings</a>
         <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #374151; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'">Help & Support</a>
         <hr style="margin: 8px 0; border: none; border-top: 1px solid #e5e7eb;">
-        <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #dc2626; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'" onclick="handleSignOut()">Sign Out</a>
+        <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #dc2626; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'" onclick="window.location = 'logout.php' ">Sign Out</a>
     </div>
 
 <!-- ARIA (Accessible Rich Internet Applications) implemented its basically for improving accessibility-->
@@ -59,7 +80,7 @@
                     
                     <li><a role="tab" aria-selected="false" 
                     aria-controls="employee-panel" class="tab-btn" 
-                    data-page="includes/employees.php" data-key="offset" data-tab-name="employees" aria-label="Employees Tab">
+                    data-page="includes/employees.php" data-tab-name="employees" aria-label="Employees Tab">
                             <i class="bi bi-person-vcard"></i> 
                             <p>Employees</p>
                         </a>
