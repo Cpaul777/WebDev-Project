@@ -1,6 +1,6 @@
 /* Table Container */
 .table-container {
-    margin-top: 28px;
+  margin-top: 28px;
   padding: 24px;
   background: #ffffff;
   border-radius: 12px;
@@ -28,6 +28,7 @@
   font-weight: 600;
   font-size: 14px;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .employee-table td {
@@ -39,7 +40,13 @@
   background-color: #f1f5f9;
 }
 
-/* Buttons */
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
 .employee-table button {
   padding: 6px 12px;
   border: none;
@@ -49,64 +56,55 @@
   transition: background-color 0.2s;
 }
 
-.employee-table button[type="submit"] {
+.btn-edit {
   background-color: #3b82f6;
   color: white;
-  margin-right: 4px;
 }
 
-.employee-table a button {
+.btn-delete {
   background-color: #ef4444;
   color: white;
 }
 
-/* Status Labels */
-/* .status-label {
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 500;
-  display: inline-block;
-  text-align: center;
-}
-
-.status-active {
-  background-color: #dcfce7;
-  color: #22c55e;
-}
-
-.status-inactive {
-  background-color: #fee2e2;
-  color: #ef4444;
-}
-
-.status-onleave {
-  background-color: #fef9c3;
-  color: #eab308;
-} */
-
-/* Pagination Input */
-#employee_offset {
-  width: 40px;
-  padding: 4px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  margin-left: 10px;
-  margin-right: 6px;
-  text-align: center;
-}
-
-#employee_offset_go {
-  padding: 4px 10px;
-  border: none;
-  background-color: #2563eb;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-
-.page{
+/* Pagination */
+.pagination {
   margin-top: 30px;
   text-align: center;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.pagination-controls a, 
+.pagination-controls span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.pagination-controls i {
+  font-size: 35px;
+  cursor: pointer;
+  transition: color 0.3s;
+  color: #0af312;
+}
+
+.pagination-controls i:hover {
+  color: #008F05;
+}
+.disabled-arrow i {
+  color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.page-indicator {
+  font-size: 16px;
+  font-weight: 500;
+  color: #4b5563;
+  padding: 0 15px;
 }

@@ -203,7 +203,7 @@ body{
 
 /* Content area */
 .content-container {
-    background: white;
+    background: #F8F8F8;
     flex-grow: 1;
     padding: 20px;
     margin: 20px;

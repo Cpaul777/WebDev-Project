@@ -57,7 +57,7 @@
                     <option value="Personal Leave">Personal Leave</option>
                     <option value="Maternity Leave">Maternity Leave</option>
                     <option value="Paternity Leave">Paternity Leave</option>
-                    <option value="Special Leave benefits for women">Special Leave benefits for women</option>
+                    <!-- <option value="Special Leave benefits for women">Special Leave benefits for women</option> -->
                     <option value="Unpaid Leave">Unpaid Leave</option>
                 </select>
                 </div>

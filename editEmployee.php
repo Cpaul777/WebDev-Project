@@ -1,6 +1,8 @@
 <?php
 include 'includes/db_connect.php';
 
+$message = "";
+
 if (!isset($_POST['id'])){
     header("Location: no_id.php");
   exit();

@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Page</title>
-  <link rel="stylesheet" href="../styles/login.css">
+  <link rel="stylesheet" href="styles/login.css">
 </head>
 <?php
-include 'db_connect.php';
+include 'includes/db_connect.php';
 
 $message = "";
-
+$getrolestmt = $conn->prepare("SELECT role, department,workerID,firstName,lastName FROM Workers WHERE emailId = ?");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -28,7 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $passwordsalted = $password.$salt;
         if (password_verify($passwordsalted,$db_password)) {
             $message = "Login successful";
-                $getrolestmt = $conn->prepare("SELECT role, department,workerID,firstName,lastName FROM Workers WHERE emailId = ?");
                 $getrolestmt->bind_param("s", $emailid,);
                 $getrolestmt->execute();
                 $getrolestmt->store_result();
@@ -41,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['firstname'] = $firstname;
             $_SESSION['role'] = $role;
             $_SESSION['lastname'] = $lastname;
-            header("Location: ../index.php");
+            header("Location: index.php");
             exit();
         } else {
             $message = "Incorrect password";
@@ -67,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       <form action="login.php" method="POST">
         <div class="input-group">
-          <label for="Username">Username</label>
+          <label for="Email">Email</label>
           <input type="email" id="email" name="email" placeholder="Email" required>
         </div>
 
@@ -76,7 +75,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <input type="password" id="password" name="password" required>
         </div>
 
-        <button type="submit" name="submit" value="submit"">Sign in</button>
+        <button type="submit" name="submit" value="submit">Sign in</button>
+        <a href="../register.php">Register</a>
       </form>
     </div>
   </div>

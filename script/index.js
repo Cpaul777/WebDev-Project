@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
 
             const targetPage = [this.dataset.page];
+
             const tabName = [this.dataset.tabName];
             if(window.innerWidth <= 992){
               document.getElementById('sidebar').classList.remove('active');

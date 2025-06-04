@@ -4,38 +4,41 @@
   box-sizing: border-box;
 }
 
-html, body { 
-    height: 100vh;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: "Poppins", sans-serif;
 }
 
-body{
-    background-color: #F8F8F8;
-    font-family: "Poppins", sans-serif;
+body {
+  background-color: #F8F8F8;
 }
 
 .login-container {
   display: flex;
-  height: 100vh;
-  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  width: 100%;
 }
 
 .login-left {
   flex: 1;
-  position: relative;  /* Needed for overlay */
-  overflow: hidden;    
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .login-left::before {
   content: "";
-  position:relative;
+  position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   background: linear-gradient(135deg, 
-    rgba(168, 224, 99, 0.5),  /* light green */
-    rgba(86, 171, 47, 0.5),   /* medium green */
-    rgba(246, 211, 101, 0.5)  /* light yellow */
+    rgba(168, 224, 99, 0.5),
+    rgba(86, 171, 47, 0.5),
+    rgba(246, 211, 101, 0.5)
   );
   z-index: 1;
 }
@@ -45,85 +48,293 @@ body{
   height: 100%;
   object-fit: cover;
   filter: brightness(70%) contrast(110%);
-  position: relative;
-  z-index: 0;  /* Behind overlay */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
 }
 
 .login-right {
-  flex: 1;
+  flex: .9;
   background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 60px;
+  padding: 20px;
+  overflow-y: auto;
 }
 
 .login-form {
   width: 100%;
-  max-width: 600px;
+  max-width: 480px;
   text-align: center;
+  padding: 20px;
 }
 
 .city-logo {
-  width: 250px;   
-  height: 250px;
-  margin-bottom: 50px;
+  width: 136px;
+  height: 136px;
+  margin-bottom: 15px;
+  object-fit: contain;
 }
 
 .login-form h2 {
-  font-size: 36px;
+  font-size: 1.8rem;
   font-weight: bold;
-  margin-bottom: 50px;
-}
-
-.login-form p {
-  font-size: 24px;
-  margin: 10px 0;
-}
-
-.subtext {
-  font-size: 18px;
-  color: #666;
-  margin-bottom: 40px;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+  color: #333;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 15px;
 }
 
 .input-group {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 5px;
+  gap: 6px;
+  width: 100%;
 }
 
 form label {
-  font-size: 20px;
+  font-size: 1.2rem;
   font-weight: 600;
+  color: #555;
 }
 
 form input {
   width: 100%;
-  padding: 18px;
-  font-size: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+  padding: 12px;
+  font-size: 0.95rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+  transition: border-color 0.3s;
+}
+
+form input:focus {
+  border-color: #008000;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 128, 0, 0.1);
 }
 
 form button {
-  padding: 18px;
-  font-size: 22px;
+  padding: 12px;
+  font-size: 1rem;
   background-color: #008000;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+form a {
+  display: block;
+  padding: 8px;
+  font-size: 0.9rem;
+  color: #008000;
+  text-decoration: none;
+  transition: color 0.3s;
+  font-weight: 500;
+  border-radius: 8px;
 }
 
 form button:hover {
   background-color: #006400;
+}
+
+form a:hover {
+  color: #006400;
+  text-decoration: underline;
+}
+
+.message {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.message.error {
+  background-color: #ffebee;
+  color: #d32f2f;
+}
+
+.message.success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+/* Medium screens */
+@media (max-width: 900px) {
+  .login-container {
+    flex-direction: row;
+}
+
+  .login-left {
+    flex: 1.2;
+  }
+
+  .login-right {
+    flex: 1;
+  }
+
+  .city-logo {
+    width: 90px;
+    height: 90px;
+  }
+
+  .login-form h2 {
+    font-size: 1.4rem;
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+  }
+
+  .login-left {
+    height: 30vh;
+    flex: none;
+  }
+
+  .login-right {
+    height: 70vh;
+    padding: 20px 15px;
+    justify-content: flex-start;
+  }
+
+  .login-form {
+    max-width: 400px;
+    padding: 15px;
+  }
+
+  .city-logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 12px;
+  }
+
+  .login-form h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+  }
+
+  form {
+    gap: 12px;
+  }
+
+  form input {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  form button {
+    padding: 10px;
+    font-size: 0.95rem; 
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .login-left {
+    height: 25vh;
+  }
+  
+  .login-right {
+    height: 75vh;
+    padding: 15px 10px;
+  }
+  
+  .login-form {
+    padding: 10px;
+    max-width: 100%;
+  }
+  
+  .city-logo {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .login-form h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  form {
+    gap: 10px;
+  }
+  
+  form label {
+    font-size: 0.85rem;
+  }
+  
+  form input {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+  
+  form button {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+  
+  form a {
+    font-size: 0.85rem;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 320px) {
+  .login-left {
+    height: 20vh;
+  }
+  
+  .login-right {
+    height: 80vh;
+    padding: 10px 5px;
+  }
+  
+  .city-logo {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 8px;
+  }
+  
+  .login-form h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  form {
+    gap: 8px;
+  }
+  
+  form label {
+    font-size: 0.8rem;
+  }
+  
+  form input {
+    padding: 7px;
+    font-size: 0.8rem;
+  }
+  
+  form button {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+  
+  form a {
+    font-size: 0.8rem;
+  }
 }

@@ -7,24 +7,31 @@ session_start();
 
 $records_per_page = 5;
 
-if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
-    $offset = 0;
-} else {
-    $offset = ($_GET['offset']-1)* $records_per_page;
-}
-<<<<<<< HEAD
-$query = mysqli_query(,"SELECT * FROM Workers LIMIT 3 OFFSET $offset");
-=======
-$query = "SELECT * FROM Workers LIMIT 7 OFFSET $offset";
+// For pagination
+$current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+if($current_page < 1) $current_page = 1;
+
+
+$offset = ($current_page - 1) * $records_per_page;
+
+// if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
+//     $offset = 0;
+// } else {
+//     $offset = ($_GET['']-1)* $records_per_page;
+// }
+
+$query = "SELECT * FROM Workers LIMIT $records_per_page OFFSET $offset";
 
 $total_records = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM workers"));
 $total_pages = ceil($total_records[0] / $records_per_page);
-
->>>>>>> c3fab24e2e0873bfa8bef2e7dbe3e7dba7b43e6b
 ?>
 
 
 <div class="table-container">
+    <div class="header">
+        
+    </div>
+
     <table class="employee-table">
                 <thead>
                     <tr>
@@ -63,8 +70,8 @@ $total_pages = ceil($total_records[0] / $records_per_page);
                                     <td>'.$gender.'</td>
                                     <td>'.$department.'</td>
                                     <td>'.$hiredate.'</td>
-                                    <td> <form action="editEmployee.php" method="post""><button name="id" type="submit" value="'.$id.'">Edit</button> </form>
-                                        <a href="delete.php?id='.$id.'&offset='.$offset.'" onclick="return confirm(\'Are you sure?\') "><button type="button">delete</button></a>
+                                    <td> <form action="editEmployee.php" method="post""><div class="action-buttons"><button class="btn btn-edit" name="id" type="submit" value="'.$id.'">Edit</button> </form>
+                                        <a href="delete.php?id='.$id.'&offset='.$offset.'" onclick="return confirm(\'Are you sure?\') "><button class="btn btn-delete" type="button">delete</button></a></div>
                                     </td>
                                 </tr>';
                         }
@@ -74,8 +81,67 @@ $total_pages = ceil($total_records[0] / $records_per_page);
                     
                 </tbody>
     </table>
-    <div class="page">
-        <span >Page</span><input type="text" name="page" id="employee_offset" value="1"> <button id="employee_offset_go" onclick="employeeListDetect()"> go </button>
+
+
+    <div class="pagination">
+        <div class="pagination-controls">
+            <?php if ($current_page > 1): ?>
+                <a href="#" onclick="employeeListDetect(<?php echo ($current_page - 1) ?>)">
+                    <i class="bi bi-arrow-left-circle"></i>
+                </a>
+            <?php else: ?>
+                <span class="disabled-arrow">
+                    <i class="bi bi-arrow-left-circle"></i>
+                </span>
+            <?php endif; ?>
+            
+            <span class="page-indicator">Page <?php echo $current_page; ?> of <?php echo $total_pages; ?></span>
+            
+            <?php if ($current_page < $total_pages): ?>
+                <a href="#" onclick="employeeListDetect(<?php echo ($current_page + 1); ?>)">
+                    <i class="bi bi-arrow-right-circle"></i>
+                </a>
+            <?php else: ?>
+                <span class="disabled-arrow">
+                    <i class="bi bi-arrow-right-circle"></i>
+                </span>
+            <?php endif; ?>
+        </div>
     </div>
             
 </div>
+
+
+
+
+<!--  -->
+<?php
+            // echo $current_page;
+            // if ($current_page > 1) { 
+                // echo "It entered here";
+
+                // echo '<a href="#" id="employee_pageNum" data-php-variable="'.$current_page.'" onclick="employeeListDetect()"><i class="bi bi-arrow-left-circle"></i></a>';
+
+                // echo '<button id="employee_offset_back" data-php-variable="'.($current_page--).'" onclick="employeeListDetect()"> <i class="bi bi-arrow-left-circle"></i>sfsd </button>';
+            // }
+            //     echo '<span class="page-indicator">Page '. $current_page . ' of ' .$total_pages . '</span>';
+            // if ($current_page < $total_pages) {
+
+            //     echo '<a href="#" id="employee_pageNum" data-php-variable="'.$current_page.'" onclick="employeeListDetect()"><i class="bi bi-arrow-right-circle"></i></a>';
+                
+            //     // echo '<button id="employee_offset_back" data-php-variable="'. ($current_page) . '"onclick="employeeListDetect()"> <i class="bi bi-arrow-right-circle"></i> </button>';
+            // }
+
+            ?> 
+            <!-- <button id="employee_offset_go" onclick="employeeListDetect()"> Next &raquo; </button> -->
+        </div>
+
+        <!-- <input type="text" name="page" " value="<?php echo $current_page?>">  -->
+
+
+<!-- <?php 
+            // if ($current_page > 1) echo "<a href='?page=" . ($current_page - 1) . "'><i class='bi bi-arrow-left-circle'></i></a> ";
+
+            // if ($current_page < $total_pages) echo "<a href='?page=" . ($current_page + 1) . "'>Next &raquo;</a>";
+            // echo "</div>";
+        ?> -->

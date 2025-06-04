@@ -39,9 +39,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $getEmailStmt->execute();
             $resultemail = $getEmailStmt->get_result();
             $emailid = $resultemail->fetch_assoc();
-    
+            $date = date('Y-m-d');
         $createworkerstmt = $conn->prepare("INSERT INTO Workers (firstName,lastName,emailId,role,department,gender,hireDate) VALUES (?, ?, ?, ?, ?, ? ,?)");
-        $createworkerstmt->bind_param("ssissss", $firstname,$lastname, $emailid['userid'],$unset,$unset,$gender,date('Y-m-d'));
+        $createworkerstmt->bind_param( "ssissss", $firstname, $lastname, $emailid['userid'],$unset,$unset,$gender,$date);
         if ($createworkerstmt->execute()) {
             $message = "Account created successfully";
         } else {

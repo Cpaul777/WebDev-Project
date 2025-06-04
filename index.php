@@ -18,11 +18,11 @@ if(!isset($_SESSION)) session_start();
 // Check if the user is logged in, if
 // not then redirect them to the login page
 if (!isset($_SESSION['email'])) {
-    header("Location: includes/login.php");
+    header("Location: login.php");
     exit();
 }
 if (!($_SESSION['role'] == 'administrator')) {
-    header("Location: bad.php");
+    header("Location: index.php");
     exit();
 }
 if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
@@ -60,7 +60,7 @@ if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
         <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #374151; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'">Account Settings</a>
         <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #374151; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'">Help & Support</a>
         <hr style="margin: 8px 0; border: none; border-top: 1px solid #e5e7eb;">
-        <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #dc2626; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'" onclick="window.location = 'logout.php' ">Sign Out</a>
+        <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #dc2626; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'" onclick="window.location = 'login.php' ">Sign Out</a>
     </div>
 
 <!-- ARIA (Accessible Rich Internet Applications) implemented its basically for improving accessibility-->
