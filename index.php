@@ -40,7 +40,7 @@ if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
         <button class="mobile-menu-toggle" id="mobileMenuToggle">
             <i class="bi bi-list"></i>
         </button>
-        <a href="index.php"><i class="bi bi-layout-three-columns"></i> HR Dashboard</a>
+        <a href="index.php"><i class="bi bi-layout-three-columns"></i> Las Piñas HR Management</a>
         <div class="right">
             <button id="notif-bell"><i class="bi bi-bell"></i></button>
             <p><?php echo $_SESSION['email'];?></p>

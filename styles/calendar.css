@@ -1,0 +1,363 @@
+/* calendar.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #f5f5f5;
+    line-height: 1.6;
+}
+
+.calendar-tab {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.in-container {
+    flex: 1;
+}
+
+.calendar-wrapper {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-header {
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+#currentDate {
+    color: #666;
+    font-size: 14px;
+}
+
+.calendar-box {
+    width: 100%;
+}
+
+.calendar-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px 0;
+}
+
+#prevMonth, #nextMonth {
+    cursor: pointer;
+    font-size: 18px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: #f8f9fa;
+    user-select: none;
+    transition: background-color 0.2s;
+}
+
+#prevMonth:hover, #nextMonth:hover {
+    background: #e9ecef;
+}
+
+#monthYear {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+#todayBtn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+#todayBtn:hover {
+    background: #0056b3;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    margin-bottom: 1px;
+}
+
+.day-name {
+    background: #f8f9fa;
+    padding: 12px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    color: #666;
+}
+
+.calendar-dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background: #e9ecef;
+}
+
+.date {
+    background: white;
+    padding: 12px;
+    min-height: 60px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.date:hover {
+    background: #f8f9fa;
+}
+
+.date.today {
+    background: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.date.today:hover {
+    background: #0056b3;
+}
+
+.empty-day {
+    background: #f8f9fa;
+    min-height: 60px;
+}
+
+.event-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin: 1px;
+}
+
+.event-dot.meeting {
+    background: #28a745;
+}
+
+.event-dot.review {
+    background: #ffc107;
+}
+
+.event-dot.training {
+    background: #17a2b8;
+}
+
+.event-dot.holiday {
+    background: #dc3545;
+}
+
+.events-panel {
+    width: 280px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.events-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.events-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+#addEventBtn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.2s;
+}
+
+#addEventBtn:hover {
+    background: #218838;
+}
+
+.event-list {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.event-item {
+    margin-bottom: 10px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+.event-categories h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.event-categories ul {
+    list-style: none;
+}
+
+.event-categories li {
+    margin-bottom: 8px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.dot.meeting {
+    background: #28a745;
+}
+
+.dot.review {
+    background: #ffc107;
+}
+
+.dot.training {
+    background: #17a2b8;
+}
+
+.dot.holiday {
+    background: #dc3545;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 24px;
+    color: #666;
+    user-select: none;
+}
+
+.close:hover {
+    color: #333;
+}
+
+.modal-content h3 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
+}
+
+.modal-content input,
+.modal-content select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.modal-content button[type="submit"] {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+.modal-content button[type="submit"]:hover {
+    background: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .calendar-tab {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .events-panel {
+        width: 100%;
+    }
+
+    .date {
+        min-height: 50px;
+        padding: 8px;
+    }
+}
