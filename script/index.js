@@ -1,13 +1,15 @@
+
 // Make sure that html is loaded
+
 document.addEventListener('DOMContentLoaded', () => {
 
   // Get all tabs
   const tabs = document.querySelectorAll('[role="tab"]');
-
    // Check for saved tab state
   const urlParams = new URLSearchParams(location.search);
   const savedTab = urlParams.get('tab');
-  
+
+
   if (savedTab) {
     const targetTab = document.querySelector(`[role="tab"][data-page="${savedTab}"]`);
     if (targetTab) {
@@ -22,16 +24,23 @@ document.addEventListener('DOMContentLoaded', () => {
   // function for the tabs when clicked
     tabs.forEach(tab => {
         tab.addEventListener('click', function(e){
-            e.preventDefault();
-
+          e.preventDefault();
+            const prev = document.querySelector('[role="tab"][aria-selected="true"]');  
             const targetPage = [this.dataset.page];
-
             const tabName = [this.dataset.tabName];
             if(window.innerWidth <= 992){
               document.getElementById('sidebar').classList.remove('active');
               document.getElementById('overlay').classList.remove('active');
             }
-            loadContent([targetPage], [tabName]);
+
+            // Since employees tab has filters
+            // Using ternary to set the filterParams to whatever employeefilters return value is
+            // or blank
+            const filterParams = tabName[0] === 'employees' ? getEmployeeFilters() : '';
+            
+            // Leavemanagement soon
+
+            loadContent([targetPage], [tabName], filterParams);
             updateActiveTab(this);
       });
     });
@@ -42,19 +51,23 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Load content
-async function loadContent(pageUrl, tabName) {
+async function loadContent(pageUrl, tabName, queryParams = '') {
   try {
-    
-    const oldCss = document.querySelector('link[data-tab-css]');
-    if(oldCss) oldCss.remove();
-    const oldScript = document.querySelector('script[data-tab-js]');
-    if (oldScript) oldScript.remove();
+      const oldCss = document.querySelector('link[data-tab-css]');
+      if(oldCss) oldCss.remove();
+      
+      const oldScript = document.querySelector('script[data-tab-js]');
+      if (oldScript) oldScript.remove();
+     
+      // Fetch request to server
 
-    // Fetch request to server
-    const response = await fetch(pageUrl[0]+"?"+pageUrl[1]+"="+pageUrl[2]);
+      // Ternary for if queryParams has value set the value to the first statement or the second otherwise
+      
+    const fetchUrl = queryParams ? `${pageUrl[0]}?${queryParams}` : pageUrl[0] +'?' + pageUrl[1];
+    console.log(fetchUrl);
+    const response = await fetch(fetchUrl);
     // Get HTML content from response
     const html = await response.text();
-    
     // Insert HTML into page
     document.getElementById('content-wrapper').innerHTML = html;
 
@@ -69,9 +82,16 @@ async function loadContent(pageUrl, tabName) {
 
 // Loading css and JSe
 function loadTabResources(tabName){
+
   // Prevent duplicate loading
-  if (document.querySelector(`link[href="styles/${tabName}.css"]`)) return;
-  if (document.querySelector(`script[src="script/${tabName}.js"]`)) return;
+  if (document.querySelector(`link[href="styles/${tabName[0]}.css"]`)) {
+    console.log("IT RETURNED BECASUE SAME SAME");
+    return;
+  }
+  if (document.querySelector(`script[src="script/${tabName[0]}.js"]`)){ 
+    console.log("IT IS JUST RETURNED BECAUSE IT WASN'T REMOVED AND IS THE SAME CSS ANYWAYS");
+    return;
+  }
 
   // For that tab's css
   const cssLink = document.createElement('link');
@@ -80,18 +100,18 @@ function loadTabResources(tabName){
   cssLink.setAttribute('data-tab-css', 'true');
   document.head.appendChild(cssLink);
 
-
-  //For that tab's JS
   const jsScript = document.createElement('script');
   jsScript.src = `script/${tabName}.js`;
   jsScript.setAttribute('data-tab-js', 'true');
+  jsScript.onload = () => {
+    console.log(`${tabName} resources loaded`);
+  }
   document.body.appendChild(jsScript);
- 
 
 }
 
 // the updateActiveTab function:
-function updateActiveTab(activeTab){
+function updateActiveTab(activeTab, currentPage = 1){
     // getting other tabs and disable  
     document.querySelectorAll('[role="tab"]').forEach(tab => {
         tab.setAttribute('aria-selected', 'false');
@@ -103,8 +123,28 @@ function updateActiveTab(activeTab){
     activeTab.classList.add('active');
 
     // Updating url without reloading, tnx gpt
-    const tabName = activeTab.dataset.tabName;
-    history.pushState(null, '', `?tab=${activeTab.dataset.page}&tabName=${tabName}`);
+    const url = new URLSearchParams();
+    url.set('tab', activeTab.dataset.page);
+    // const tabName = activeTab.dataset.tabName;
+    // Employees specialty back again
+    // Leave management soon
+
+    // If employees tab is selected, add possible filters
+    if (activeTab.dataset.page === 'includes/employees.php') {
+      console.log("ITS AN EMPLYOYEE TAB OH NO");
+      const search = document.getElementById('searchInput')?.value.trim().toLowerCase() || '';
+      const department = document.getElementById('department-filter')?.value || '';
+      const status = document.getElementById('status-filter')?.value || '';
+      const role = document.getElementById('role-filter')?.value || '';
+
+      if (search) url.set('search', search);
+      if (department) url.set('department', department);
+      if (status) url.set('status', status);
+      if (role) url.set('role', role);
+      if(currentPage) url.set('page', currentPage);
+    }
+
+    history.pushState(null, '', `?${url.toString()}`);
 }
 
 function toggleMobileMenu() {
@@ -133,8 +173,28 @@ function profileDropDown(){
 }
 
 function handleSignOut() {
+
   window.location.href = 'includes/login.php';
 }
 
+function getEmployeeFilters(){
+  // 
+  // const page = parseInt(document.getElementById('currentPage').textContent, 10)?.textContent || '0'; 
+  const searchInput = document.getElementById('searchInput') 
+  const search = searchInput? searchInput.value.trim().toLowerCase() : '';
+  const department = document.getElementById('department-filter')?.value || '';
+  const status = document.getElementById('status-filter')?.value || '';
+  const role = document.getElementById('role-filter')?.value || '';
+
+  const params = new URLSearchParams();
+  if (search) params.set('search', search);
+  if (department) params.set('department', department);
+  if (status) params.set('status', status);
+  if (role) params.set('role', role);
+  
+  // // Page
+  // if (page) params.set('page', page)
+  return params.toString();
+}
 
 

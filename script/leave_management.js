@@ -138,7 +138,7 @@ const departmentFilter = document.getElementById('departmentFilter');
 const statusFilter = document.getElementById('statusFilter');
 const leaveTypeFilter = document.getElementById('leaveTypeFilter');
 const tableBody = document.getElementById('leaveTableBody');
-const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+// const mobileMenuToggle = document.getElementById('mobileMenuToggle');
 const sidebar = document.querySelector('.side-bar');
 
 // Initialize the page
@@ -146,7 +146,7 @@ const sidebar = document.querySelector('.side-bar');
     renderTable(leaveRequests);
     setupEventListeners();
     addInteractiveFeatures();
-    setupMobileMenu();
+    // setupMobileMenu();
 
 
 // Setup event listeners for filtering
@@ -425,62 +425,6 @@ function showNotifications() {
     }, 100);
 }
 
-// Show profile menu
-function showProfileMenu() {
-    const existingMenu = document.querySelector('.profile-menu');
-    if (existingMenu) {
-        existingMenu.remove();
-        return;
-    }
-    
-    const menu = document.createElement('div');
-    menu.className = 'profile-menu';
-    menu.style.cssText = `
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 8px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        width: 200px;
-        z-index: 1000;
-        padding: 8px 0;
-    `;
-    
-    menu.innerHTML = `
-        <div style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb;">
-            <p style="font-weight: 500; color: #111827;">John Doe</p>
-            <p style="font-size: 12px; color: #6b7280;">Administrator</p>
-        </div>
-        <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #374151; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'">Profile Settings</a>
-        <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #374151; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'">Account Settings</a>
-        <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #374151; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'">Help & Support</a>
-        <hr style="margin: 8px 0; border: none; border-top: 1px solid #e5e7eb;">
-        <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #dc2626; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'" onclick="handleSignOut()">Sign Out</a>
-    `;
-    
-    document.body.appendChild(menu);
-    
-    // Close menu when clicking outside
-    setTimeout(() => {
-        document.addEventListener('click', function closeMenu(e) {
-            if (!menu.contains(e.target) && !document.getElementById('profile-button').contains(e.target)) {
-                menu.remove();
-                document.removeEventListener('click', closeMenu);
-            }
-        });
-    }, 100);
-}
-
-// Handle sign out
-function handleSignOut() {
-    if (confirm('Are you sure you want to sign out?')) {
-        // In a real application, you would handle the logout process here
-        alert('Signing out...');
-        // window.location.href = '/login';
-    }
-}
 
 // Filter table based on search and filter inputs
 function filterTable() {
