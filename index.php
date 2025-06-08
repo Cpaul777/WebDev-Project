@@ -23,7 +23,7 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 if (!($_SESSION['role'] == 'administrator')) {
-    header("Location: index.php");
+    header("Location: employeepage.php");
     exit();
 }
 if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
