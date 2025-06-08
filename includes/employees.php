@@ -5,7 +5,7 @@ session_start();
 // Check if the user is logged in, if
 // not then redirect them to the login page
 if (!isset($_SESSION['email'])) {
-    header("Location: ../login.php");
+    header("Location: login.php");
     exit();
 }
 
@@ -135,10 +135,10 @@ while ($row = mysqli_fetch_assoc($role_result)) {
                                     <td>'.$hiredate.'</td>
                                     <td>
                                         <div class="action-buttons">
-                                        <form action="employeeDetail.php" method="post">
+                                        <form action="editEmployee.php" method="post">
                                         <button class="btn btn-edit" name="id" type="submit" value="'.$id.'">Edit</button>
                                         </form>
-                                        <a href="delete.php?id='.$id.'&offset='.$offset.'" onclick="return confirm(\'Are you sure?\') "><button class="btn btn-delete" type="button">delete</button></a>
+                                        <a href="includes/delete.php?id='.$id.'&offset='.$offset.'" onclick="return confirm(\'Are you sure?\') "><button class="btn btn-delete" type="button">delete</button></a>
                                         </div>
                                     </td>
                                 </tr>';

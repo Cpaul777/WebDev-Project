@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $resultemail = $getEmailStmt->get_result();
             $emailid = $resultemail->fetch_assoc();
             $date = date('Y-m-d');
-        $createworkerstmt = $conn->prepare("INSERT INTO Workers (firstName,lastName,emailId,role,department,gender,hireDate) VALUES (?, ?, ?, ?, ?, ? ,?)");
+        $createworkerstmt = $conn->prepare("INSERT INTO workers (firstName,lastName,emailId,role,department,gender,hireDate) VALUES (?, ?, ?, ?, ?, ? ,?)");
         $createworkerstmt->bind_param( "ssissss", $firstname, $lastname, $emailid['userid'],$unset,$unset,$gender,$date);
         if ($createworkerstmt->execute()) {
             $message = "Account created successfully";
@@ -86,7 +86,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 .container input[type="text"],
-.container input[type="password"] {
+.container input[type="password"],
+.container input[type="email"] {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -145,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form method="post">
             <input type="text" name="firstname" placeholder="First Name" required><br>
             <input type="text" name="lastname" placeholder="Last Name" required><br>
-            <input type="text" name="email" placeholder="Email" required><br>
+            <input type="email" name="email" placeholder="Email" required><br>
             <input type="password" name="password" placeholder="Password" required><br>
             <select name="gender" id="gender">
                 <option value="MALE">MALE</option>
