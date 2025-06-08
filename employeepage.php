@@ -8,6 +8,7 @@
 <?php session_start();
 include 'includes/db_connect.php';
 $message = " ";
+echo $_SESSION['role'];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $currentdate = new DateTime(date('Y-m-d'));

@@ -11,6 +11,7 @@
 include 'includes/db_connect.php';
 
 
+
 $message = "";
 $getrolestmt = $conn->prepare("SELECT role, department,workerID,firstName,lastName FROM workers WHERE emailId = ?");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -66,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <img src="img/logo-laspinas.png" alt="City Logo" class="city-logo">
 
       <h2>Las Piñas <br>HR System Management</h2>
-
+    
       <form action="login.php" method="POST">
         <div class="input-group">
           <label for="Email">Email</label>
