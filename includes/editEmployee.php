@@ -156,7 +156,7 @@ if(isset($_POST['newfirstname'])){
                         
                         <div class="input-group">
                             <label for="roles">Role</label>
-                            <select class="filter-select" name="roles" id="roles">
+                            <select class="filter-select" name="newrole" id="roles">
                                 <?php foreach($roles as $roleSelect): ?>
                                 <option value="<?= $roleSelect?>" <?= $role === $roleSelect ? 'selected' : '' ?> > <?= $roleSelect ?></option>
                                 <?php endforeach;?>
@@ -165,7 +165,7 @@ if(isset($_POST['newfirstname'])){
                         
                         <div class="input-group">
                             <label for="genders">Gender</label>
-                            <select class="filter-select" name="genders" id="genders">
+                            <select class="filter-select" name="newgender" id="genders">
                                 <?php foreach($genders as $genderSelect): ?>
                                 <option value="<?= $genderSelect?>" <?= $gender === $genderSelect ? 'selected' : '' ?> > <?= $genderSelect ?></option>
                                 <?php endforeach;?>
@@ -174,7 +174,7 @@ if(isset($_POST['newfirstname'])){
                         
                         <div class="input-group">
                             <label for="department">Choose Department:</label>
-                            <select class="filter-select" name="department" id="department">
+                            <select class="filter-select" name="newdepartment" id="department">
                                 <?php foreach($departments as $dept): ?>
                                 <option value="<?= $dept?>" <?= $department === $dept ? 'selected' : '' ?> > <?= $dept ?></option>
                                 <?php endforeach;?>

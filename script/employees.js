@@ -63,8 +63,3 @@ document.getElementById('role-filter')?.addEventListener('change', () => {
   loadContent(['includes/employees.php'], ['employees'], filterParams);
   updateActiveTab(activeTab);
 });
-
-
-function editEmployee(){
-  window.location.href= "";
-}
