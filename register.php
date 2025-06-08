@@ -44,6 +44,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $createworkerstmt->bind_param( "ssissss", $firstname, $lastname, $emailid['userid'],$unset,$unset,$gender,$date);
         if ($createworkerstmt->execute()) {
             $message = "Account created successfully";
+            echo '<script> alert("'.$message.'") ;
+                    window.location.href = "login.php";
+                </script>';
+
         } else {
             $message = "Error: " . $stmt->error;
         }

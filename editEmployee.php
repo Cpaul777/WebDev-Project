@@ -75,4 +75,3 @@ selected department is <?php echo $department;?> <br>
     <ibr="reset">
     </form>
 </body>
-</html>

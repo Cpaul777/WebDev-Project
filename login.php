@@ -10,6 +10,7 @@
 <?php
 include 'includes/db_connect.php';
 
+
 $message = "";
 $getrolestmt = $conn->prepare("SELECT role, department,workerID,firstName,lastName FROM workers WHERE emailId = ?");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -44,9 +45,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             $message = "Incorrect password";
+            echo "<script>alert('" . $message . "');</script>";
         }
     } else {
         $message = "Email not found";
+        echo "<script>alert('" . $message . "');</script>";
     }
     $getrolestmt->close();
     $conn->close();

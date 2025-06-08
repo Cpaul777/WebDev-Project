@@ -174,7 +174,7 @@ function profileDropDown(){
 
 function handleSignOut() {
 
-  window.location.href = 'includes/login.php';
+  window.location.href = 'logout.php';
 }
 
 function getEmployeeFilters(){

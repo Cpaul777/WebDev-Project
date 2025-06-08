@@ -22,8 +22,9 @@ if (!isset($_SESSION['email'])) {
     header("Location: login.php");
     exit();
 }
+
 if (!($_SESSION['role'] == 'administrator')) {
-    header("Location: employeepage.php");
+    header("Location: employeePage.php");
     exit();
 }
 if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
@@ -61,7 +62,7 @@ if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
         <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #374151; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'">Account Settings</a>
         <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #374151; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'">Help & Support</a>
         <hr style="margin: 8px 0; border: none; border-top: 1px solid #e5e7eb;">
-        <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #dc2626; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'" onclick="window.location = 'login.php' ">Sign Out</a>
+        <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #dc2626; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'" onclick="handleSignOut()">Sign Out</a>
     </div>
 
 <!-- ARIA (Accessible Rich Internet Applications) implemented its basically for improving accessibility-->
@@ -124,5 +125,6 @@ if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
 <!-- why --> <!-- why what -->
     </div>
     <script src="script/index.js" charset="UTF-8"></script>
+    
 </body>
 </html>
