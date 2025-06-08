@@ -11,7 +11,7 @@
 include 'includes/db_connect.php';
 
 $message = "";
-$getrolestmt = $conn->prepare("SELECT role, department,workerID,firstName,lastName FROM Workers WHERE emailId = ?");
+$getrolestmt = $conn->prepare("SELECT role, department,workerID,firstName,lastName FROM workers WHERE emailId = ?");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -55,12 +55,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
   <div class="login-container">
   <div class="login-left">
-    <img src="../img/background-cover.png" alt="Las Piñas City" class="bg-image">
+    <img src="img/background-cover.png" alt="Las Piñas City" class="bg-image">
   </div>
 
   <div class="login-right">
     <div class="login-form">
-      <img src="../img/logo-laspinas.png" alt="City Logo" class="city-logo">
+      <img src="img/logo-laspinas.png" alt="City Logo" class="city-logo">
 
       <h2>Las Piñas <br>HR System Management</h2>
 
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <button type="submit" name="submit" value="submit">Sign in</button>
-        <a href="../register.php">Register</a>
+        <a href="register.php">Register</a>
       </form>
     </div>
   </div>

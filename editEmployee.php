@@ -18,7 +18,7 @@ $id = $_POST['id'];
     $newrole = $_POST['newrole'];
     $newdepartment = $_POST['newdepartment'];
 
-    $updatestmt = $conn->prepare("UPDATE Workers SET firstName = ?,lastName = ?, role = ? , Gender = ?, department = ? WHERE workerId = $id");
+    $updatestmt = $conn->prepare("UPDATE workers SET firstName = ?,lastName = ?, role = ? , Gender = ?, department = ? WHERE workerId = $id");
     $updatestmt->bind_param("sssss", $newfirstname, $newlastname, $newrole, $newgender, $newdepartment);
     $updatestmt->execute();
     $updatestmt = $conn->prepare("UPDATE users SET  email = ? WHERE userid = $emailid");
@@ -30,7 +30,7 @@ $id = $_POST['id'];
       }
     }
 
-    $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, department FROM Workers WHERE workerId = ?");
+    $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, department FROM workers WHERE workerId = ?");
     $stmt->bind_param("i", $id,);
     $stmt->execute();
     $stmt->store_result();

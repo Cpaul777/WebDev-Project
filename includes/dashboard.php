@@ -10,8 +10,8 @@ if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
 } else {
     $offset = ($_GET['offset']-1)*3;
 }
-$query = "SELECT * FROM Workers LIMIT 5 OFFSET $offset";
-$total_count = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM Workers"));
+$query = "SELECT * FROM workers LIMIT 5 OFFSET $offset";
+$total_count = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM workers"));
 
 ?>
 
