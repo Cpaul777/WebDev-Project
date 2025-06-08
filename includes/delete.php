@@ -41,6 +41,3 @@ $id = $_GET['id'];
     // header("Refresh: 1; URL=../index.php?tab=includes%2Femployees.php&page=1"); 
     // header("Refresh: 1; URL=../index.php/");
     ?>
-
-
-
