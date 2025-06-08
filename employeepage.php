@@ -9,19 +9,39 @@
 include 'includes/db_connect.php';
 $message = " ";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $authorid = (int)$_SESSION['workerid'];
-        $leavestart = $_POST['startdate'];
-        $leaveend = $_POST['enddate'];
-        $reason = $_POST['reason'];
-        $status = $_POST['status'];
-        $createleavestmt = $conn->prepare("INSERT INTO leaves (authorid,leavestart,leaveend,reason,status) VALUES (?, ?, ?, ?, ?)");
-        $createleavestmt->bind_param("issss", $authorid,$leavestart, $leaveend,$reason,$status);
-        if ($createleavestmt->execute()) {
-            $message = "Leave Request created successfully";
-        } else {
-            $message = "Error: " . $stmt->error;
+
+    $currentdate = new DateTime(date('Y-m-d'));
+    $startdatestamp = new DateTime($_POST['startdate']);
+    $enddatestamp = new DateTime($_POST['enddate']);
+    $timediff = $startdatestamp->diff($enddatestamp);
+    $timediffdays = $timediff->days;
+    $currenttimediff = $currentdate->diff($startdatestamp);
+    $timediffnega = $timediff->invert;
+    $currenttimediffnega = $currenttimediff->invert;
+    echo 'number of days of leave selected: '.$timediff->days. 'days';
+    if(($timediffnega == 1)||($timediff->days == 0)){
+        $message = "NO TIME TRAVEL ALLOWED! (start date is equal to or greater than leave date)";
+    }
+    else{
+        if(($currenttimediffnega == 1)||($currenttimediff->days == 0)){
+            $message = "NO TIME TRAVEL ALLOWED!!! (start date is on or behind current date)";
         }
-        $createleavestmt->close();
+        else{
+            $authorid = (int)$_SESSION['workerid'];
+            $leavestart = $_POST['startdate'];
+            $leaveend = $_POST['enddate'];
+            $reason = $_POST['reason'];
+            $status = $_POST['status'];
+            $createleavestmt = $conn->prepare("INSERT INTO leaves (authorid,leavestart,leaveend,reason,status) VALUES (?, ?, ?, ?, ?)");
+            $createleavestmt->bind_param("issss", $authorid,$leavestart, $leaveend,$reason,$status);
+            if ($createleavestmt->execute()) {
+                $message = "Leave Request created successfully";
+            } else {
+                $message = "Error: " . $stmt->error;
+            }
+            $createleavestmt->close();
+        }
+     }
     $conn->close();
 }
 ?>
