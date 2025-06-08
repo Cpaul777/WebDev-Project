@@ -81,5 +81,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="hidden" name="status" value="pending">
             <input type="submit" value="Submit Leave">
     </form>
+    <form action="logout.php">
+        <input type="submit" value="logout">
+    </form>
 </body>
 </html>

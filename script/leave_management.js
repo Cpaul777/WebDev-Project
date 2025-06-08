@@ -3,6 +3,8 @@ document.getElementById('leave_management').addEventListener('click', () => {
     location.reload();
 })
 
+
+
 const leaveRequests = [
     {
         id: 10,
