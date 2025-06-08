@@ -8,9 +8,8 @@ if (!isset($_SESSION['email'])) {
     header("Location: login.php");
     exit();
 }
-$offset = $_GET['offset'];
+
 $id = $_GET['id'];
-header("Refresh: 1; URL=../index.php"); 
     $getOtherStmt = $conn->prepare("SELECT emailID FROM workers WHERE workerId = ?");
     $getOtherStmt->bind_param("i", $id,);
     $getOtherStmt->execute();
@@ -22,7 +21,6 @@ header("Refresh: 1; URL=../index.php");
     $deleteLeaveStmt->bind_param("i", $id);
     $deleteLeaveStmt->execute();
     $deleteLeaveStmt->store_result();
-
     
     $deleteWorkerInfoStmt = $conn->prepare("DELETE FROM workers WHERE workerId = ?");
     $deleteWorkerInfoStmt->bind_param("i", $id);
@@ -34,5 +32,15 @@ header("Refresh: 1; URL=../index.php");
     $deleteAccountInfoStmt->execute();
     $deleteAccountInfoStmt->store_result();
 
-?>
-just deleted <? echo $id ?>
+    echo '<script>
+    alert("User Data Deleted");
+    window.location.href = "../index.php?tab=includes/employees.php&page=1";
+    </script>';
+    exit;
+
+    // header("Refresh: 1; URL=../index.php?tab=includes%2Femployees.php&page=1"); 
+    // header("Refresh: 1; URL=../index.php/");
+    ?>
+
+
+
