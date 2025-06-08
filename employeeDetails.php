@@ -1,7 +1,7 @@
 <?php 
 
 include 'includes/db_connect.php';
-
+session_start();
 if(!isset($_SESSION['email'])){
   header("Location: login.php");
   exit();
@@ -55,10 +55,13 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
       font-family: "Poppins", sans-serif;
       display: flex;  
       flex-direction: column;
+      overflow: auto;
     }
-
+    
     .back-btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       padding: 10px 20px;
       margin: 20px; 
       font-size: 16px;
@@ -72,6 +75,17 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
       cursor: pointer; 
       transition: background-color 0.3s ease, border-color 0.3s ease; 
     }
+
+    .back-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: white;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
     .back-btn:hover{
       background-color: #008F05;
       border-color: #008F05;
@@ -83,6 +97,7 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
     .container {
       margin-left: 0;
       padding: 1.5rem;
+      padding-top: 1.3rem;
     }
     .profile-card {
       background: white;
@@ -169,15 +184,23 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
       display: flex;
       border-bottom: 1px solid #ccc;
       font-weight: 600;
+      text-align: center;
+      justify-content: center;
+      background-color:#008F05 ;
+      color: white;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
     }
-    .tabs div {
+    .tabs .general{
       padding: 1rem;
-      cursor: pointer;
+      font-size: 1.2rem;
     }
-    .tabs .active {
+    /* .tabs .active {
       border-bottom: 3px solid #000;
       font-weight: 700;
-    }
+    } */
+
+
     .info-section {
       padding: 1rem;
       font-weight: 400;
@@ -192,7 +215,7 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
     .card h3 {
-      font-size: 1rem;
+      font-size: 1.15rem;
       margin-bottom: 0.5rem;
       display: flex;
       justify-content: space-between;
@@ -233,6 +256,7 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
       align-items: center;
       justify-content: flex-start;
       margin-bottom: 1rem;
+
     }
     .header-row div {
       color: black;
@@ -244,16 +268,7 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
       gap: 8px;
       user-select: none;
     }
-    .header-row svg {
-      width: 20px;
-      height: 20px;
-      fill: none;
-      stroke: black;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      flex-shrink: 0;
-    }
+    
     .main-content {
       display: flex;
       gap: .5rem;
@@ -265,11 +280,12 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
 <body>
     <div class="container">
     <div class="header-row">
-      <div>
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d="M15 18l-6-6 6-6" />
-        </svg>
-       <a class="back-btn" href="../index.php?tab=includes/employees.php&page=1">Details</a>
+      <div class="whole-back-btn">
+        <a class="back-btn" href="../index.php?tab=includes/employees.php&page=1">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>Details
+        </a>
       </div>
     </div>
     <div class="main-content">
@@ -299,9 +315,7 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
 
       <div class="tab-box">
         <div class="tabs">
-          <div class="general active">General</div>
-          <div class="payslip">Payslip</div>
-          <div class="Documents">Documents</div>
+          <div class="general active">General Information</div>
         </div>
         <!--  -->
         <div class="info-section">

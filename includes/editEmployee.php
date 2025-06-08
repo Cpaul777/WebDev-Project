@@ -1,6 +1,6 @@
 <?php
 include 'db_connect.php';
-
+session_start();
 $message = "";
 
 if (!isset($_SESSION['email'])) {
