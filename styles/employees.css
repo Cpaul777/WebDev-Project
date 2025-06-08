@@ -1,8 +1,42 @@
+.top-bar{
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 h3{
   font-weight: 600;
   font-size: 1.5rem;
   cursor: pointer;
   display: inline-block;
+}
+
+.add-employee-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 20px; 
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none; 
+    color: #ffffff; 
+    background-color: #5FC903; 
+    border: 1px solid #5FC903; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease, border-color 0.3s ease; 
+}
+
+.add-employee-button:hover {
+    background-color: #008F05;
+    border-color: #008F05;
+}
+
+.add-employee-button:active {
+    background-color: #006d04;
+    border-color: #006d04;
 }
 
 /* Table Container */
@@ -128,6 +162,17 @@ h3{
 .employee-table td {
   font-size: 14px;
   color: #374151;
+}
+
+.employee-table .ownPage{
+  text-decoration: none;
+  color: #5FC903;
+}
+
+.employee-table .ownPage:hover{
+  color: #008F05;
+  font-size: 17px;
+  transition: all 0.3s ease;
 }
 
 .employee-table tr:hover {

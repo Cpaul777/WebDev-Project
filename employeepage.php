@@ -7,8 +7,18 @@
 </head>
 <?php session_start();
 include 'includes/db_connect.php';
+
+if (!isset($_GET['id'])){
+    echo '<script>
+    alert("User Does Not Exist");
+    window.location.href = "../index.php?tab=includes/employees.php&page=1";
+    </script>';
+    exit;
+}
+
+
+
 $message = " ";
-echo $_SESSION['role'];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $currentdate = new DateTime(date('Y-m-d'));

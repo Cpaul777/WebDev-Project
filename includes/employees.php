@@ -67,10 +67,12 @@ while ($row = mysqli_fetch_assoc($role_result)) {
     $roles[] = $row['role'];
 }
 
-
 ?>
-
-<h3 id="employee-tab" onclick="employeeWord()">Employees Database</h3>
+<div class="top-bar">
+    <h3 id="employee-tab" onclick="employeeWord()">Employees Database</h3>
+    <a href="/addEmployee.php" class="add-employee-button">+ Add Employee</a>
+</div>
+   
 <div class="table-container">
     <div class="header">
         <div class="search-container">
@@ -127,7 +129,7 @@ while ($row = mysqli_fetch_assoc($role_result)) {
                             $department = $row["department"];
                             $hiredate = $row["hireDate"];
                             echo '<tr> 
-                                    <td>'.$firstname. ' '.$lastname.' </td> 
+                                    <td><a href="employeepage.php?id='.$id.'" class="ownPage">'.$firstname. ' '.$lastname.'</a> </td> 
                                     <td>'.$email.'</td> 
                                     <td>'.$role.'</td>
                                     <td>'.$gender.'</td>
@@ -138,7 +140,8 @@ while ($row = mysqli_fetch_assoc($role_result)) {
                                         <form action="includes/editEmployee.php" method="post">
                                         <button class="btn btn-edit" name="id" type="submit" value="'.$id.'">Edit</button>
                                         </form>
-                                        <a href="includes/delete.php?id='.$id.'&offset='.$offset.'" onclick="return confirm(\'Are you sure?\') "><button class="btn btn-delete" type="button">delete</button></a>
+                                        
+                                        <a href="includes/delete.php?id='.$id.'" onclick="return confirm(\'Are you sure?\') "><button class="btn btn-delete" type="button">delete</button></a>
                                         </div>
                                     </td>
                                 </tr>';
@@ -149,7 +152,7 @@ while ($row = mysqli_fetch_assoc($role_result)) {
                         if($total_pages == 0){
                         echo '<tr><td>No Employees Found</td></tr>';
                     }
-                    
+                    // &offset='.$offset.'
                     ?>
                 </tbody>
     </table>
