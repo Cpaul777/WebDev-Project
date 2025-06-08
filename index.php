@@ -22,6 +22,7 @@ if (!isset($_SESSION['email'])) {
     header("Location: login.php");
     exit();
 }
+
 if (!($_SESSION['role'] == 'administrator')) {
     header("Location: index.php");
     exit();
