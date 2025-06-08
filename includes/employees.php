@@ -129,7 +129,7 @@ while ($row = mysqli_fetch_assoc($role_result)) {
                             $department = $row["department"];
                             $hiredate = $row["hireDate"];
                             echo '<tr> 
-                                    <td><a href="employeepage.php?id='.$id.'" class="ownPage">'.$firstname. ' '.$lastname.'</a> </td> 
+                                    <td><a href="employeeDetails.php?id='.$id.'" class="ownPage">'.$firstname. ' '.$lastname.'</a> </td> 
                                     <td>'.$email.'</td> 
                                     <td>'.$role.'</td>
                                     <td>'.$gender.'</td>

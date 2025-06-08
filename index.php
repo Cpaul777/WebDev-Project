@@ -47,8 +47,8 @@ if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
             <button id="notif-bell"><i class="bi bi-bell"></i></button>
             <p><?php echo $_SESSION['email'];?></p>
             <div class="profile-pic" id="profile-button" onclick="profileDropDown()">
-                <!-- onclick="document.location='includes/login.php'" -->
                 <i class="bi bi-person placeholder-icon"></i>
+                <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwJajj1uV_edHd0ntvX5m4LViJdcM082rD-A&s" alt="PAKYAW"> -->
             </div>
         </div>
     </div>

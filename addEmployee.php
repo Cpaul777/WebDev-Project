@@ -65,6 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Add Employee</title>
     <style>
         body {
+            overflow: hidden;
             font-family: 'Poppins', sans-serif;
             background-color: #e8f5e9;
             margin: 0;
@@ -80,7 +81,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border-radius: 12px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
             padding: 35px 30px;
-            width: 360px;
+            width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
             text-align: center;
         }
 
@@ -102,6 +105,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .add-container input[type="text"],
         .add-container input[type="password"],
         .add-container input[type="email"],
+        .add-container input[type="date"],
+        .add-container input[type="number"],
         .add-container select {
             width: 100%;
             padding: 10px;
@@ -138,6 +143,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         .add-container .success {
             color: #2e7d32;
+        }
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form h3,
+        form hr,
+        form button,
+        form input[type="reset"],
+        form .message {
+            grid-column: 1 / -1;
         }
     </style>
 </head>
@@ -191,6 +215,81 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <option value="Safety & Health Services">Safety & Health Services</option>
                 <option value="Sangguniang Kabataan">Sangguniang Kabataan</option>
             </select>
+
+            <hr>
+            <h3 style="text-align: left; color: #2e7d32;">Personal Information</h3>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" name="dob" id="dob" required>
+
+            <label for="nationality">Nationality</label>
+            <select name="nationality" id="nationality" required>
+                <option value="">Select Nationality</option>
+                <option value="Filipino">Filipino</option>
+                <option value="American">American</option>
+                <option value="Canadian">Canadian</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="phone">Phone Number</label>
+            <input type="text" name="phone" id="phone" required>
+
+            <label for="marital">Marital Status</label>
+            <select name="marital" id="marital" required>
+                <option value="">Select Status</option>
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Divorced">Divorced</option>
+                <option value="Widowed">Widowed</option>
+            </select>
+
+            <label for="national_id">National ID Number</label>
+            <input type="text" name="national_id" id="national_id" required>
+
+            <hr>
+            <h3 style="text-align: left; color: #2e7d32;">Address</h3>
+
+            <label for="address">Primary Address</label>
+            <input type="text" name="address" id="address" required>
+
+            <label for="city">City</label>
+            <select name="city" id="city" required>
+                <option value="">Select City</option>
+                <option value="Manila">Manila</option>
+                <option value="Quezon City">Quezon City</option>
+                <option value="Cebu">Cebu</option>
+                <option value="Davao">Davao</option>
+            </select>
+
+            <label for="country">Country</label>
+            <select name="country" id="country" required>
+                <option value="">Select Country</option>
+                <option value="Philippines">Philippines</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="postal">Postal Code</label>
+            <input type="number" name="postal" id="postal" required>
+
+            <label for="state">State/Province</label>
+            <select name="state" id="state" required>
+                <option value="">Select State/Province</option>
+                <option value="Metro Manila">Metro Manila</option>
+                <option value="Cebu Province">Cebu Province</option>
+                <option value="Davao Region">Davao Region</option>
+            </select>
+
+            <hr>
+            <h3 style="text-align: left; color: #2e7d32;">Emergency Contact</h3>
+
+            <label for="guardian">Guardian Name</label>
+            <input type="text" name="guardian" id="guardian" required>
+
+            <label for="emergency_phone">Emergency Number</label>
+            <input type="text" name="emergency_phone" id="emergency_phone" required>
+
+            <label for="relationship">Relationship</label>
+            <input type="text" name="relationship" id="relationship" required>
 
             <button type="submit" name="submit">Add</button>
             <input type="reset" value="Reset">

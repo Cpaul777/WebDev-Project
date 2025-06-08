@@ -3,6 +3,11 @@ include 'db_connect.php';
 
 $message = "";
 
+if (!isset($_SESSION['email'])) {
+    header("Location: ../login.php");
+    exit();
+}
+
 if (!isset($_POST['id'])){
     echo '<script>
     alert("User Data Deleted");

@@ -16,8 +16,6 @@ if (!isset($_GET['id'])){
     exit;
 }
 
-
-
 $message = " ";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
