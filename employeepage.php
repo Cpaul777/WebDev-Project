@@ -10,7 +10,6 @@ include 'includes/db_connect.php';
 $message = " ";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-     var_dump($_POST);
     $currentdate = new DateTime(date('Y-m-d'));
     $startdatestamp = new DateTime($_POST['startdate']);
     $enddatestamp = new DateTime($_POST['enddate']);
@@ -25,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     else{
         if(($currenttimediffnega == 1)||($currenttimediff->days == 0)){
-            $message = "NO TIME TRAVEL ALLOWED!!! (start date is on or behind current date";
+            $message = "NO TIME TRAVEL ALLOWED!!! (start date is on or behind current date)";
         }
         else{
             $authorid = (int)$_SESSION['workerid'];
