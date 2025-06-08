@@ -24,7 +24,7 @@ if (!isset($_SESSION['email'])) {
 }
 
 if (!($_SESSION['role'] == 'administrator') && !($_SESSION['role'] == 'Administrator')) {
-    header("Location: employeePage.php");
+    header("Location: employeepage.php");
     exit();
 }
 if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
