@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<?php session_start();
+<?php 
+session_start();
 include 'includes/db_connect.php';
 
-if (!isset($_GET['id'])){
-    echo '<script>
-    alert("User Does Not Exist");
-    window.location.href = "../index.php?tab=includes/employees.php&page=1";
-    </script>';
-    exit;
+// Check if the user is logged in, if
+// not then redirect them to the login page
+if (!isset($_SESSION['email'])) {
+    header("Location: login.php");
+    exit();
 }
+
 
 $message = " ";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

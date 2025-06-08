@@ -1,7 +1,9 @@
 <?php 
 
 include 'includes/db_connect.php';
-session_start();
+
+if(!isset($_SESSION)) session_start();
+
 if(!isset($_SESSION['email'])){
   header("Location: login.php");
   exit();
