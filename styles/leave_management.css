@@ -10,17 +10,15 @@
 }
 
 .summary-cards {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 90px;
-  margin-bottom: 32px;
-  margin-left: 70px;
-  margin-right: 70px;
+  gap: 20px;
+  padding: 20px;
 }
 
 .summary-card {
+  width: 250px;
   background: white;
   padding: 24px;
   border-radius: 8px;

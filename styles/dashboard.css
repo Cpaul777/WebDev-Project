@@ -43,6 +43,7 @@
     font-weight: 600;
 }
 
+
 .dashboard-tab .top-cards .total-employees i{
     background-color: rgba(12, 182, 212, .2);
     border-radius: 15px;
@@ -105,6 +106,11 @@
     font-size: 14px;
     color: #949494;
     font-weight: 400;
+}
+
+.top-cards .total-employees .content{
+    text-align: center;
+    align-items: center;
 }
 
 
@@ -547,29 +553,42 @@
     padding: 16px 24px;
     border-bottom: 1px solid #e5e7eb;
     font-size: 15px;
-    font-weight: 600;
-    color: #111827;
 }
 
 .leave-table tbody tr:hover {
     background-color: #f9fafb;
 }
 
-/* 
+
 .employee-content tbody .employee-name{
-    font-size: 18px;
     font-weight: 500;
     color: #111827;
 }
 
-.employee-content tbody .employee-name{
-    font-size: 18px;
+.employee-content tbody .department{
     font-weight: 500;
     color: #111827;
 }
 
-.employee-content tbody .employee-name{
-    font-size: 18px;
+.employee-content tbody .role{
     font-weight: 500;
     color: #111827;
-} */
+}
+
+
+
+.status.pending{
+    background-color: #fef3c7;
+    color: #92400e;
+    font-weight: bold;
+}
+.status.approved{
+    background-color: #d1fae5;
+    color: #065f46;
+    font-weight: bold;
+}
+.status.rejected{
+    background-color: #fee2e2;
+    color: #991b1b;
+    font-weight: bold;
+}

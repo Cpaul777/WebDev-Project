@@ -63,6 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Add Employee</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <style>
         body {
             overflow: hidden;
@@ -71,12 +72,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;
             align-items: center;
             height: 100vh;
         }
-
+        
         .add-container {
+            margin:auto;
             background-color: #ffffff;
             border-radius: 12px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
@@ -85,6 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             max-height: 90vh;
             overflow-y: auto;
             text-align: center;
+            padding-top: 5px;
         }
 
         .add-container h2 {
@@ -100,6 +102,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-weight: 500;
             font-size: 14px;
             color: #333;
+        }
+
+        .header-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .header-row h2 {
+            margin: auto;
+        }
+
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            margin: 20px; 
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none; 
+            color: #ffffff; 
+            background-color: #5FC903; 
+            border: 1px solid #5FC903; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            transition: background-color 0.3s ease, border-color 0.3s ease; 
+        }
+
+        .back-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: white;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .back-btn:hover{
+        background-color: #008F05;
+        border-color: #008F05;
+        }
+        .back-btn:active{
+        background-color: #006d04;
+        border-color: #006d04;
         }
 
         .add-container input[type="text"],
@@ -125,7 +175,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 10px;
             width: 100%;
             font-size: 16px;
         }
@@ -167,8 +217,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="add-container">
-        <h2>Add Employee</h2>
-
+        <a class="back-btn" href="../index.php?tab=includes/employees.php&page=1">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M15 18l-6-6 6-6" />
+                </svg>
+                Back
+            </a>
+        <div class="header-row">
+            <h2>Add Employee</h2>
+        </div>
         <p class="message <?php echo ($message == "Account created successfully") ? 'success' : ''; ?>">
             <?php echo htmlspecialchars($message); ?>
         </p>

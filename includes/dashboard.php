@@ -15,7 +15,7 @@ if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
 } else {
     $offset = ($_GET['offset']-1)*3;
 }
-$query = "SELECT * FROM workers LIMIT 5 OFFSET $offset";
+$query = "SELECT * FROM workers ORDER BY workerId DESC LIMIT 5 OFFSET $offset";
 $total_count = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM workers"));
 
 ?>
@@ -174,10 +174,21 @@ $total_count = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM worker
                                 $lastname = $row["lastName"];
                                 $role = $row["role"];
                                 $department = $row["department"];
+                                $id = $row['workerId'];
+                                $status = '';
+                                $stmt = $conn->prepare("SELECT status FROM leaves WHERE authorid = ?");
+                                $stmt->bind_param("i", $id);
+                                $stmt->execute();
+                                $stmt->store_result();
+                                if($stmt->num_rows > 0){
+                                    $stmt->bind_result($status);
+                                    $stmt->fetch();
+                                }
                                 echo '<tr>
                                         <td class="employee-name">'.$firstname.' '.$lastname.'</div></td>
                                         <td class="department">'.$department.'</td>
-                                        <td class="">'.$role.'</td>
+                                        <td class="role">'.$role.'</td>
+                                        <td class="status '.strtolower($status).'">'.$status.'</td>
                                     </tr>';
                             }
                             $result->free();

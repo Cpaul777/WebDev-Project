@@ -9,14 +9,6 @@ if(!isset($_SESSION['email'])){
   exit();
 }
 
-if (!isset($_GET['id'])){
-    echo '<script>
-    alert("User Doesnt Exist");
-    window.location.href = "../index.php?tab=includes/employees.php&page=1";
-    </script>';
-    exit;
-}
-
 $id = $_GET['id'];
 
 $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, department FROM workers WHERE workerId = ?");

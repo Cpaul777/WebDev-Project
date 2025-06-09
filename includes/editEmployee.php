@@ -88,7 +88,7 @@ if(isset($_POST['newfirstname'])){
 <body>
     <div class="container">
         <header>
-            <h1>Employee Management System</h1>
+            <h1>Manage Employee</h1>
             <p>Edit Employee Details</p>
         </header>
         
