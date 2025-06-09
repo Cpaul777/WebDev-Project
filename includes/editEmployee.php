@@ -46,9 +46,11 @@ if(isset($_POST['newfirstname'])){
     $newgender = $_POST['newgender'];
     $newrole = $_POST['newrole'];
     $newdepartment = $_POST['newdepartment'];
+    $basepay = $_POST['basepay'];
+    $overtimerate = $_POST['overtimerate'];
 
-    $updatestmt = $conn->prepare("UPDATE workers SET firstName = ?,lastName = ?, role = ? , Gender = ?, department = ? WHERE workerId = $id");
-    $updatestmt->bind_param("sssss", $newfirstname, $newlastname, $newrole, $newgender, $newdepartment);
+    $updatestmt = $conn->prepare("UPDATE workers SET firstName = ?,lastName = ?, role = ? , Gender = ?, department = ?, basePay = ?, overtimeRate = ? WHERE workerId = $id");
+    $updatestmt->bind_param("sssssii", $newfirstname, $newlastname, $newrole, $newgender, $newdepartment, $basepay, $overtimerate);
     $updatestmt->execute();
     $updatestmt = $conn->prepare("UPDATE users SET  email = ? WHERE userid = $emailid");
     $updatestmt->bind_param("s",  $newemail);
@@ -185,6 +187,14 @@ if(isset($_POST['newfirstname'])){
                                 <option value="<?= $dept?>" <?= $department === $dept ? 'selected' : '' ?> > <?= $dept ?></option>
                                 <?php endforeach;?>
                             </select>
+                        </div>
+                         <div class="input-group">
+                            <label for="basepay">Base Pay</label>
+                            <input type="number" name="basepay" required>
+                        </div>
+                         <div class="input-group">
+                            <label for="overtimerate">Overtime Rate</label>
+                            <input type="number" name="overtimerate"  required>
                         </div>
                     </div>
                     

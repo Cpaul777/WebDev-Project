@@ -232,13 +232,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <form method="post">
             <label for="firstname">First Name</label>
-            <input type="text" name="firstname" id="firstname" required>
+            <input type="text" name="firstname" id="firstname" placeholder="First Name" required>
 
             <label for="lastname">Last Name</label>
-            <input type="text" name="lastname" id="lastname" required>
+            <input type="text" name="lastname" id="lastname" placeholder="Last Name" required>
 
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" required>
+            <input type="email" name="email" id="email" placeholder="Email@email.com" required>
             
             <label for="role">Role</label>
             <select name="role" id="role" required>

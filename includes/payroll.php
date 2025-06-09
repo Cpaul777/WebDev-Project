@@ -15,7 +15,7 @@ $sql = "SELECT workerId,firstName,lastName,department,role,basePay,overtimeRate 
 ?>
 
 <div class="top-bar">
-    <h3 class="section-title" id="payroll-tab" onclick="employeeWord()">Employee Slip</h3>
+    <h3 class="section-title" id="payroll-tab">Employee Slip</h3>
 </div>
    
 <div class="table-container">
