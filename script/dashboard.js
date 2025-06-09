@@ -24,6 +24,6 @@ document.addEventListener('keydown', function(event) {
 
 function employeePage(){
     let url = new URL(window.location.href);
-    url.searchParams.set('tab', 'includes/employees.php');
+    url.searchParams.set('tab', 'includes/getleaves.php');
     window.location.href = url.href;
 }

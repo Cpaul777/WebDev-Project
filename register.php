@@ -62,105 +62,257 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8" />
     <title>Sign Up</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    
     <style>
        body {
-    font-family:'Poppins' sans-serif;
-    background-color: #e8f5e9; /* Soft green background */
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+            overflow: hidden;
+            font-family:'Poppins' sans-serif;
+            background-color: #e8f5e9; /* Soft green background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            height: 100vh;
+        }
 
-.container {
-    background-color: #ffffff; /* White background for the form */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    padding: 30px;
-    width: 320px; /* Smaller width for a compact look */
-    text-align: center;
-}
+        .container {
+            margin:auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            padding: 35px 30px;
+            width: 60%;
+            max-height: 90vh;
+            overflow-y: auto;
+            text-align: center;
+            padding-top: 5px;
+        }
 
-.container h2 {
-    color: #2e7d32; /* Dark green heading */
-    margin-bottom: 20px;
-    font-size: 24px;
-}
+        .container h2 {
+            color: #2e7d32;
+            margin-bottom: 25px;
+            font-size: 26px;
+        }
 
-.container input[type="text"],
-.container input[type="password"],
-.container input[type="email"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc; /* Light border */
-    border-radius: 5px;
-    box-sizing: border-box;
-}
+        .container label {
+            display: block;
+            text-align: left;
+            margin-top: 15px;
+            font-weight: 500;
+            font-size: 14px;
+            color: #333;
+        }
 
-.container input[type="submit"],
-.container input[type="reset"] {
-    background-color: #2e7d32; /* Green button */
-    color: #ffffff; /* White text */
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    width: 100%;
-    font-size: 16px;
-}
+        .header-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
 
-.container input[type="submit"]:hover,
-.container input[type="reset"]:hover {
-    background-color: #1b5e20; /* Darker green on hover */
-}
+        .header-row h2 {
+            margin: auto;
+        }
 
-.container a {
-    display: block;
-    margin-top: 15px;
-    color: #2e7d32; /* Green links */
-    text-decoration: none;
-    font-size: 14px;
-}
+        .container input[type="text"],
+        .container input[type="password"],
+        .container input[type="email"],
+        .container input[type="date"],
+        .container input[type="number"]
+         {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc; /* Light border */
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
 
-.container a:hover {
-    text-decoration: underline;
-}
+        .container input[type="submit"],
+        .container input[type="reset"] {
+            background-color: #2e7d32; /* Green button */
+            color: #ffffff; /* White text */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+            font-size: 16px;
+        }
 
-.message {
-    margin-bottom: 15px;
-    font-size: 14px;
-    color: #e53935; /* Error red */
-}
+        .container input[type="submit"]:hover
+         {
+            background-color: #1b5e20; /* Darker green on hover */
+        }
 
-.success {
-    color: #2e7d32; /* Success green */
-}
+        .container input[type="reset"]{
+            background-color:gray;
+        }
+        
+        .container input[type="reset"]:hover{
+            background-color:#333;
+        }
+
+        .container a {
+            display: block;
+            margin-top: 15px;
+            color: #2e7d32; /* Green links */
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .container a:hover {
+            text-decoration: underline;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #e53935; /* Error red */
+        }
+
+        .success {
+            color: #2e7d32; /* Success green */
+        }
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form h3,
+        form hr,
+        form input[type="submit"],
+        form input[type="reset"],
+        form .message {
+            grid-column: 1 / -1;
+        }
+
+        .login{
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 16px;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Sign Up</h2>
+        <div class="header-row">
+            <h2>Sign Up</h2>
+        </div>    
+    
         <p class="message <?php echo ($message == "Account created successfully") ? 'success' : ''; ?>">
             <?php echo htmlspecialchars($message); ?>
         </p>
         <form method="post">
-            <input type="text" name="firstname" placeholder="First Name" required><br>
-            <input type="text" name="lastname" placeholder="Last Name" required><br>
-            <input type="email" name="email" placeholder="Email" required><br>
+            <hr>
+
+            <h3 style="text-align: left; color: #2e7d32;">Personal Information</h3>
+            
+            <label for="firstname">First Name</label>
+            <input type="text" name="firstname" id="firstname" placeholder="First Name" required>
+
+            <label for="lastname">Last Name</label>
+            <input type="text" name="lastname" id="lastname" placeholder="Last Name" required>
+
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="juan@gmail.com" required>
+
+            <label for="passowrd">Password</label>
             <input type="password" name="password" placeholder="Password" required><br>
             <select name="gender" id="gender">
                 <option value="MALE">MALE</option>
                 <option value="FEMALE">FEMALE</option>
                 <option value="OTHER">OTHERS</option>
              </select>
-            <input type="submit" value="Sign Up">
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" name="dob" id="dob" required>
+
+            <label for="nationality">Nationality</label>
+            <select name="nationality" id="nationality" required>
+                <option value="">Select Nationality</option>
+                <option value="Filipino">Filipino</option>
+                <option value="American">American</option>
+                <option value="Canadian">Canadian</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="phone">Phone Number</label>
+            <input type="text" name="phone" id="phone" required>
+
+            <label for="marital">Marital Status</label>
+            <select name="marital" id="marital" required>
+                <option value="">Select Status</option>
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Divorced">Divorced</option>
+                <option value="Widowed">Widowed</option>
+            </select>
+
+            <label for="national_id">National ID Number</label>
+            <input type="text" name="national_id" id="national_id" required>
+
+            <hr>
+            <h3 style="text-align: left; color: #2e7d32;">Address</h3>
+
+            <label for="address">Primary Address</label>
+            <input type="text" name="address" id="address" required>
+
+            <label for="city">City</label>
+            <select name="city" id="city" required>
+                <option value="">Select City</option>
+                <option value="Manila">Manila</option>
+                <option value="Quezon City">Quezon City</option>
+                <option value="Cebu">Cebu</option>
+                <option value="Davao">Davao</option>
+            </select>
+
+            <label for="country">Country</label>
+            <select name="country" id="country" required>
+                <option value="">Select Country</option>
+                <option value="Philippines">Philippines</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="postal">Postal Code</label>
+            <input type="number" name="postal" id="postal" required>
+
+            <label for="state">State/Province</label>
+            <select name="state" id="state" required>
+                <option value="">Select State/Province</option>
+                <option value="Metro Manila">Metro Manila</option>
+                <option value="Cebu Province">Cebu Province</option>
+                <option value="Davao Region">Davao Region</option>
+            </select>
+
+            <hr>
+            <h3 style="text-align: left; color: #2e7d32;">Emergency Contact</h3>
+
+            <label for="guardian">Guardian Name</label>
+            <input type="text" name="guardian" id="guardian" required>
+
+            <label for="emergency_phone">Emergency Number</label>
+            <input type="text" name="emergency_phone" id="emergency_phone" required>
+
+            <label for="relationship">Relationship</label>
+            <input type="text" name="relationship" id="relationship" required>
+
             <input type="reset" value="Reset">
+            <input class="sign-up" type="submit" value="Sign Up">
         </form>
-        <a href="login.php">Log In</a>
+        <a href="login.php" class="login">Log In</a>
     </div>
 </body>
 </html>

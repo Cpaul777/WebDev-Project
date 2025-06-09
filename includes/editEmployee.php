@@ -83,6 +83,7 @@ if(isset($_POST['newfirstname'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Employee</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../styles/editEmployee.css">
 </head>
 <body>
@@ -189,8 +190,15 @@ if(isset($_POST['newfirstname'])){
                     
                     <input type="hidden" name="id" value="<?php echo $id;?>" />
                     <input type="hidden" name="emailid" value="<?php echo $emailid;?>" />
+
                     
+                    
+                    
+
                     <div class="form-actions">
+                        <a class="back-btn" href="../index.php?tab=includes/employees.php&page=1">
+                            <i class="bi bi-arrow-left-short"></i>
+                        </a>
                         <button type="submit" class="btn btn-submit">
                             <i class="fas fa-save"></i> Save Changes
                         </button>

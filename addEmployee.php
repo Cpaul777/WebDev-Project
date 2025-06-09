@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border-radius: 12px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
             padding: 35px 30px;
-            width: 800px;
+            width: 60%;
             max-height: 90vh;
             overflow-y: auto;
             text-align: center;
@@ -239,7 +239,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="email">Email</label>
             <input type="email" name="email" id="email" required>
-
+            
             <label for="role">Role</label>
             <select name="role" id="role" required>
                 <option value="">Select Role</option>
