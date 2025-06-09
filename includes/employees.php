@@ -87,7 +87,6 @@ while ($row = mysqli_fetch_assoc($role_result)) {
             <?php endforeach;?>
         </select>
 
-
         <!-- TO DO WHAT WILL BE THE ROLES WE WILL USE? -->
          <select class="filter-select" id="role-filter">
             <option value="">All Role</option>
@@ -100,6 +99,7 @@ while ($row = mysqli_fetch_assoc($role_result)) {
     <table class="employee-table">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Role</th>
@@ -129,6 +129,7 @@ while ($row = mysqli_fetch_assoc($role_result)) {
                             $department = $row["department"];
                             $hiredate = $row["hireDate"];
                             echo '<tr> 
+                                    <td>'.$id.'</td> 
                                     <td><a href="employeeDetails.php?id='.$id.'" class="ownPage">'.$firstname. ' '.$lastname.'</a> </td> 
                                     <td>'.$email.'</td> 
                                     <td>'.$role.'</td>
@@ -188,40 +189,5 @@ while ($row = mysqli_fetch_assoc($role_result)) {
         </div>
     </div>      
 </div>
-
-
-
-
-<!--  -->
-<?php
-            // echo $current_page;
-            // if ($current_page > 1) { 
-                // echo "It entered here";
-
-                // echo '<a href="#" id="employee_pageNum" data-php-variable="'.$current_page.'" onclick="employeeListDetect()"><i class="bi bi-arrow-left-circle"></i></a>';
-
-                // echo '<button id="employee_offset_back" data-php-variable="'.($current_page--).'" onclick="employeeListDetect()"> <i class="bi bi-arrow-left-circle"></i>sfsd </button>';
-            // }
-            //     echo '<span class="page-indicator">Page '. $current_page . ' of ' .$total_pages . '</span>';
-            // if ($current_page < $total_pages) {
-
-            //     echo '<a href="#" id="employee_pageNum" data-php-variable="'.$current_page.'" onclick="employeeListDetect()"><i class="bi bi-arrow-right-circle"></i></a>';
-                
-            //     // echo '<button id="employee_offset_back" data-php-variable="'. ($current_page) . '"onclick="employeeListDetect()"> <i class="bi bi-arrow-right-circle"></i> </button>';
-            // }
-
-            ?> 
-            <!-- <button id="employee_offset_go" onclick="employeeListDetect()"> Next &raquo; </button> -->
-        </div>
-
-        <!-- <input type="text" name="page" " value="<?php //echo $current_page?>">  -->
-
-
-<!-- <?php 
-            // if ($current_page > 1) echo "<a href='?page=" . ($current_page - 1) . "'><i class='bi bi-arrow-left-circle'></i></a> ";
-
-            // if ($current_page < $total_pages) echo "<a href='?page=" . ($current_page + 1) . "'>Next &raquo;</a>";
-            // echo "</div>";
-        ?> -->
 
 

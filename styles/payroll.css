@@ -4,13 +4,24 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  width: fit-content;
 }
 
-h3{
+/* h3{
+    margin-top: 25px;
   font-weight: 600;
   font-size: 1.5rem;
   cursor: pointer;
   display: inline-block;
+} */
+
+.section-title {
+  color: #008F05;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 0;
 }
 
 .add-employee-button {
@@ -41,7 +52,7 @@ h3{
 
 /* Table Container */
 .table-container {
-  margin-top: 28px;
+  margin-top: 18px;
   padding: 30px 40px;
   background: #ffffff;
   border-radius: 12px;
@@ -137,14 +148,14 @@ h3{
 }
 
 /* Table */
-.employee-table {
+.payslip-table {
   margin-top: 18px;
   border-collapse: collapse;
   width: 100%;
 }
 
 
-.employee-table th {
+.payslip-table th {
   background-color: #f9fafb;
   padding: 12px 24px;
   text-align: left;
@@ -156,59 +167,89 @@ h3{
   border-bottom: 1px solid #e5e7eb;
 }
 
-.employee-table td {
+.payslip-table td {
   padding: 16px 24px;
   border-bottom: 1px solid #e5e7eb;
   font-size: 14px;
 }
 
-.employee-table tbody tr:hover{
+.payslip-table tbody tr:hover{
   background-color: #f9fafb;
 }
 
-.employee-table .ownPage{
+.payslip-table .ownPage{
   text-decoration: none;
   color: #5FC903;
 }
 
-.employee-table .ownPage:hover{
+.payslip-table .ownPage:hover{
   color: #008F05;
   font-size: 17px;
   transition: all 0.3s ease;
 }
 
-.employee-table tr:hover {
+.payslip-table tr:hover {
   background-color: #f1f5f9;
 }
 
-/* Action Buttons */
-.action-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
+.form-container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    margin: auto;
 }
 
-.employee-table button {
-  padding: 6px 12px;
-  border: none;
-  border-radius: 6px;
-  font-size: 13px;
-  cursor: pointer;
-  transition: background-color 0.2s;
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #1e293b;
 }
 
-.btn-edit {
-  background-color: #3b82f6;
-  color: white;
+label {
+    display: block;
+    margin-bottom: 6px;
+    margin-top: 16px;
+    font-weight: 500;
+    color: #334155;
 }
 
-.btn-delete {
-  background-color: #ef4444;
-  color: white;
+input[type="number"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+input[type="number"]:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+input[type="submit"] {
+    width: 100%;
+    margin-top: 25px;
+    background-color: #16a34a;
+    color: white;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #15803d;
 }
 
 /* Pagination */
-.pagination {
+/* .pagination {
   margin-top: 30px;
   text-align: center;
 }
@@ -259,5 +300,5 @@ h3{
   font-weight: 500;
   color: #4b5563;
   padding: 0 15px;
-}
+} */
 

@@ -14,7 +14,12 @@ if (!isset($_SESSION['email'])) {
 $sql = "SELECT workerId,firstName,lastName,department,role,basePay,overtimeRate FROM workers";
 ?>
 
-      <table>
+<div class="top-bar">
+    <h3 class="section-title" id="payroll-tab" onclick="employeeWord()">Employee Slip</h3>
+</div>
+   
+<div class="table-container">
+    <table class="payslip-table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -26,47 +31,39 @@ $sql = "SELECT workerId,firstName,lastName,department,role,basePay,overtimeRate 
                 </tr>
             </thead>
             <tbody>
+            <?php 
+                    if ($result = $conn->query($sql)) {
+                                while ($row = $result->fetch_assoc()) {
+                                    $fullname = $row['firstName']." ".$row['lastName'];
+                                    echo '<tr> 
+                                            <td>'.$row['workerId'].'</td> 
+                                            <td>'.$fullname.'</td> 
+                                            <td>'.$row['department'].'</td> 
+                                            <td>'.$row['role'].'</td>
+                                            <td>'.$row['basePay'].'</td>
+                                            <td>'.$row['overtimeRate'].'</td> 
+                                        </tr>';
+                                }
 
-<?php 
-          if ($result = $conn->query($sql)) {
-                    while ($row = $result->fetch_assoc()) {
-                        $fullname = $row['firstName']." ".$row['lastName'];
-                        echo '<tr> 
-                                  <td>'.$row['workerId'].'</td> 
-                                  <td>'.$fullname.'</td> 
-                                  <td>'.$row['department'].'</td> 
-                                  <td>'.$row['role'].'</td>
-                                  <td>'.$row['basePay'].'</td>
-                                  <td>'.$row['overtimeRate'].'</td> 
-                            </tr>';
                     }
-
-        }
-        $result->close();
-?>
+                    $result->close();
+            ?>
 
         </tbody>
-        </table>
-    make payslip
-    <form method="post" action="includes/insertpayslip.php">
-        <input type="number" name="workerid" id="workerid">
-        <label for="workerid">Worker ID</label>
-        <br>
-        <input type="number" name="hours" id="hours">
-        <label for="workedhours">Hours Worked</label>
-        <br>
-        <input type="number" name="overtimehours" id="overtimehours">
-        <label for="workedovertime">Overtime Hours</label>
-        <br>
-        <input type="submit" value="Submit">
-    </form>
+    </table>
+</div>
 
-    payslips
 
-      <table>
+<div class="top-bar">
+    <h3 class="section-title" id="payroll-tab" onclick="employeeWord()">Pay Slips</h3>
+</div>
+<div class="table-container">
+
+
+      <table class="payslip-table">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Slip ID</th>
                     <th>Name</th>
                     <th>date</th>
                     <th>Gross Pa</th>
@@ -77,7 +74,6 @@ $sql = "SELECT workerId,firstName,lastName,department,role,basePay,overtimeRate 
                 </tr>
             </thead>
             <tbody>
-
 <?php
 $grabslips = "SELECT payslipid,workerid,date,grossPay,incomeTax,insurance,contribution,netPay FROM payslips";
 
@@ -108,3 +104,24 @@ $grabslips = "SELECT payslipid,workerid,date,grossPay,incomeTax,insurance,contri
 ?>
             </tbody>
         </table>
+</div>
+
+<div class="top-bar">
+    <h3 class="section-title" id="payroll-tab" onclick="employeeWord()">Make Pay slip</h3>
+</div>
+<div class="table-container">
+    <div class="form-container">
+        <form method="post" action="includes/insertpayslip.php">
+            <input type="number" name="workerid" id="workerid">
+            <label for="workerid">Worker ID</label>
+            <br>
+            <input type="number" name="hours" id="hours">
+            <label for="workedhours">Hours Worked</label>
+            <br>
+            <input type="number" name="overtimehours" id="overtimehours">
+            <label for="workedovertime">Overtime Hours</label>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
