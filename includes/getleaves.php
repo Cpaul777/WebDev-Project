@@ -25,31 +25,94 @@ $total = $total_records[0];
 $total_pending = $total_records_pending[0];
 $total_accepted = $total_records_accepted[0];
 $total_rejected = $total_records_rejected[0];
-echo "Total Record of leaves:",$total;
-echo "<br>";
-echo "Total leaves rejected:",$total_rejected;
-echo "<br>";
-echo "Total leaves accepted:",$total_accepted;
-echo "<br>";
-echo "Total leaves pending:",$total_pending;
-echo "<br>";
-?>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Department</th>
-                    <th>Leave Start</th>
-                    <th>Leave End</th>
-                    <th>Reason</th>
-                    <th>Action Taken</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
 
-<?php 
+?>
+
+<div class="tab-content leave_management-tab" id="leave_management-panel" role="panel">
+    <div class="in-container" >
+        <h2 class="section-title">Leave Management</h2>
+
+        <div class="summary-cards">
+            <div class="summary-card">
+              <h3>Total Record of Leaves</h3>
+              <p class="count"><?=$total ?></p>
+            </div>
+            <div class="summary-card">
+              <h3>Pending Leaves</h3>
+              <p class="count pending-count"><?=$total_pending ?></p>
+            </div>
+            <div class="summary-card">
+              <h3>Approved Leaves</h3>
+              <p class="count approved-count"><?=$total_accepted ?></p>
+            </div>
+            <div class="summary-card">
+              <h3>Rejected Leaves</h3>
+              <p class="count rejected-count"><?=$total_rejected ?></p>
+            </div>
+        </div>
+
+        <div class="approval-section">
+            <div class="section-header">
+                <h3>Leaves for Approval</h3>
+
+                <div class="filters">
+                    <div class="search-container">
+                    <i class="bi bi-search"></i>
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search by employee name or department"
+                        class="search-input">
+                </div>
+
+                <div class="filter-controls">
+                <select id="departmentFilter" class="filter-select">
+                    <option value="">All Departments</option>
+                    <option value="Administration">Administration</option>
+                    <option value="Legislative">Legislative</option>
+                    <option value="Sangguniang Kabataan">Sangguniang Kabataan</option>
+                    <option value="Public Safety">Public Safety</option>
+                    <option value="Health and Social Services">Health and Social Services</option>
+                    <option value="Maintenance / Public works">Maintenance / Public works</option>
+                </select>
+
+                <select id="statusFilter" class="filter-select">
+                    <option value="">All Status</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Rejected">Rejected</option>
+                </select>
+
+                <select id="leaveTypeFilter" class="filter-select">
+                    <option value="">All Leave Types</option>
+                    <option value="Vacation">Vacation</option>
+                    <option value="Sick Leave">Sick Leave</option>
+                    <option value="Personal Leave">Personal Leave</option>
+                    <option value="Maternity Leave">Maternity Leave</option>
+                    <option value="Paternity Leave">Paternity Leave</option>
+                    <!-- <option value="Special Leave benefits for women">Special Leave benefits for women</option> -->
+                    <option value="Unpaid Leave">Unpaid Leave</option>
+                </select>
+                </div>
+            </div>
+            </div>
+
+            <div class="table-container">
+            <table class="leave-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                      <th>Employee</th>
+                      <th>Department</th>
+                      <th>Leave Start</th>
+                      <th>Leave End</th>
+                      <th>Reason</th>
+                      <th>Action Taken</th>
+                      <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="leaveTableBody">
+                <?php 
           if ($result = $conn->query($sql)) {
                     while ($row = $result->fetch_assoc()) {
                         $workerid = $row["authorid"];
@@ -64,24 +127,51 @@ echo "<br>";
                                   <td>'.$row['leavestart'].'</td>
                                   <td>'.$row['leaveend'].'</td>
                                   <td>'.$row['reason'].'</td>
-                                  <td>'.$row['status'].'</td>';
+                                  <td class="status '.strtolower($row['status']).'">'.$row['status'].'</td>';
                         if($row['status'] == 'pending'){
                             echo
-                                  '<td> <a href="includes/changestate.php?id='.$row['itemid'].'&action=accept'.'"  "><button  type="button">accept</button></a>
-                                    <a href="includes/changestate.php?id='.$row['itemid'].'&action=reject'.'"  "><button  type="button">reject</button></a>
+                                  '
+                                  <td> 
+                                    <div class="action-buttons">
+                                      <a href="includes/changestate.php?id='.$row['itemid'].'&action=accept'.'"class="action-btn">Accept</a>
+                                      <span class="action-separator">|</span>
+                                        <a href="includes/changestate.php?id='.$row['itemid'].'&action=reject'.'" class="action-btn reject">Reject</a>
+                                    </div>
                                   </td>
                               </tr>';
                         }
                         else{
                             echo    
-                                    '<td> 
+                                    '<td class="accomplished"> 
                                         Accomplished
                                     </td>
                                 </tr>';
                         }
-                    }
+                    } 
                     $result->free();
                 }
                 ?>
+                </tbody>
+            </table>
+            </div>
+        </div>
+        </div>
+</div>
+        <!-- <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Leave Start</th>
+                    <th>Leave End</th>
+                    <th>Reason</th>
+                    <th>Action Taken</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+
+    
             </tbody>
-        </table>
+        </table> -->

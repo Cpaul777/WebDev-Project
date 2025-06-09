@@ -32,7 +32,7 @@
 }
 
 .summary-card h3 {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   color: #6b7280;
   margin-bottom: 8px;
@@ -185,20 +185,27 @@
   border-radius: 9999px;
 }
 
-.status-pending {
+.status.pending {
   background-color: #fef3c7;
   color: #92400e;
 }
 
 
-.status-approved {
+.status.accepted {
   background-color: #d1fae5;
   color: #065f46;
 }
 
-.status-rejected {
+.status.rejected {
   background-color: #fee2e2;
   color: #991b1b;
+}
+
+.accomplished {
+
+  background-color: #d1fae5;
+  color: #065f46;
+
 }
 
 .action-buttons {
@@ -213,6 +220,7 @@
   font-weight: 500;
   cursor: pointer;
   transition: color 0.2s;
+  gap: 5px;
 }
 
 .action-btn:hover {
