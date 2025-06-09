@@ -25,7 +25,7 @@ if($_GET['action'] == 'reject'){
 
     echo '<script>
     alert("Leave'.$state.' ");
-    window.location.href = "../index.php?tab=includes/employees.php&page=1";
+    window.location.href = "../index.php?tab=includes/getleaves.php";
     </script>';
     exit;
 

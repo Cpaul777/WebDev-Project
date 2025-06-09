@@ -95,17 +95,9 @@ if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
                         </a>
                     </li>
 
-                    <li><a role="tab" aria-selected="false" 
-                    aria-controls="calendar-panel" class="tab-btn" 
-                    data-page="includes/calendar.php" data-tab-name="calendar" aria-label="Calendar Tab">
-                            <i class="bi bi-calendar-check"></i> 
-                            <p>Calendar</p>
-                        </a>
-                    </li>
-
                     <li><a id="leave_management" role="tab" aria-selected="false" 
                     aria-controls="leave_management-panel" class="tab-btn" 
-                    data-page="includes/leave_management.php" data-tab-name="leave_management" aria-label="Leave Management Tab">
+                    data-page="includes/getleaves.php" data-tab-name="leave_management" aria-label="Leave Management Tab">
                             <i class="bi bi-file-earmark-text"></i> 
                             <p>Leave Application</p>
                         </a>
@@ -125,6 +117,5 @@ if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
 <!-- why --> <!-- why what -->
     </div>
     <script src="script/index.js" charset="UTF-8"></script>
-    
 </body>
 </html>
