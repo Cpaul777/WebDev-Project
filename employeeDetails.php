@@ -275,7 +275,7 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
     <div class="container">
     <div class="header-row">
       <div class="whole-back-btn">
-        <a class="back-btn" href="../index.php?tab=includes/employees.php&page=1">
+        <a class="back-btn" href="index.php?tab=includes/employees.php&page=1">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="M15 18l-6-6 6-6" />
           </svg>Details

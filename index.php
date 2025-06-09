@@ -97,7 +97,7 @@ if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
 
                     <li><a id="leave_management" role="tab" aria-selected="false" 
                     aria-controls="leave_management-panel" class="tab-btn" 
-                    data-page="includes/leave_management.php" data-tab-name="leave_management" aria-label="Leave Management Tab">
+                    data-page="includes/getleaves.php" data-tab-name="leave_management" aria-label="Leave Management Tab">
                             <i class="bi bi-file-earmark-text"></i> 
                             <p>Leave Application</p>
                         </a>
@@ -117,6 +117,5 @@ if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
 <!-- why --> <!-- why what -->
     </div>
     <script src="script/index.js" charset="UTF-8"></script>
-    
 </body>
 </html>
