@@ -165,27 +165,40 @@ if(isset($_POST['newfirstname'])){
                         <div class="input-group">
                             <label for="roles">Role</label>
                             <select class="filter-select" name="newrole" id="roles">
-                                <?php foreach($roles as $roleSelect): ?>
-                                <option value="<?= $roleSelect?>" <?= $role === $roleSelect ? 'selected' : '' ?> > <?= $roleSelect ?></option>
-                                <?php endforeach;?>
+                                <option value="">Select Role</option>
+                                <option value="Administrator">Administrator</option>
+                                <option value="Punong Barangay">Punong Barangay</option>
+                                <option value="Secretary">Secretary</option>
+                                <option value="Treasurer">Treasurer</option>
+                                <option value="Clerk">Clerk</option>
+                                <option value="Councilor">Councilor</option>
+                                <option value="Sk Chairperson">Sk Chairperson</option>
+                                <option value="Sk Kagawad">Sk Kagawad</option>
+                                <option value="Health Workers">Health Workers</option>
+                                <option value="Nutrition Scholar">Nutrition Scholar</option>
+                                <option value="Day Care Worker">Day Care Worker</option>
+                                <option value="Utility Maintenance Worker">Utility Maintenance Worker</option>
                             </select>
                         </div>
                         
                         <div class="input-group">
                             <label for="genders">Gender</label>
                             <select class="filter-select" name="newgender" id="genders">
-                                <?php foreach($genders as $genderSelect): ?>
-                                <option value="<?= $genderSelect?>" <?= $gender === $genderSelect ? 'selected' : '' ?> > <?= $genderSelect ?></option>
-                                <?php endforeach;?>
+                                <option value="">Select Gender</option>
+                                <option value="MALE">Male</option>
+                                <option value="FEMALE">Female</option>
+                                <option value="OTHER">Other</option>
                             </select>
                         </div>
                         
                         <div class="input-group">
                             <label for="department">Choose Department:</label>
                             <select class="filter-select" name="newdepartment" id="department">
-                                <?php foreach($departments as $dept): ?>
-                                <option value="<?= $dept?>" <?= $department === $dept ? 'selected' : '' ?> > <?= $dept ?></option>
-                                <?php endforeach;?>
+                                <option value="">Select Department</option>
+                                <option value="Legislative">Legislative</option>
+                                <option value="Administration">Administration</option>
+                                <option value="Safety & Health Services">Safety & Health Services</option>
+                                <option value="Sangguniang Kabataan">Sangguniang Kabataan</option>
                             </select>
                         </div>
                          <div class="input-group">

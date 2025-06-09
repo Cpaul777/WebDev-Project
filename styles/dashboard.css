@@ -10,6 +10,7 @@
   align-items: center;
 } */
 
+
 .top-cards {
   display: flex;
   flex-wrap: wrap;
@@ -51,7 +52,7 @@
     text-align: center;
     font-size: 25px;
     color: blue;
-    margin-right: 12px;
+    margin-right: 9px;
 }
 
 /* Payroll */
@@ -67,7 +68,7 @@
     text-align: center;
     font-size: 25px;
     color: rgba(234, 0, 255, 0.822);
-    margin-right: 12px;
+    margin-right: 9px;
 }
 
 .dashboard-tab .top-cards .pending-approval .content h3{
@@ -94,7 +95,7 @@
     text-align: center;
     font-size: 25px;
     color: rgba(149, 160, 0, 0.822);
-    margin-right: 12px;
+    margin-right: 9px;
 }
 
 .dashboard-tab .top-cards .pending-approval .content h3{
@@ -113,6 +114,15 @@
     align-items: center;
 }
 
+.top-cards .payroll .content{
+    text-align: center;
+    align-items: center;
+}
+
+.top-cards .pending-approval .content{
+    text-align: center;
+    align-items: center;
+}
 
 /* Mid cards */
 .mid-card {

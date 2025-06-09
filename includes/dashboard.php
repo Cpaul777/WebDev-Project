@@ -17,7 +17,19 @@ if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
 }
 $query = "SELECT * FROM workers ORDER BY workerId DESC LIMIT 5 OFFSET $offset";
 $total_count = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM workers"));
-
+$total_pending = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM leaves WHERE status = 'pending' "));
+$upcomingQ =  "SELECT date FROM payslips ORDER BY ABS(DATEDIFF(date, NOW())) LIMIT  1";
+$upcomingResult = $conn->query($upcomingQ);
+$remaining = 'N/A';
+if($upcomingResult &&$upcomingResult->num_rows > 0){
+    $upcomingRow = $upcomingResult->fetch_assoc();
+    $upcomingDate = new DateTime($upcomingRow['date']);
+    $formatted = $upcomingDate->format("F j, Y");
+    
+    $today = new DateTime();
+    $remaining = $today->diff($upcomingDate);
+    $remainingDay = $remaining->days . ' days';
+}
 ?>
 
 <body>
@@ -38,8 +50,8 @@ $total_count = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM worker
                 <i class="bi bi-coin"></i>
             </div>
             <div class="content">
-                <h3>May 30</h3>
-                <p>3 days remaining</p>
+                <h3><?php echo $formatted ?></h3>
+                <p>13 days remaining</p>
             </div>
         </div>
 
@@ -49,7 +61,7 @@ $total_count = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM worker
                 <i class="bi bi-clock"></i>
             </div>
             <div class="content">
-                <h3>7</h3>
+                <h3><?php echo $total_pending[0]; ?></h3>
                 <p></p>
             </div>
         </div>
