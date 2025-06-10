@@ -279,8 +279,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <option value="">Select City</option>
                 <option value="Manila">Manila</option>
                 <option value="Quezon City">Quezon City</option>
-                <option value="Cebu">Cebu</option>
-                <option value="Davao">Davao</option>
+                <option value="Las Pinas">Las Pinas</option>
             </select>
 
             <label for="country">Country</label>
@@ -297,8 +296,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <select name="state" id="state" required>
                 <option value="">Select State/Province</option>
                 <option value="Metro Manila">Metro Manila</option>
-                <option value="Cebu Province">Cebu Province</option>
-                <option value="Davao Region">Davao Region</option>
+                <option value="Rizal">Rizal</option>
             </select>
 
             <hr>

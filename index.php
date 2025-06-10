@@ -36,7 +36,6 @@ if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
 
 ?>
 <body>
-
     <!--Top Bar-->
     <div class="top-menu">
         <button class="mobile-menu-toggle" id="mobileMenuToggle">
@@ -58,11 +57,10 @@ if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
             <p style="font-weight: 500; color: #111827;"><?php echo $_SESSION['firstname']," ",$_SESSION['lastname'] ;?></p>
             <p style="font-size: 12px; color: #6b7280;">Administrator</p>
         </div>
-        <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #374151; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'">Profile Settings</a>
-        <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #374151; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'">Account Settings</a>
+        <a href="employeepage.php" style="display: block; padding: 12px 16px; text-decoration: none; color: #374151; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'">Profile Settings</a>
         <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #374151; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'">Help & Support</a>
         <hr style="margin: 8px 0; border: none; border-top: 1px solid #e5e7eb;">
-        <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #dc2626; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'" onclick="handleSignOut()">Sign Out</a>
+        <a href="logout.php" style="display: block; padding: 12px 16px; text-decoration: none; color: #dc2626; font-size: 14px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'">Sign Out</a>
     </div>
 
 <!-- ARIA (Accessible Rich Internet Applications) implemented its basically for improving accessibility-->

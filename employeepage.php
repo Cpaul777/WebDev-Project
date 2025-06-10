@@ -90,7 +90,16 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
 <body>
     <div class="container">
     <div class="header-row">
-      
+      <?php if($_SESSION['role'] == "Administrator" || $_SESSION['role'] == "administrator")
+        echo'<div class="whole-back-btn">
+        <a class="back-btn" href="index.php?tab=includes/dashboard.php">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>Details
+        </a>
+      </div>';
+
+      ?>
     </div>
     <div class="main-content">
       <div class="profile-card">

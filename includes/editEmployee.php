@@ -16,26 +16,26 @@ if (!isset($_POST['id'])){
     exit;
 }
 
-$gender_query = "SELECT DISTINCT gender FROM workers";
-$gender_result = mysqli_query($conn, $gender_query);
-$genders = [];
-while ($row = mysqli_fetch_assoc($gender_result)) {
-    $genders[] = $row['gender'];
-}
+// $gender_query = "SELECT DISTINCT gender FROM workers";
+// $gender_result = mysqli_query($conn, $gender_query);
+// $genders = [];
+// while ($row = mysqli_fetch_assoc($gender_result)) {
+//     $genders[] = $row['gender'];
+// }
 
-$dept_query = "SELECT DISTINCT department FROM workers";
-$dept_result = mysqli_query($conn, $dept_query);
-$departments = [];
-while ($row = mysqli_fetch_assoc($dept_result)) {
-    $departments[] = $row['department'];
-}
+// $dept_query = "SELECT DISTINCT department FROM workers";
+// $dept_result = mysqli_query($conn, $dept_query);
+// $departments = [];
+// while ($row = mysqli_fetch_assoc($dept_result)) {
+//     $departments[] = $row['department'];
+// }
 
-$role_query = "SELECT DISTINCT role FROM workers";
-$role_result = mysqli_query($conn, $role_query);
-$roles = [];
-while ($row = mysqli_fetch_assoc($role_result)) {
-    $roles[] = $row['role'];
-}
+// $role_query = "SELECT DISTINCT role FROM workers";
+// $role_result = mysqli_query($conn, $role_query);
+// $roles = [];
+// while ($row = mysqli_fetch_assoc($role_result)) {
+//     $roles[] = $row['role'];
+// }
 
 $id = $_POST['id'];
 if(isset($_POST['newfirstname'])){
@@ -165,7 +165,7 @@ if(isset($_POST['newfirstname'])){
                         <div class="input-group">
                             <label for="roles">Role</label>
                             <select class="filter-select" name="newrole" id="roles">
-                                <option value="">Select Role</option>
+                                <option value="<?php echo $role?>"><?php echo $role?></option>
                                 <option value="Administrator">Administrator</option>
                                 <option value="Punong Barangay">Punong Barangay</option>
                                 <option value="Secretary">Secretary</option>
@@ -184,7 +184,7 @@ if(isset($_POST['newfirstname'])){
                         <div class="input-group">
                             <label for="genders">Gender</label>
                             <select class="filter-select" name="newgender" id="genders">
-                                <option value="">Select Gender</option>
+                                <option value="<?php echo $gender?>"><?php echo $gender?></option>
                                 <option value="MALE">Male</option>
                                 <option value="FEMALE">Female</option>
                                 <option value="OTHER">Other</option>
@@ -194,7 +194,7 @@ if(isset($_POST['newfirstname'])){
                         <div class="input-group">
                             <label for="department">Choose Department:</label>
                             <select class="filter-select" name="newdepartment" id="department">
-                                <option value="">Select Department</option>
+                                <option value="<?php echo $department?>"><?php echo $department?></option>
                                 <option value="Legislative">Legislative</option>
                                 <option value="Administration">Administration</option>
                                 <option value="Safety & Health Services">Safety & Health Services</option>
