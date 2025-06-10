@@ -208,7 +208,7 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
 
 
                 <input type="hidden" name="workerid" value="<?php echo $_SESSION['workerid']; ?>">
-                <input type="hidden" name="status" value="Pending">
+                <input type="hidden" name="status" value="pending">
                 
                 <button type="submit" class="btn btn-submit">
                     <i class="fas fa-paper-plane"></i> Submit Request
