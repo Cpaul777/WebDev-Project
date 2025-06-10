@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             width: 60%;
             max-height: 90vh;
             overflow-y: auto;
-            text-align: center;
+            /* text-align: center; */
             padding-top: 5px;
         }
 
@@ -107,23 +107,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .header-row {
             display: flex;
             align-items: center;
-            margin-bottom: 25px;
+           
         }
 
         .header-row h2 {
             margin: auto;
+             margin-bottom: 25px;
+            /* margin-top: 25px; */
         }
 
 
         .back-btn {
-            display: inline-flex;
-            align-items: center;
+            display: inline-block;
+            text-align: left;
+            justify-self: left;
             gap: 8px;
             padding: 10px 20px;
             margin: 20px; 
             font-size: 16px;
             font-weight: bold;
-            text-align: center;
             text-decoration: none; 
             color: #ffffff; 
             background-color: #5FC903; 

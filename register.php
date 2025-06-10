@@ -62,12 +62,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8" />
     <title>Sign Up</title>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;800&display=swap" rel="stylesheet">
     <style>
        body {
             overflow: hidden;
-            font-family:'Poppins' sans-serif;
+            font-family:'Poppins', sans-serif;
             background-color: #e8f5e9; /* Soft green background */
             margin: 0;
             padding: 0;
@@ -118,7 +121,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .container input[type="password"],
         .container input[type="email"],
         .container input[type="date"],
-        .container input[type="number"]
+        .container input[type="number"],
+        .container select
          {
             width: 100%;
             padding: 10px;
@@ -159,7 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin-top: 15px;
             color: #2e7d32; /* Green links */
             text-decoration: none;
-            font-size: 14px;
+            font-size: 16px;
         }
 
         .container a:hover {
@@ -201,7 +205,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border-radius: 5px;
             cursor: pointer;
             margin-top: 10px;
-            font-size: 16px;
+            font-size: 20px;
             text-decoration: none;
         }
     </style>
