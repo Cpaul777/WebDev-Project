@@ -51,7 +51,6 @@ if($upcomingResult &&$upcomingResult->num_rows > 0){
             </div>
             <div class="content">
                 <h3><?php echo $formatted ?></h3>
-                <p>13 days remaining</p>
             </div>
         </div>
 

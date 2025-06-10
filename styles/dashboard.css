@@ -14,17 +14,17 @@
 .top-cards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+  justify-content: space-evenly;
+  gap: 5px;
   padding: 20px;
 }
 
 .top-cards .card {
-  width: 250px;
+  width: 290px;
   background: #fff;
   border-radius: 15px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  padding: 20px;
+  padding: 25px;
   border: 2px solid #ECEEF6;
 }
 
@@ -57,6 +57,7 @@
 
 /* Payroll */
 
+
 .dashboard-tab .top-cards .payroll .header p{
     color: #343434;
     font-size: 14px;
@@ -74,13 +75,7 @@
 .dashboard-tab .top-cards .pending-approval .content h3{
     font-size: 28px;
     font-weight: 600;
-}
-
-.dashboard-tab .top-cards .pending-approval .content p{
-    font-size: 14px;
-    color: #949494;
-    font-weight: 400;
-}
+} 
 
 /* Pending Approval */
 
