@@ -205,6 +205,12 @@
 
 }
 
+.accomplished a{
+  color: red;
+  font-size: 19px;
+  margin-left: 5px;
+}
+
 .action-buttons {
   display: flex;
   gap: 8px;
