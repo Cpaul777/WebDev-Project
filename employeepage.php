@@ -14,6 +14,7 @@ $id= $_SESSION['workerid'];
 $message = " ";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // echo '<>'
+    $prevleave = $_POST['previousleave'];
     $currentdate = new DateTime(date('Y-m-d'));
     $startdatestamp = new DateTime($_POST['startdate']);
     $enddatestamp = new DateTime($_POST['enddate']);
@@ -22,17 +23,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $currenttimediff = $currentdate->diff($startdatestamp);
     $timediffnega = $timediff->invert;
     $currenttimediffnega = $currenttimediff->invert;
-     echo'<div class="pop-up">
-  Number of days of leave selected: <strong>' . $timediff->days . ' day </strong> <a onclick="disable()">X</a>
-</div>';
+
     if(($timediffnega == 1)||($timediff->days == 0)){
         $message = "NO TIME TRAVEL ALLOWED! (start date is equal to or greater than leave date)";
+        $leaveerror = true;
     }
     else{
         if(($currenttimediffnega == 1)||($currenttimediff->days == 0)){
             $message = "NO TIME TRAVEL ALLOWED!!! (start date is on or behind current date)";
+            $leaveerror = true;
         }
         else{
+          if($prevleave < $timediff->days){
+             $message = "You are attempting to create a leave notice beyond allotted PTO days, contact HR for more information";
+             $leaveerror =true;
+          }
+          else{
+            $remainingleave = ($prevleave-$timediff->days);
             $authorid = (int)$_SESSION['workerid'];
             $leavestart = $_POST['startdate'];
             $leaveend = $_POST['enddate'];
@@ -40,22 +47,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $status = $_POST['status'];
             $createleavestmt = $conn->prepare("INSERT INTO leaves (authorid,leavestart,leaveend,reason,status) VALUES (?, ?, ?, ?, ?)");
             $createleavestmt->bind_param("issss", $authorid,$leavestart, $leaveend,$reason,$status);
-            if ($createleavestmt->execute()) {
+            $updateleavedaysstmt = $conn->prepare("UPDATE workers SET leaveDaysRemaining = ? WHERE workerId = ?");
+            $updateleavedaysstmt->bind_param("ii",$remainingleave,$authorid);
+            if ($createleavestmt->execute()&&$updateleavedaysstmt->execute()) {
                 $message = "Leave Request created successfully";
             } else {
                 $message = "Error: " . $stmt->error;
             }
             $createleavestmt->close();
+          }
         }
      }
     
 }
 
-$stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, department FROM workers WHERE workerId = ?");
+if($leaveerror == true){
+  $popupmessage = '<div class="pop-up"> Unable to create leave request <a onclick="disable()">X</a></div>';
+}
+  else{
+ $popupmessage = '<div class="pop-up">
+  Number of days of leave selected: <strong>' . $timediff->days . ' day </strong> <a onclick="disable()">X</a> </div>';
+  }
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  echo $popupmessage;
+}
+
+$stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, department,leaveDaysRemaining FROM workers WHERE workerId = ?");
     $stmt->bind_param("i", $id,);
     $stmt->execute();
     $stmt->store_result();
-    $stmt->bind_result($firstname, $lastname, $emailid, $role, $gender, $department);
+    $stmt->bind_result($firstname, $lastname, $emailid, $role, $gender, $department,$leavedays);
     $stmt->fetch();
 
     $stmt = $conn->prepare("SELECT email FROM users WHERE userid = ?");
@@ -84,7 +107,7 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="/styles/employeepage.css">
+    <link rel="stylesheet" href="/hr/styles/employeepage.css">
     
 </head>
 <body>
@@ -181,12 +204,14 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
                 <div class="form-header">
                     <h2>Submit Leave Request</h2>
                     <p>Fill out the form to request time off</p>
+
+                    <p>PTO days remaining : <?php echo $leavedays; ?></p>
                 </div>
             
             <?php if ($message): ?>
-                <!-- <div class="message <?php //echo strpos($message, 'successfully') !== false ? 'message-success' : 'message-error'; ?>">
-                    <?php //echo htmlspecialchars($message); ?>
-                </div> -->
+                <div class="message <?php echo strpos($message, 'successfully') !== false ? 'message-success' : 'message-error'; ?>">
+                    <?php echo htmlspecialchars($message); ?>
+                </div> 
             <?php endif; ?>
             
             <form class="leave-form" method="POST">
@@ -218,7 +243,7 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
 
                 <input type="hidden" name="workerid" value="<?php echo $_SESSION['workerid']; ?>">
                 <input type="hidden" name="status" value="pending">
-                
+                <input type="hidden" name="previousleave" value="<?php echo $leavedays;?>">
                 <button type="submit" class="btn btn-submit">
                     <i class="fas fa-paper-plane"></i> Submit Request
                 </button>
