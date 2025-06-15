@@ -101,6 +101,14 @@ if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
                             <p>Leave Application</p>
                         </a>
                     </li>
+
+                    <li><a id="jobs" role="tab" aria-selected="false" 
+                    aria-controls="jobs-panel" class="tab-btn"
+                    data-page="includes/jobs.php" data-tab-name="jobs" aria-label="Leave Management Tab">
+                            <i class="bi bi-file-earmark-text"></i> 
+                            <p>Jobs</p>
+                        </a>
+                    </li>
                 </ul>
             
             </div>
