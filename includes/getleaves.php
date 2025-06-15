@@ -20,7 +20,6 @@ $result = $conn->query($sql);
 $stmt = $conn->prepare("SELECT firstName,lastName,department FROM workers WHERE workerId = ?");
 $stmt->bind_param("i", $workerid,);
 
-
 $total = $total_records[0];
 $total_pending = $total_records_pending[0];
 $total_accepted = $total_records_accepted[0];
@@ -143,7 +142,8 @@ $total_rejected = $total_records_rejected[0];
                         else{
                             echo    
                                     '<td class="accomplished"> 
-                                        Accomplished
+                                        Accomplished 
+                                       <!-- <a href="#"><i class="bi bi-trash"></i></a> -->
                                     </td>
                                 </tr>';
                         }

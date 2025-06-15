@@ -14,6 +14,7 @@
 
 </head>
 <?php
+
 if(!isset($_SESSION)) session_start();
 
 // Check if the user is logged in, if

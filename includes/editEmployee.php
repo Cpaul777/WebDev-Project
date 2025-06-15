@@ -64,11 +64,11 @@ if(isset($_POST['newfirstname'])){
       }
 }
 
-    $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, department FROM workers WHERE workerId = ?");
+    $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, department, basePay, overtimeRate FROM workers WHERE workerId = ?");
     $stmt->bind_param("i", $id,);
     $stmt->execute();
     $stmt->store_result();
-    $stmt->bind_result($firstname, $lastname, $emailid, $role, $gender, $department);
+    $stmt->bind_result($firstname, $lastname, $emailid, $role, $gender, $department, $prevbasepay, $prevovertimerate);
     $stmt->fetch();
 
     $stmt = $conn->prepare("SELECT email FROM users WHERE userid = ?");
@@ -77,6 +77,9 @@ if(isset($_POST['newfirstname'])){
     $stmt->store_result();
     $stmt->bind_result($email);
     $stmt->fetch();
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -185,12 +188,20 @@ if(isset($_POST['newfirstname'])){
                             <label for="genders">Gender</label>
                             <select class="filter-select" name="newgender" id="genders">
                                 <option value="<?php echo $gender?>"><?php echo $gender?></option>
-                                <option value="MALE">Male</option>
-                                <option value="FEMALE">Female</option>
-                                <option value="OTHER">Other</option>
+                                <?php if($gender == "MALE"){
+                                    echo '<option value="FEMALE">FEMALE</option>';
+                                    echo '<option value="OTHER">Other</option>';
+                                }else if ($gender == "FEMALE"){
+                                    echo '<option value="MALE">MALE</option>';
+                                    echo '<option value="OTHER">Other</option>';
+                                } else if ($gender == "OTHER"){
+                                    echo '<option value="OTHER">Other</option>';
+                                    echo '<option value="MALE">MALE</option>';
+                                    echo '<option value="FEMALE">FEMALE</option>';
+                                }
+                                ?>
                             </select>
                         </div>
-                        
                         <div class="input-group">
                             <label for="department">Choose Department:</label>
                             <select class="filter-select" name="newdepartment" id="department">
@@ -203,14 +214,13 @@ if(isset($_POST['newfirstname'])){
                         </div>
                          <div class="input-group">
                             <label for="basepay">Base Pay</label>
-                            <input type="number" name="basepay" required>
+                            <input type="number" name="basepay" value="<?php echo $prevbasepay?>" required>
                         </div>
                          <div class="input-group">
                             <label for="overtimerate">Overtime Rate</label>
-                            <input type="number" name="overtimerate"  required>
+                            <input type="number" name="overtimerate" value="<?php echo $prevovertimerate?>" required>
                         </div>
                     </div>
-                    
                     <input type="hidden" name="id" value="<?php echo $id;?>" />
                     <input type="hidden" name="emailid" value="<?php echo $emailid;?>" />
 

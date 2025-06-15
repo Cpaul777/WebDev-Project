@@ -56,12 +56,16 @@
 }
 
 /* Payroll */
-
-
 .dashboard-tab .top-cards .payroll .header p{
     color: #343434;
     font-size: 14px;
 }
+
+.dashboard-tab .top-cards .payroll .header h3{
+    font-size: 28px;
+    font-weight: 600;
+}
+
 .dashboard-tab .top-cards .payroll .header i{
     background-color: rgba(224, 42, 224, 0.2);
     border-radius: 15px;
@@ -71,11 +75,6 @@
     color: rgba(234, 0, 255, 0.822);
     margin-right: 9px;
 }
-
-.dashboard-tab .top-cards .pending-approval .content h3{
-    font-size: 28px;
-    font-weight: 600;
-} 
 
 /* Pending Approval */
 
