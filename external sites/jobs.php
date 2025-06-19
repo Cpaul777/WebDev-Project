@@ -1,3 +1,17 @@
+<?php
+include '../includes/db_connect.php';
+session_start();
+
+// Check if the user is logged in, if
+// not then redirect them to the login page
+
+
+// Grab da shit you need from jobs table
+$sql = "SELECT * FROM jobs";
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +48,7 @@
     </div>
 
     <div class="main-section">
-        <h1>Job Openings</h1>
+        <h1>Jobs Available</h1>
         <p>Explore current job opportunities within the local government.</p>
         <div class="job-filters">
             <button type="button">Department <i class="bi bi-chevron-down"></i></button>
@@ -49,91 +63,25 @@
                     <th>Department</th>
                     <th>Location</th>
                     <th>Category</th>
-                    <th>Posted Date</th>
-                    <th>Status</th>
+                    <th>Closing Date</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Administrative Assistant</td>
-                    <td class="department">Human Resources</td>
-                    <td>City Hall</td>
-                    <td><span>Administrative</span></td>
-                    <td>2023-08-15</td>
-                    <td><span class="status-open">Open</span></td>
-                </tr>
-                <tr>
-                    <td>Civil Engineer</td>
-                    <td class="department">Public Works</td>
-                    <td>Engineering Department</td>
-                    <td><span>Engineering</span></td>
-                    <td>2023-08-10</td>
-                    <td><span class="status-open">Open</span></td>
-                </tr>
-                <tr>
-                    <td>Social Worker</td>
-                    <td class="department">Social Services</td>
-                    <td>Community Center</td>
-                    <td><span>Social Services</span></td>
-                    <td>2024-11-30</td>
-                    <td><span class="status-open">Open</span></td>
-                </tr>
-                <tr>
-                    <td>IT Specialist</td>
-                    <td class="department">Information Technology</td>
-                    <td>City Hall</td>
-                    <td><span>IT</span></td>
-                    <td>2023-07-30</td>
-                    <td><span class="status-open">Open</span></td>
-                </tr>
-                <tr>
-                    <td>Accountant</td>
-                    <td class="department">Finance</td>
-                    <td>City Hall</td>
-                    <td><span>Finance</span></td>
-                    <td>2023-07-25</td>
-                    <td><span class="status-open">Open</span></td>
-                </tr>
-                <tr>
-                    <td>Librarian</td>
-                    <td class="department">Library</td>
-                    <td>Main Library</td>
-                    <td><span>Library</span></td>
-                    <td>2023-07-20</td>
-                    <td><span class="status-open">Open</span></td>
-                </tr>
-                <tr>
-                    <td>Police Officer</td>
-                    <td class="department">Police Department</td>
-                    <td>Police Station</td>
-                    <td><span>Law Enforcement</span></td>
-                    <td>2023-07-15</td>
-                    <td><span class="status-open">Open</span></td>
-                </tr>
-                <tr>
-                    <td>Firefighter</td>
-                    <td class="department">Fire Department</td>
-                    <td>Fire Station</td>
-                    <td><span>Emergency Services</span></td>
-                    <td>2023-07-10</td>
-                    <td><span class="status-open">Open</span></td>
-                </tr>
-                <tr>
-                    <td>Teacher</td>
-                    <td class="department">Education</td>
-                    <td>Public Schools</td>
-                    <td><span>Education</span></td>
-                    <td>2023-07-05</td>
-                    <td><span class="status-open">Open</span></td>
-                </tr>
-                <tr>
-                    <td>Park Ranger</td>
-                    <td class="department">Parks and Recreation</td>
-                    <td>City Parks</td>
-                    <td><span>Recreation</span></td>
-                    <td>2023-07-01</td>
-                    <td><span class="status-open">Open</span></td>
-                </tr>
+                <?php if ($result = $conn->query($sql)) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo '<tr> 
+                                            <td class="job-title"><a href="job_details.php?job_id='.$row['jobid'].'">'.$row['role'].'</a></td>
+                                            <td class="department">'.$row['department'].'</td> 
+                                            <td>'.$row['location'].'</td>
+                                            <td><span>'.$row['category'].'</span></td>
+                                            <td>'.$row['closingdate'].'</td>
+                                        </tr>';
+                                }
+                    }
+                    $result->close(); 
+                ?>
+
+                
             </tbody>
         </table>
         </div>

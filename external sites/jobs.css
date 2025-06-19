@@ -16,7 +16,7 @@
 }
 
 body{
-    background-color: #F8F8F8;
+    background-color: #F7FCF7;
     font-family: "Poppins", sans-serif;
     display: flex;
     flex-direction: column;
@@ -140,21 +140,19 @@ body{
     padding: 10px 20px;
 }
 
-/* --- Job Openings Section --- */
+
 .main-section {
     max-width: 1500px;
     margin: 32px auto 0 auto;
     padding: 32px 20px 20px 20px;
-    background: var(--bg-color);
     border-radius: 16px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
 }
 
 .main-section h1 {
-    color: var(--dark-green);
+    color: black;
     font-size: 2.2rem;
     margin-bottom: 0.5rem;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .main-section > p {
@@ -196,26 +194,45 @@ body{
 }
 .job-table {
     width: 100%;
-    background: var(--white-color);
     border-radius: 16px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    background-color: #F7FCF7;
     border-collapse: separate;
     border-spacing: 0;
     min-width: 700px;
+    border: 1px solid #CCEBCF   ;
 }
 .job-table thead tr {
-    background: var(--other-white);
     color: var(--dark-color);
+    font-weight: 500;
+}
+
+.job-table thead th {
+    padding: 20px 20px;
+    text-align: left;
+    font-size: 1rem;
+    letter-spacing: 0.01em;
+    border-bottom: 1px solid #CCEBCF;
     font-weight: 600;
 }
+
 .job-table th, .job-table td {
-    padding: 14px 10px;
+    padding: 20px 20px;
     text-align: left;
+    border-bottom: 1px solid #CCEBCF;
 }
 .job-table th {
     font-size: 1.05rem;
     letter-spacing: 0.01em;
 }
+
+.job-table td {
+    font-size: 1rem;
+    color: var(--dark-green);
+    font-weight: 500;
+    vertical-align: middle;
+}
+
 .job-table tbody tr {
     border-bottom: 1px solid #e5e5e5;
     transition: background 0.2s;
@@ -223,51 +240,45 @@ body{
 .job-table tbody tr:hover {
     background: #f3fdf3;
 }
+
 .job-table td span {
+    display: inline-block;
+    min-width: 140px;
+    max-width: 140px;
+    text-align: center;
     background: var(--other-white);
-    padding: 4px 10px;
-    border-radius: 6px;
+    padding: 6px 0;
+    border-radius: 8px;
     font-weight: 600;
-    font-size: 0.98rem;
-}
-.job-table td .status-open {
-    background: var(--very-light-green);
-    color: var(--dark-green);
-    padding: 4px 12px;
-    border-radius: 6px;
-    font-weight: 600;
-}
-.job-table td {
     font-size: 1rem;
+    color: var(--dark-color);
+    letter-spacing: 0.01em;
+    box-sizing: border-box;
 }
-.job-table td.department {
-    color: #2e8b57;
+
+
+.job-table td.job-title a {
+    display: inline-block;
     font-weight: 500;
+    font-size: 1.08rem;
+    color: black;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: color 0.2s, transform 0.2s, box-shadow 0.2s;
+    border-radius: 6px;
+    padding: 4px 10px;
+    background: transparent;
+    position: relative;
+    z-index: 1;
+}
+.job-table td.job-title a:hover {
+    color: var(--light-green);
+    text-decoration: underline;
+    transform: translateY(-2px) scale(1.04);
+    text-shadow: 0 2px 8px rgba(0,143,5,0.10);
 }
 
-/* --- Responsive --- */
-@media (max-width: 900px) {
-    .main-section {
-        padding: 20px 5px 10px 5px;
-    }
-    .job-table {
-        min-width: 600px;
-    }
-}
-@media (max-width: 600px) {
-    .main-section {
-        padding: 10px 2px 5px 2px;
-    }
-    .job-table {
-        min-width: 400px;
-        font-size: 0.95rem;
-    }
-    .job-filters button {
-        font-size: 0.95rem;
-        padding: 7px 10px;
-    }
-}
-
+/* ...existing code... */
 
 footer{
     color: var(--light-green);
