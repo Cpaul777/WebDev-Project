@@ -52,8 +52,12 @@ body{
 .top-menu .las-pinas h2{
     font-size: 1.5rem;
     font-weight: 650;
-    color: var(--dark-color);
     margin-left: 10px;
+}
+
+.top-menu ,.las-pinas a{
+    text-decoration: none;
+    color: var(--dark-color);
 }
 
 .top-menu ul{
@@ -204,11 +208,12 @@ body{
     padding: 10px;
     border-radius: 10px;
     background-color: var(--white-color);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 4px 5px 7px 8px rgba(0, 0, 0, 0.3);
     max-width: 500px; /* Adjust the width as needed */  
     transition: box-shadow 0.3s ease;
     margin-top: 20px;
     margin-bottom: 20px;
+    z-index: 1500;
 }
 
 .search-bar i {

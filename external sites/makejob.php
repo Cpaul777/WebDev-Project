@@ -1,12 +1,12 @@
 <?php
 var_dump($_POST);
-include 'db_connect.php';
+include '../includes/db_connect.php';
 session_start();
 
 // Check if the user is logged in, if
 // not then redirect them to the login page
 if (!isset($_SESSION['email'])) {
-    header("Location: login.php");
+    header("Location: ..//login.php");
     exit();
 }
 $target_dir = "jobimg/";
@@ -70,7 +70,7 @@ if ($uploadOk == 0) {;
 
     echo '<script>
     alert("'.$state.' ");
-    window.location.href = "../index.php?tab=includes/jobs.php";
+    window.location.href = "../external sites/jobs.php";
     </script>';
     exit;
 

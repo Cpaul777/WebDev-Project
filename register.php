@@ -311,8 +311,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="relationship">Relationship</label>
             <input type="text" name="relationship" id="relationship" required>
 
-            <input type="reset" value="Reset">
             <input class="sign-up" type="submit" value="Sign Up">
+            <input type="reset" value="Reset">
         </form>
         <a href="login.php" class="login">Log In</a>
     </div>

@@ -10,7 +10,8 @@ if(!isset($_SESSION['email'])){
 }
 
 $id= $_SESSION['workerid'];
-
+$timediff = 0;
+$leaveerror = false;
 $message = " ";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // echo '<>'
@@ -107,7 +108,7 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="/hr/styles/employeepage.css">
+    <link rel="stylesheet" href="/styles/employeepage.css">
     
 </head>
 <body>
@@ -208,7 +209,7 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
                     <p>PTO days remaining : <?php echo $leavedays; ?></p>
                 </div>
             
-            <?php if ($message): ?>
+            <?php if ($leaveerror == true ): ?>
                 <div class="message <?php echo strpos($message, 'successfully') !== false ? 'message-success' : 'message-error'; ?>">
                     <?php echo htmlspecialchars($message); ?>
                 </div> 

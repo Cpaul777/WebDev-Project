@@ -15,7 +15,12 @@
     <div class="top-menu">
          <div class="las-pinas">
             <i class="bi bi-bank2"></i>
-            <h2> Las Piñas Job Portal</h2>
+            <h2> <a href="jportal.php">
+
+                Las Piñas Job Portal
+
+                </a>
+            </h2>
          </div>
          <div class="tabs">
             <ul>

@@ -87,7 +87,7 @@ $sql = "SELECT * FROM jobs";
         </div>
     </div>
 
-    <!-- <form method="post" enctype="multipart/form-data" action="includes/makejob.php">
+    <!-- <form method="post" enctype="multipart/form-data" action="makejob.php">
             <input type="text" name="title" id="title">
             <label for="title">Job Title</label>
             <br>

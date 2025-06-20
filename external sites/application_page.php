@@ -3,8 +3,8 @@
 include '../includes/db_connect.php';
 session_start();
 
-if(isset($_GET['job_id'])) {
-    $jobid = $_GET['job_id'];
+if(isset($_POST['jobid'])) {
+    $jobid = $_POST['jobid'];
 } else {
     echo "<script>alert('No job ID provided.');</script>";
     header("Location: jobs.php");
@@ -174,9 +174,9 @@ $data = $result->fetch_assoc();
         }
 
         .main-section {
-            max-width: 1500px;
+            max-width: 1200px;
             margin: 32px auto 0 auto;
-            padding: 32px 20px 20px 20px;
+            padding: 40px 32px 32px 32px;
             background: var(--bg-color);
             border-radius: 16px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.04);
@@ -284,6 +284,149 @@ $data = $result->fetch_assoc();
             text-decoration: underline;
             text-shadow: 0 0 12px rgba(10, 243, 18, 0.28), 0 0 24px rgba(10, 243, 18, 0.18);
         }
+
+        .main-section form{
+            width: 1000px;
+            margin: auto;
+        }
+
+        .personal-section{
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fbfff9;
+            padding: 30px 30px 20px 30px;
+            border-radius: 10px;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .personal-section h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+            color: #222;
+        }
+
+        
+
+        .personal-section label{
+            margin-bottom: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #222;
+        }
+
+        .personal-section input[type="text"]{
+
+        }
+
+        .doc-upload-section {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fbfff9;
+            padding: 30px 30px 20px 30px;
+            border-radius: 10px;
+            font-family: "Poppins", sans-serif;
+        }
+        .doc-upload-section h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+            color: #222;
+        }
+
+        .doc-upload-label {
+            margin-bottom: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #222;
+        }
+
+        .upload-btn {
+            display: block;
+            width: 100%;
+            background: #e8faea;
+            color: #2e8b57;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 0;
+            margin-bottom: 18px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-align: left;
+            padding-left: 16px;
+        }
+        .upload-btn:hover {
+            background: #d2f5d7;
+        }
+        .upload-input {
+            display: none;
+        }
+        .submit-btn {
+            width: 100%;
+            background: #0a9c1c;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 13px 0;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .submit-btn:hover {
+            background: #067a16;
+        }
+
+        .personal-section,
+        .doc-upload-section {
+            max-width: 100%;
+            margin: 0 0 32px 0;
+            padding: 32px 32px 24px 32px;
+        }
+
+
+        .upload-btn,
+        textarea {
+            font-size: 1.08rem;
+        }
+
+        /* .personal-section input,
+        textarea {
+            min-height: 48px;
+        }
+        .personal-section input[type="text"] textarea {
+            width: 100%;
+            background: #e8faea;
+            color: #222;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 12px;
+            margin-bottom: 18px;
+            font-size: 1.08rem;
+            transition: background 0.2s;
+            outline: none;
+            resize: vertical;
+        } */
+        textarea:focus {
+            background: #d2f5d7;
+        }
+        h1, h2, h3 {
+            margin-left: 0;
+        }
+        @media (max-width: 700px) {
+            .main-section {
+                max-width: 98vw;
+                padding: 10px 2vw;
+            }
+            .personal-section,
+            .doc-upload-section {
+                padding: 18px 6vw 18px 6vw;
+            }
+        }
     </style>
 </head>
 <body>
@@ -307,51 +450,59 @@ $data = $result->fetch_assoc();
          </div>
 
     </div>
+
     <div class="main-section">
-        <h1><?php echo $data['role'] ?></h1>
-        <p class="closingdate"><?= $data['location'] .' - close in '. $data['closingdate'] ?></p>
-
-        <h2>Job Description</h2>
-
-        <p><?php echo $data['description'] ?></p>
-
-        <h2>Responsibilities</h2>
-        <?php 
-
-            // $responsibilities = explode(";", $data['responsibilities']);
-            
-            // echo '<ul>';
-            
-            // foreach($responsibilities as $responsibility) {
-            //     if(trim($responsibility) !== '') {
-            //         echo "<li>" . htmlspecialchars($responsibility) . "</li>";
-            //     }
-            // }
-
-            // echo '</ul>';
-        ?>
-
-        <h2>Qualifications</h2>
-        <?php 
-
-            $requirements = explode(";", $data['requirements']);
-            
-            
-            echo '<ul>';
-            
-            foreach($requirements as $requirement) {
-                if(trim($requirement) !== '') {
-                    echo "<li>" . htmlspecialchars($requirement) . "</li>";
-                }
-            }
-
-            echo '</ul>';
-            
-        ?>
-
-        <form action="application_page.php" method="post">
+        
+        <form action="../includes/recruitment.php" method="post">
             <input type="hidden" value="<?php echo $data['jobid'] ?>" name="jobid">
-            <button class="apply-btn" type="submit" > Apply Now </button>
+            <div class="personal-section">
+                <h3>Personal Information</h3>
+                <div>
+                    <label class="personal-btn" for="fn">
+                        First Name
+                        <input class="personal-input" type="text" name="fn" placeholder="First Name">
+                    </label>
+                </div>
+                <div>
+                    <label class="personal-btn" for="ln">
+                        Last Name
+                        <input class="personal-input" type="text" name="ln" placeholder="Last Name">
+                    </label>
+                </div>
+
+                <div>
+                    <label class="personal-btn" for="email">Email Address
+                        <input class="personal-input" type="email" name="email" placeholder="email@email.com">
+                    </label>
+                </div>
+
+            </div>
+            
+            <div class="doc-upload-section">
+                <h3>Document Uploads</h3>
+                <div>
+                    <div class="doc-upload-label">Personal Data Sheet (PDS)</div>
+                    <label class="upload-btn">
+                        Upload PDS
+                        <input type="file" name="pds" class="upload-input" required>
+                    </label>
+                </div>
+                <div>
+                    <div class="doc-upload-label">Resume</div>
+                    <label class="upload-btn">
+                        Upload Resume
+                        <input type="file" name="resume" class="upload-input" required>
+                    </label>
+                </div>
+                <div>
+                    <div class="doc-upload-label">Transcript of Records (TOR)</div>
+                    <label class="upload-btn">
+                        Upload TOR
+                        <input type="file" name="tor" class="upload-input" required>
+                    </label>
+                </div>
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </div>
         </form>
     </div>
 </body>
