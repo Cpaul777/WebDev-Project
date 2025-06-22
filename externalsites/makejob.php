@@ -70,7 +70,7 @@ if ($uploadOk == 0) {;
 
     echo '<script>
     alert("'.$state.' ");
-    window.location.href = "../external sites/jobs.php";
+    window.location.href = "../externalsites/jobs.php";
     </script>';
     exit;
 
