@@ -453,8 +453,9 @@ $data = $result->fetch_assoc();
 
     <div class="main-section">
         
-        <form action="../includes/recruitment.php" method="post">
+        <form action="../includes/recruitment.php" enctype="multipart/form-data"  method="post">
             <input type="hidden" value="<?php echo $data['jobid'] ?>" name="jobid">
+            <input type="hidden" name="timestamp" value="<?php echo time(); ?>">
             <div class="personal-section">
                 <h3>Personal Information</h3>
                 <div>
