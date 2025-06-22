@@ -306,7 +306,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" name="guardian" id="guardian" required>
 
             <label for="emergency_phone">Emergency Number</label>
-            <input type="text" name="emergency_phone" id="emergency_phone" required>
+            <input type="number" name="emergency_phone" id="emergency_phone" required>
 
             <label for="relationship">Relationship</label>
             <input type="text" name="relationship" id="relationship" required>
