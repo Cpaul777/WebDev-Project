@@ -318,7 +318,7 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
     <div class="quick-access">
         <h3>Quick Access</h3>
         <div class="quick-access-grid">
-            <div class="quick-access-tile"><img src="img/announcements.png" alt="HR Announcements"><span>HR Announcements</span></div>
+            <a href="hr_announcements.php" style="text-decoration:none; color:inherit;"><div class="quick-access-tile"><img src="img/announcements.png" alt="HR Announcements"><span>HR Announcements</span></div></a>
             <div class="quick-access-tile"><img src="img/time_wa.png" alt="Time In / Time Out"><span>Time In / Time Out</span></div>
             <div class="quick-access-tile"><img src="img/gen_info.png" alt="General Information"><span>General Information</span></div>
             <div class="quick-access-tile"><img src="img/payslip.png" alt="Payslip"><span>Payslip</span></div>
@@ -342,10 +342,9 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
     <div class="resources">
         <h3>Resources</h3>
         <div class="resources-grid">
-            <div class="resource-tile"><img src="#" alt="Safety Information"><span>Safety Information</span></div>
-            <div class="resource-tile"><img src="#" alt="Code of Conduct Policy"><span>Code of Conduct Policy</span></div>
-            <div class="resource-tile"><img src="#" alt="Training Materials"><span>Training Materials</span></div>
-            <div class="resource-tile"><img src="#" alt="HR Help Desk"><span>HR Help Desk</span></div>
+            <a href="code_of_conduct.php" style="text-decoration:none; color:inherit;"><div class="resource-tile"><img src="#" alt="Code of Conduct Policy"><span>Code of Conduct Policy</span></div></a>
+            <a href="training_materials.php" style="text-decoration:none; color:inherit;"><div class="resource-tile"><img src="#" alt="Training Materials"><span>Training Materials</span></div></a>
+            <a href="hr_helpdesk.php" style="text-decoration:none; color:inherit;"><div class="resource-tile"><img src="#" alt="HR Help Desk"><span>HR Help Desk</span></div></a>
         </div>
     </div>
     </div>
