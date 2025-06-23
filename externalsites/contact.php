@@ -355,10 +355,10 @@
             </ul>
          </div>
         
-         <div class="right-side">
+         <!-- <div class="right-side">
             <button class="sign-btn" id="sign-up">Sign Up</button>
             <button class="login-btn" id="login-btn">Login</button>
-         </div>
+         </div> -->
 
     </div>
     <div class="main-section contact-section">

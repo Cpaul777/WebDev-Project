@@ -45,15 +45,72 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
     <style>
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #f0f4f8;
-            color: #333;
-            margin: 0;
-            padding: 0;
+        :root {
+            --top-bar-height: 60px;
+            --white-color: #ffffff;
+            --dark-color: #333333;
+            --very-light-green: #bfffc2;
+            --green: #008F05;
         }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fafb;
+            color: #1f2937;
+        }
+
+        .top-menu {
+            height: var(--top-bar-height);
+            background-color: var(--green);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 100;
+            position: sticky;
+            top: 0;
+        }
+
+            .top-menu a {
+            color: var(--white-color);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+            .top-menu .right {
+            color: var(--white-color);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 14px;
+            text-align: right;
+        }
+
+            .top-menu .right .profile-pic {
+            width: 40px;
+            height: 40px;
+            background: var(--white-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .top-menu .right .profile-pic i {
+            font-size: 20px;
+            color: var(--green);
+        }
+
 
         .main-section {
             width: 1000px;
@@ -247,14 +304,12 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
             font-size: 0.97rem;
         }
         .resources {
-            margin: 32px auto 0 auto;
-            max-width: 900px;
+           margin: 32px auto 0 auto;
+            max-width: 1000px;
         }
         .resources h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #222;
+            font-size: 1.5rem;
+            font-weight: 600;
         }
         .resources-grid {
             display: flex;
@@ -262,7 +317,6 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
         }
         .resource-tile {
             flex: 1;
-            background: #e5f5e5;
             border-radius: 10px;
             display: flex;
             flex-direction: column;
@@ -274,19 +328,33 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
             transition: box-shadow 0.2s, background 0.2s;
         }
         .resource-tile:hover {
-            background: #c8f7c5;
             box-shadow: 0 2px 12px rgba(0,143,5,0.08);
         }
         .resource-tile img {
-            width: 48px;
-            height: 48px;
+            width: 185px;
+            height: 120px;
             margin-bottom: 8px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.2s;
         }
+
+        .resource-tile img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 12px rgba(0,143,5,0.1);
+        }
+
         .resource-tile span {
-            font-size: 0.98rem;
+            font-size: 1.1rem;
             color: #222;
-            font-weight: 500;
+            font-weight: 570;
+            text-align: center;
         }
+
+        .resource-tile:hover span {
+            color: #008F05;
+        }
+
         @media (max-width: 900px) {
             .quick-access-grid, .resources-grid {
                 flex-direction: column;
@@ -299,6 +367,15 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
     </style>
 </head>
 <body>
+    <div class="top-menu">
+    <a href="#"><i class="bi bi-layout-three-columns"></i>Las Piñas Information System Portal</a>
+    <div class="right">
+      <span>June 18, 2025<br><small>Wednesday</small></span>
+      <div class="profile-pic" id="profile-button" onclick="profileDropDown()">
+        <i class="bi bi-person"></i>
+      </div>
+    </div>
+  </div>
     <div class="main-section">
          <div class="welcome-banner">
         <h2>Welcome Back, <?php echo $firstname; ?>!</h2>
@@ -315,14 +392,39 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
             </div>
         </div>
     </div>
+    
     <div class="quick-access">
         <h3>Quick Access</h3>
         <div class="quick-access-grid">
-            <a href="hr_announcements.php" style="text-decoration:none; color:inherit;"><div class="quick-access-tile"><img src="img/announcements.png" alt="HR Announcements"><span>HR Announcements</span></div></a>
-            <div class="quick-access-tile"><img src="img/time_wa.png" alt="Time In / Time Out"><span>Time In / Time Out</span></div>
-            <div class="quick-access-tile"><img src="img/gen_info.png" alt="General Information"><span>General Information</span></div>
-            <div class="quick-access-tile"><img src="img/payslip.png" alt="Payslip"><span>Payslip</span></div>
-            <div class="quick-access-tile"><img src="img/leave_form.png" alt="Leave Form"><span>Leave Form</span></div>
+            <a href="hr_announcements.php" style="text-decoration:none; color:inherit;">
+                <div class="quick-access-tile"><img src="img/announcements.png" alt="HR Announcements"><span>HR Announcements</span>
+                </div>
+            </a>
+
+             <a href="" style="text-decoration:none; color:inherit;">
+                <div class="quick-access-tile">                
+                    <img src="img/time_wa.png" alt="Time In / Time Out"><span>Time In / Time Out</span>
+                </div>
+            </a>
+            
+            <a href="employeeInfo.php?tab=general" style="text-decoration:none; color:inherit;">
+                <div class="quick-access-tile">        
+                    <img src="img/gen_info.png" alt="General    Information"><span>General Information</span>
+                </div>
+            </a>
+
+
+            <a href="employeeInfo.php?tab=payslip" style="text-decoration:none; color:inherit;">
+                <div class="quick-access-tile">
+                    <img src="img/payslip.png" alt="Payslip"><span>Payslip</span>
+                </div>
+            </a>
+
+            <a href="employeeInfo.php?tab=leavereq" style="text-decoration:none; color:inherit;">
+                <div class="quick-access-tile">
+                    <img src="img/leave_form.png" alt="Leave Form"><span>Leave Form</span>
+                </div>
+            </a>    
         </div>
     </div>
     <div class="notice-board">
@@ -342,9 +444,9 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
     <div class="resources">
         <h3>Resources</h3>
         <div class="resources-grid">
-            <a href="code_of_conduct.php" style="text-decoration:none; color:inherit;"><div class="resource-tile"><img src="#" alt="Code of Conduct Policy"><span>Code of Conduct Policy</span></div></a>
-            <a href="training_materials.php" style="text-decoration:none; color:inherit;"><div class="resource-tile"><img src="#" alt="Training Materials"><span>Training Materials</span></div></a>
-            <a href="hr_helpdesk.php" style="text-decoration:none; color:inherit;"><div class="resource-tile"><img src="#" alt="HR Help Desk"><span>HR Help Desk</span></div></a>
+            <a href="code_of_conduct.php" style="text-decoration:none; color:inherit;"><div class="resource-tile"><img src="img/comp_policy.png" alt="Code of Conduct Policy"><span>Code of Conduct Policy</span></div></a>
+            <a href="training_materials.php" style="text-decoration:none; color:inherit;"><div class="resource-tile"><img src="img/training_logo.png" alt="Training Materials"><span>Training Materials</span></div></a>
+            <a href="hr_helpdesk.php" style="text-decoration:none; color:inherit;"><div class="resource-tile"><img src="img/hr_helpdesk.png" alt="HR Help Desk"><span>HR Help Desk</span></div></a>
         </div>
     </div>
     </div>

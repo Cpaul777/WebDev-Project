@@ -114,6 +114,12 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
 <body>
     <div class="container">
     <div class="header-row">
+      <a class="back-btn" href="employeepage.php">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:20px;height:20px;vertical-align:middle;margin-right:6px;">
+          <path d="M15 18l-6-6 6-6" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back
+      </a>
       <?php if($_SESSION['role'] == "Administrator" || $_SESSION['role'] == "administrator")
         echo'<div class="whole-back-btn">
         <a class="back-btn" href="index.php?tab=includes/dashboard.php">
@@ -159,11 +165,12 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
 
       <div class="tab-box">
         <div class="tabs-buttons">
-          <div class="tab active" id="tab1" onclick="changeTab('tab1')">General Information</div>
-          <div class="tab " id="tab2" onclick="changeTab('tab2')">Leave Request</div>
+          <div class="tab" id="tab1sw" data-tab="general"><a href="?tab=general" data-tab="general">General Information</a></div>
+          <div class="tab" id="tab2sw" data-tab="leavereq"><a href="?tab=leavereq" >Leave Request</a></div>
+          <div class="tab" id="tab3sw" data-tab="payslip"><a href="?tab=payslip" >Payslip</a></div>
         </div>
-        <!--  -->
-        <div class="tab-content active" id="tab1-content">
+
+        <div class="tab-content active" id="general">
           <div class="card">
             <h3>Personal Information </h3>
             <div class="info-grid">
@@ -200,7 +207,8 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
           </div>
         </div>
         <!-- END OF INFO SECTION -->
-        <div class="tab-content " id="tab2-content">
+
+        <div class="tab-content " id="leavereq">
              <div class="content">
                 <div class="form-header">
                     <h2>Submit Leave Request</h2>
@@ -208,6 +216,7 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
 
                     <p>PTO days remaining : <?php echo $leavedays; ?></p>
                 </div>
+              </div>
             
             <?php if ($leaveerror == true ): ?>
                 <div class="message <?php echo strpos($message, 'successfully') !== false ? 'message-success' : 'message-error'; ?>">
@@ -217,7 +226,7 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
             
             <form class="leave-form" method="POST">
                 
-                <div class="date-container">
+              <div class="date-container">
                     <div class="form-group">
                          <label for="startdate">Start Date</label>
                         <input type="date" name="startdate" required><br>
@@ -227,7 +236,7 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
                         <label for="enddate">End Date</label>
                         <input type="date" name="enddate" id="enddate" required>
                     </div>
-                </div>
+              </div>
                 
                 <div class="form-group">
                     <label for="reason">Leave Reason</label>
@@ -238,9 +247,7 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
                         <option value="bereavement">Bereavement</option>
                         <option value="other">Other</option>
                     </select>
-
                 </div>
-
 
                 <input type="hidden" name="workerid" value="<?php echo $_SESSION['workerid']; ?>">
                 <input type="hidden" name="status" value="pending">
@@ -250,33 +257,83 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
                 </button>
             </form>
         </div>
+        <!-- END OF SUBMIT REQUEST TYPE SHI -->
 
-
-      </div>
+        <div class="tab-content " id="payslip">
+          <div class="payslip-section">
+            <h2 class="payslip-title">Payslip Details</h2>
+            <div class="payslip-tabs">
+              <button class="payslip-tab active">Current Payslip</button>
+              <button class="payslip-tab">History</button>
+            </div>
+            <div class="payslip-controls">
+              <select class="payslip-period">
+                <option>June 1-15, 2025</option>
+              </select>
+              <div class="payslip-actions">
+                <button class="payslip-btn payslip-pdf">Download PDF</button>
+                <button class="payslip-btn payslip-print">Print</button>
+              </div>
+            </div>
+            <div class="payslip-info-grid">
+              <div><strong>Employee ID</strong><br><br>LP-2024-0001</div>
+              <div><strong>Department</strong><br><br>Legislative</div>
+              <div><strong>Position</strong><br><br>Barangay Treasurer</div>
+              <div><strong>Pay Period</strong><br><br>June 1-15, 2025</div>
+              <div><strong>Pay Date</strong><br><br>June 20, 2025</div>
+              <div><strong>Payment Method</strong><br><br>Direct Deposit</div>
+            </div>
+            <div class="payslip-table-section">
+              <h3>Earnings</h3>
+              <table class="payslip-table">
+                <thead>
+                  <tr>
+                    <th>Description</th>
+                    <th>Holidays/Days</th>
+                    <th>Rate</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Basic Salary</td><td>11 days</td><td>₱1,500.00/day</td><td>₱16,500.00</td></tr>
+                  <tr><td>Overtime</td><td>5 hours</td><td>₱280.00/hour</td><td>₱1,400.00</td></tr>
+                  <tr><td>Special Holiday Pay</td><td>1 day</td><td>₱1,950.00</td><td>₱1,950.00</td></tr>
+                  <tr class="payslip-total-row"><td colspan="3" style="text-align:right;"><strong>Total Gross Pay</strong></td><td><strong>₱21,850.00</strong></td></tr>
+                </tbody>
+              </table>
+              <h3>Deductions</h3>
+              <table class="payslip-table">
+                <thead>
+                  <tr>
+                    <th>Description</th>
+                    <th colspan="2"></th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>SSS Contribution</td><td colspan="2"></td><td>₱900.00</td></tr>
+                  <tr><td>PhilHealth</td><td colspan="2"></td><td>₱450.00</td></tr>
+                  <tr><td>Pag-IBIG Fund</td><td colspan="2"></td><td>₱300.00</td></tr>
+                  <tr><td>Withholding Tax</td><td colspan="2"></td><td>₱1,250.00</td></tr>
+                  <tr><td>Salary Loan</td><td colspan="2"></td><td>₱2,000.00</td></tr>
+                  <tr class="payslip-total-row"><td colspan="3" style="text-align:right;"><strong>Total Deductions</strong></td><td><strong>₱4,900.00</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="payslip-summary">
+              <div class="payslip-netpay">
+                <span>Net Pay</span>
+                <span class="payslip-netpay-amount">₱16,950.00</span>
+              </div>
+              <div class="payslip-paidvia">
+                <span>Paid Via</span>
+                <span>BDO Account ****3452</span>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
   </div>
-  <script>
-
-        function changeTab(tab){
-            const switchTab = document.querySelectorAll('.tab');
-            const contents = document.querySelectorAll('.tab-content');
-
-            switchTab.forEach(switched => {
-                switched.classList.remove('active');
-            })
-            contents.forEach(content => {
-                content.classList.remove('active');
-            })
-
-            document.getElementById(tab).classList.add('active');
-            document.getElementById(`${tab}-content`).classList.add('active');
-
-        }
-
-        function disable(){
-          const pop = document.querySelector(".pop-up");
-          pop.classList.add('disable');
-        }
-  </script>
+  <script src="script/employeepage.js"></script>
 </body>
 </html>
