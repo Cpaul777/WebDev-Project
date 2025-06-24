@@ -321,11 +321,11 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
               <div class="row"><small>Date of Birth:</small> <strong>-</strong></div>
               <div class="row"><small>Marital Status:</small> <strong>-</strong></div>
               <div class="row"><small>Nationality:</small> <strong>Filipino</strong></div>
-              <div class="row"><small>National ID Number:</small> <strong>-</strong></div>
-              <div class="row"><small>Personal Tax ID:</small> <strong>-</strong></div>
+              <div class="row"><small>PhilSys ID:</small> <strong>-</strong></div>
+              <div class="row"><small>TIN ID:</small> <strong>-</strong></div>
               <div class="row"><small>Email Address:</small> <strong><?=$email?></strong></div>
-              <div class="row"><small>Social Insurance:</small> <strong>-</strong></div>
-              <div class="row"><small>Health Insurance:</small> <strong>-</strong></div>
+              <div class="row"><small>GSIS:</small> <strong>-</strong></div>
+              <div class="row"><small>PhilHealth ID:</small> <strong>-</strong></div>
               <div class="row"><small>Phone Number:</small> <strong>-</strong></div>
             </div>
           </div>
