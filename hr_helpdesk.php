@@ -22,52 +22,7 @@
       color: #1f2937;
     }
 
-    .top-menu {
-      height: var(--top-bar-height);
-      background-color: var(--green);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-      z-index: 100;
-      position: sticky;
-      top: 0;
-    }
-
-    .top-menu a {
-      color: var(--white-color);
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .top-menu .right {
-      color: var(--white-color);
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      font-size: 14px;
-      text-align: right;
-    }
-
-    .top-menu .right .profile-pic {
-      width: 40px;
-      height: 40px;
-      background: var(--white-color);
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .top-menu .right .profile-pic i {
-      font-size: 20px;
-      color: var(--green);
-    }
+    
 
     .main-content {
       padding: 40px 60px;
@@ -137,15 +92,7 @@
 </head>
 <body>
 
-  <div class="top-menu">
-    <a href="#"><i class="bi bi-layout-three-columns"></i>Las Piñas Information System Portal</a>
-    <div class="right">
-      <span>June 18, 2025<br><small>Wednesday</small></span>
-      <div class="profile-pic" id="profile-button" onclick="profileDropDown()">
-        <i class="bi bi-person"></i>
-      </div>
-    </div>
-  </div>
+   <?php include 'topMenu.php'; ?>
 
   <div class="main-content">
     <a href="employeepage.php" style="display:inline-block;margin-bottom:20px;padding:8px 18px;background:#008F05;color:#fff;border-radius:6px;text-decoration:none;font-weight:600;box-shadow:0 1px 4px rgba(0,143,5,0.08);"><i class="bi bi-arrow-left"></i> Return to Employee Page</a>

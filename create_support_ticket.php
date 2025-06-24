@@ -21,16 +21,6 @@
       padding: 0;
     }
 
-    .top-menu {
-      height: 60px;
-      background-color: var(--green);
-      color: var(--white);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-    }
-
     .main-container {
       max-width: 800px;
       margin: 40px auto;
@@ -86,10 +76,7 @@
 </head>
 <body>
 
-  <div class="top-menu">
-    <div><i class="bi bi-layout-three-columns"></i> Las Piñas Information System Portal</div>
-    <div>June 18, 2025 | Wednesday</div>
-  </div>
+   <?php include 'topMenu.php'; ?>
 
   <div class="main-container">
     <a href="hr_helpdesk.php" style="display:inline-block;margin-bottom:20px;padding:8px 18px;background:#008F05;color:#fff;border-radius:6px;text-decoration:none;font-weight:600;box-shadow:0 1px 4px rgba(0,143,5,0.08);"><i class="bi bi-arrow-left"></i> Back to Help Desk</a>

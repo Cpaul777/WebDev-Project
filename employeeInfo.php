@@ -60,12 +60,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
      }
     
-     if($leaveerror == true){
-       $popupmessage = '<div class="pop-up"> Unable to create leave request <a onclick="disable()">X</a></div>';
+    if($leaveerror == true){
+      $popupmessage = '<div class="pop-up" id="popupmsg"> Unable to create leave request </div>
+      <script>
+        setTimeout(function() {
+       var el = document.getElementById("popupmsg");
+       if (el) el.style.display = "none";
+        }, 3000);
+      </script>';
      }
        else{
-      $popupmessage = '<div class="pop-up">
-       Number of days of leave selected: <strong>' . $timediff->days . ' day </strong> <a onclick="disable()">X</a> </div>';
+      $popupmessage = '<div class="pop-up" id="popupmsg"> Leave request created successfully! <br>
+      Number of days of leave selected: <strong>' . $timediff->days . ' day </strong> </div>
+      <script>
+        setTimeout(function() {
+          var el = document.getElementById("popupmsg");
+          if (el) el.style.display = "none";
+        }, 5000);
+      </script>';
        }
      
      
@@ -108,7 +120,7 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="styles/employeepage.css">
+    <link rel="stylesheet" href="styles/employeeinfo.css">
     
 </head>
 <body>
@@ -256,80 +268,88 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
                     <i class="fas fa-paper-plane"></i> Submit Request
                 </button>
             </form>
-        </div>
+       </div>
         <!-- END OF SUBMIT REQUEST TYPE SHI -->
 
         <div class="tab-content " id="payslip">
           <div class="payslip-section">
             <h2 class="payslip-title">Payslip Details</h2>
             <div class="payslip-tabs">
-              <button class="payslip-tab active">Current Payslip</button>
-              <button class="payslip-tab">History</button>
+              <button class="payslip-tab active" id="current">Current Payslip</button>
+              <button class="payslip-tab" id="history">History</button>
             </div>
-            <div class="payslip-controls">
-              <select class="payslip-period">
-                <option>June 1-15, 2025</option>
-              </select>
-              <div class="payslip-actions">
-                <button class="payslip-btn payslip-pdf">Download PDF</button>
-                <button class="payslip-btn payslip-print">Print</button>
+
+            <div class="current_payslip active">
+                <div class="payslip-controls">
+                <select class="payslip-period">
+                  <option>June 1-15, 2025</option>
+                </select>
+                <div class="payslip-actions">
+                  <button class="payslip-btn payslip-pdf">Download PDF</button>
+                  <button class="payslip-btn payslip-print">Print</button>
+                </div>
+              </div>
+              <div class="payslip-info-grid">
+                <div><strong>Employee ID</strong><br><br>LP-2024-0001</div>
+                <div><strong>Department</strong><br><br>Legislative</div>
+                <div><strong>Position</strong><br><br>Barangay Treasurer</div>
+                <div><strong>Pay Period</strong><br><br>June 1-15, 2025</div>
+                <div><strong>Pay Date</strong><br><br>June 20, 2025</div>
+                <div><strong>Payment Method</strong><br><br>Direct Deposit</div>
+              </div>
+              <div class="payslip-table-section">
+                <h3>Earnings</h3>
+                <table class="payslip-table">
+                  <thead>
+                    <tr>
+                      <th>Description</th>
+                      <th>Holidays/Days</th>
+                      <th>Rate</th>
+                      <th>Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Basic Salary</td><td>11 days</td><td>₱1,500.00/day</td><td>₱16,500.00</td></tr>
+                    <tr><td>Overtime</td><td>5 hours</td><td>₱280.00/hour</td><td>₱1,400.00</td></tr>
+                    <tr><td>Special Holiday Pay</td><td>1 day</td><td>₱1,950.00</td><td>₱1,950.00</td></tr>
+                    <tr class="payslip-total-row"><td colspan="3" style="text-align:right;"><strong>Total Gross Pay</strong></td><td><strong>₱21,850.00</strong></td></tr>
+                  </tbody>
+                </table>
+                <h3>Deductions</h3>
+                <table class="payslip-table">
+                  <thead>
+                    <tr>
+                      <th>Description</th>
+                      <th colspan="2"></th>
+                      <th>Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>SSS Contribution</td><td colspan="2"></td><td>₱900.00</td></tr>
+                    <tr><td>PhilHealth</td><td colspan="2"></td><td>₱450.00</td></tr>
+                    <tr><td>Pag-IBIG Fund</td><td colspan="2"></td><td>₱300.00</td></tr>
+                    <tr><td>Withholding Tax</td><td colspan="2"></td><td>₱1,250.00</td></tr>
+                    <tr><td>Salary Loan</td><td colspan="2"></td><td>₱2,000.00</td></tr>
+                    <tr class="payslip-total-row"><td colspan="3" style="text-align:right;"><strong>Total Deductions</strong></td><td><strong>₱4,900.00</strong></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="payslip-summary">
+                <div class="payslip-netpay">
+                  <span>Net Pay</span>
+                  <span class="payslip-netpay-amount">₱16,950.00</span>
+                </div>
+                <div class="payslip-paidvia">
+                  <span>Paid Via</span>
+                  <span>BDO Account ****3452</span>
+                </div>
               </div>
             </div>
-            <div class="payslip-info-grid">
-              <div><strong>Employee ID</strong><br><br>LP-2024-0001</div>
-              <div><strong>Department</strong><br><br>Legislative</div>
-              <div><strong>Position</strong><br><br>Barangay Treasurer</div>
-              <div><strong>Pay Period</strong><br><br>June 1-15, 2025</div>
-              <div><strong>Pay Date</strong><br><br>June 20, 2025</div>
-              <div><strong>Payment Method</strong><br><br>Direct Deposit</div>
+            
+            <div class="history">
+
             </div>
-            <div class="payslip-table-section">
-              <h3>Earnings</h3>
-              <table class="payslip-table">
-                <thead>
-                  <tr>
-                    <th>Description</th>
-                    <th>Holidays/Days</th>
-                    <th>Rate</th>
-                    <th>Amount</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr><td>Basic Salary</td><td>11 days</td><td>₱1,500.00/day</td><td>₱16,500.00</td></tr>
-                  <tr><td>Overtime</td><td>5 hours</td><td>₱280.00/hour</td><td>₱1,400.00</td></tr>
-                  <tr><td>Special Holiday Pay</td><td>1 day</td><td>₱1,950.00</td><td>₱1,950.00</td></tr>
-                  <tr class="payslip-total-row"><td colspan="3" style="text-align:right;"><strong>Total Gross Pay</strong></td><td><strong>₱21,850.00</strong></td></tr>
-                </tbody>
-              </table>
-              <h3>Deductions</h3>
-              <table class="payslip-table">
-                <thead>
-                  <tr>
-                    <th>Description</th>
-                    <th colspan="2"></th>
-                    <th>Amount</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr><td>SSS Contribution</td><td colspan="2"></td><td>₱900.00</td></tr>
-                  <tr><td>PhilHealth</td><td colspan="2"></td><td>₱450.00</td></tr>
-                  <tr><td>Pag-IBIG Fund</td><td colspan="2"></td><td>₱300.00</td></tr>
-                  <tr><td>Withholding Tax</td><td colspan="2"></td><td>₱1,250.00</td></tr>
-                  <tr><td>Salary Loan</td><td colspan="2"></td><td>₱2,000.00</td></tr>
-                  <tr class="payslip-total-row"><td colspan="3" style="text-align:right;"><strong>Total Deductions</strong></td><td><strong>₱4,900.00</strong></td></tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="payslip-summary">
-              <div class="payslip-netpay">
-                <span>Net Pay</span>
-                <span class="payslip-netpay-amount">₱16,950.00</span>
-              </div>
-              <div class="payslip-paidvia">
-                <span>Paid Via</span>
-                <span>BDO Account ****3452</span>
-              </div>
-            </div>
+
           </div>
         </div>
     </div>

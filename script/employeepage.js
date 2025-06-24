@@ -54,4 +54,20 @@ document.addEventListener('DOMContentLoaded', function () {
         tabBtn(tab.dataset.tab);
     });
 
+    document.querySelectorAll('.payslip-tab').forEach(tab => {
+        const slipTab = document.querySelector('.current_payslip');
+        const historyTab = document.querySelector('.history');
+        tab.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            this.classList.add('active');
+            if (this.id === 'current') {
+                slipTab.classList.add('active');
+                historyTab.classList.remove('active');
+            } else if (this.id === 'history') {
+                historyTab.classList.add('active');
+                slipTab.classList.remove('active');
+            }
+        });
+    });
 });
