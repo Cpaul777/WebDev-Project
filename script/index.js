@@ -71,9 +71,9 @@ async function loadContent(pageUrl, tabName, queryParams = '') {
     // Insert HTML into page
     document.getElementById('content-wrapper').innerHTML = html;
 
-    // Load resources
     loadTabResources(tabName);
-    if (pageUrl[0] === 'includes/jobs.php') {
+    // Load resources
+    if (pageUrl[0] == 'includes/jobs.php') {
        if (typeof initApplicationModal === 'function') {
         initApplicationModal();
       }
