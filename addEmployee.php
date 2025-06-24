@@ -234,10 +234,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <form method="post">
             <label for="firstname">First Name</label>
-            <input type="text" name="firstname" id="firstname" placeholder="First Name" required>
+            <input type="text" name="firstname" id="firstname" placeholder="First Name" required pattern="[A-Za-z ]+" title="Letters and spaces only">
 
             <label for="lastname">Last Name</label>
-            <input type="text" name="lastname" id="lastname" placeholder="Last Name" required>
+            <input type="text" name="lastname" id="lastname" placeholder="Last Name" required pattern="[A-Za-z ]+" title="Letters and spaces only">
 
             <label for="email">Email</label>
             <input type="email" name="email" id="email" placeholder="Email@email.com" required>
@@ -292,7 +292,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </select>
 
             <label for="phone">Phone Number</label>
-            <input type="text" name="phone" id="phone" required>
+            <input type="text" name="phone" id="phone" required pattern="[0-9]{7,15}" maxlength="15" title="Enter a valid phone number (numbers only)">
 
             <label for="marital">Marital Status</label>
             <select name="marital" id="marital" required>
@@ -329,8 +329,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </select>
 
             <label for="postal">Postal Code</label>
-            <input type="number" name="postal" id="postal" required>
-
+            <input type="number" name="postal" id="postal" required min="0" max="999999" title="Enter a valid postal code (numbers only)">
             <label for="state">State/Province</label>
             <select name="state" id="state" required>
                 <option value="">Select State/Province</option>
@@ -342,17 +341,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h3 style="text-align: left; color: #2e7d32;">Emergency Contact</h3>
 
             <label for="guardian">Guardian Name</label>
-            <input type="text" name="guardian" id="guardian" required>
+            <input type="text" name="guardian" id="guardian" required pattern="[A-Za-z ]+" title="Letters and spaces only">
 
             <label for="emergency_phone">Emergency Number</label>
-            <input type="text" name="emergency_phone" id="emergency_phone" required>
+            <input type="text" name="emergency_phone" id="emergency_phone" required pattern="[0-9]{7,15}" maxlength="15" title="Enter a valid emergency number (numbers only)">
 
             <label for="relationship">Relationship</label>
-            <input type="text" name="relationship" id="relationship" required>
+            <input type="text" name="relationship" id="relationship" required pattern="[A-Za-z ]+" title="Letters and spaces only">
 
             <button type="submit" name="submit">Add</button>
             <input type="reset" value="Reset">
         </form>
     </div>
+    <script>
+    function setNumericInput(id) {
+        const el = document.getElementById(id);
+        if (el) {
+            el.addEventListener('input', function(e) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+        }
+    }
+    setNumericInput('phone');
+    setNumericInput('national_id');
+    setNumericInput('emergency_phone');
+    // Postal code uses type=number, so browser will restrict input
+</script>
 </body>
 </html>
