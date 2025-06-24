@@ -9,7 +9,7 @@ if (!isset($_SESSION['email'])) {
     header("Location: ..//login.php");
     exit();
 }
-$target_dir = "jobimg/";
+$target_dir = "../externalsites/jobimg/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -32,7 +32,7 @@ if (file_exists($target_file)) {
 }
 
 // Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000) {
+if ($_FILES["fileToUpload"]["size"] > 50000000) {
   $state = "Sorry, your file is too large.";
   $uploadOk = 0;
 }
@@ -51,8 +51,8 @@ if ($uploadOk == 0) {;
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $renamedfile)) {
         $state = "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
     
-        $stmt = $conn->prepare("INSERT INTO jobs (role, department,closingdate, requirements,description,img) VALUES (?, ?, ?, ?, ?,?)");
-        $stmt->bind_param("ssssss", $_POST['title'],$_POST['department'], $_POST['closedate'],$_POST['requirements'],$_POST['description'],$renamedfile);
+        $stmt = $conn->prepare("INSERT INTO jobs (role, department,location,category, closingdate, requirements,description,img) VALUES (?, ?,?,?, ?, ?, ?,?)");
+        $stmt->bind_param("ssssssss", $_POST['title'],$_POST['department'],$_POST['location'],$_POST['category'], $_POST['closedate'],$_POST['requirements'],$_POST['description'],$renamedfile);
         if($stmt->execute()){
             $state = "Job successfully generated";
         }
@@ -70,7 +70,7 @@ if ($uploadOk == 0) {;
 
     echo '<script>
     alert("'.$state.' ");
-    window.location.href = "../externalsites/jobs.php";
+    window.location.href = "../includes/addjob.php";
     </script>';
     exit;
 

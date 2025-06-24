@@ -9,6 +9,9 @@ if (!isset($_SESSION['email'])) {
     header("Location: ..//login.php");
     exit();
 }
+
+$current_date = date('Y-m-d');
+
 $target_dir = "../externalsites/applications/";
 
 $target_pds = $target_dir . basename($_FILES["pds"]["name"]);
@@ -70,8 +73,8 @@ if ($uploadOk == 0) {;
     && move_uploaded_file($_FILES["tor"]["tmp_name"], $renamedtor) 
     && move_uploaded_file($_FILES["resume"]["tmp_name"], $renamedresume)) {
         $state = "The files has been uploaded.";
-        $stmt = $conn->prepare("INSERT INTO applications (firstname, lastname,email,pds, resume,tor,jobid, status) VALUES (?, ?,? , ?, ?, ?,?, ?)");
-        $stmt->bind_param("ssssssss", $_POST['fn'],$_POST['ln'],$_POST['email'], $renamedpds,$renamedresume,$renamedtor,$_POST['jobid'], $status);
+        $stmt = $conn->prepare("INSERT INTO applications (firstname, lastname,email,pds, resume,tor,jobid, date_submitted, status) VALUES (?, ?,? , ?, ?, ?,?, ?, ?)");
+        $stmt->bind_param("ssssssss", $_POST['fn'],$_POST['ln'],$_POST['email'], $renamedpds,$renamedresume,$renamedtor,$_POST['jobid'], $current_date,$status);
         if($stmt->execute()){
             $state = "application successfully generated";
         }

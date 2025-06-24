@@ -1,11 +1,45 @@
+.top-bar{
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 
 h3{
   font-weight: 600;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   cursor: pointer;
   display: inline-block;
   color:#008F05;
 }
+
+.add-job-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 20px; 
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none; 
+    color: #ffffff; 
+    background-color: #5FC903; 
+    border: 1px solid #5FC903; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease, border-color 0.3s ease; 
+}
+
+.add-job-button:hover {
+    background-color: #008F05;
+    border-color: #008F05;
+}
+
+.add-job-button:active {
+    background-color: #006d04;
+    border-color: #006d04;
+}
+
 
 .applications-table-container { background: #fff; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 32px 24px; margin: 32px auto; max-width: 1100px; }
 .applications-table { width: 100%; border-collapse: separate; border-spacing: 0; }

@@ -10,6 +10,12 @@ if(!isset($_SESSION['email'])){
   exit();
 }
 
+if (!($_SESSION['role'] == 'administrator') && !($_SESSION['role'] == 'Administrator')) {
+    echo 'it entered here?';
+    header("Location: employeePage.php");
+    exit();
+}
+
 if (!isset( $_GET['offset']) || $_GET['offset'] < 0 ) {
     $offset = 0;
 } else {

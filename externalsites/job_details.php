@@ -236,6 +236,29 @@ $data = $result->fetch_assoc();
              background-color: var(--light-green);
         }
 
+        .back-btn-jobdetails {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            margin: 24px 0 18px 0;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            color: #008F05;
+            background-color: #e5f5e5;
+            border: 1.5px solid #008F05;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s, border 0.2s;
+        }
+        .back-btn-jobdetails:hover {
+            background-color: #008F05;
+            color: #fff;
+            border-color: #008F05;
+        }
+
         /* FOOTER */
         footer{
             color: var(--light-green);
@@ -312,6 +335,12 @@ $data = $result->fetch_assoc();
 
     </div>
     <div class="main-section">
+        <a href="jobs.php" class="back-btn-jobdetails">
+            <svg viewBox="0 0 24 24" width="20" height="20" style="vertical-align:middle;margin-right:6px;">
+                <path d="M15 18l-6-6 6-6" stroke="#008F05" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back
+        </a>
         <h1><?php echo $data['role'] ?></h1>
         <p class="closingdate"><?= $data['location'] .' - close in '. $data['closingdate'] ?></p>
 

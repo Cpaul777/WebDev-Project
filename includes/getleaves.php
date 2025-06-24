@@ -1,5 +1,19 @@
 <?php
 include 'db_connect.php';
+
+session_start();
+
+if (!isset($_SESSION['email'])) {
+    header("Location: ../login.php");
+    exit();
+} 
+
+if (!($_SESSION['role'] == 'administrator') && !($_SESSION['role'] == 'Administrator')) {
+    echo 'it entered here?';
+    header("Location: employeePage.php");
+    exit();
+}
+
 $count_query = "SELECT COUNT(*) FROM leaves";
 $total_records = mysqli_fetch_row(mysqli_query($conn, $count_query));
 

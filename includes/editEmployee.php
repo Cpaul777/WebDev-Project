@@ -8,6 +8,12 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
+if (!($_SESSION['role'] == 'administrator') && !($_SESSION['role'] == 'Administrator')) {
+    echo 'it entered here?';
+    header("Location: employeePage.php");
+    exit();
+}
+
 if (!isset($_POST['id'])){
     echo '<script>
     alert("User Data Deleted");

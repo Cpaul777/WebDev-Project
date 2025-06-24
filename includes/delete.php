@@ -9,6 +9,12 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
+if (!($_SESSION['role'] == 'administrator') && !($_SESSION['role'] == 'Administrator')) {
+    echo 'it entered here?';
+    header("Location: employeePage.php");
+    exit();
+}
+
 $id = $_GET['id'];
     $getOtherStmt = $conn->prepare("SELECT emailID FROM workers WHERE workerId = ?");
     $getOtherStmt->bind_param("i", $id,);

@@ -384,6 +384,29 @@ $data = $result->fetch_assoc();
             color: #b71c1c;
         }
 
+        .back-btn-jobdetails {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            margin: 24px 0 18px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            color: #008F05;
+            background-color: #e5f5e5;
+            border: 1.5px solid #008F05;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s, border 0.2s;
+        }
+        .back-btn-jobdetails:hover {
+            background-color: #008F05;
+            color: #fff;
+            border-color: #008F05;
+        }
+
         /* Remove box shadow and border radius for minimal look */
         /* ...existing code... */
         @media (max-width: 700px) {
@@ -418,6 +441,12 @@ $data = $result->fetch_assoc();
     </div>
 
     <div class="main-section">
+        <a href="job_details.php?job_id=<?=$jobid?>" class="back-btn-jobdetails">
+            <svg viewBox="0 0 24 24" width="20" height="20" style="vertical-align:middle;margin-right:6px;">
+                <path d="M15 18l-6-6 6-6" stroke="#008F05" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back
+        </a>
         <h1>Apply For <?php echo $data['role']; ?></h1>
         <form action="../includes/recruitment.php" enctype="multipart/form-data"  method="post">
             <input type="hidden" value="<?php echo $data['jobid'] ?>" name="jobid">
@@ -493,6 +522,7 @@ $data = $result->fetch_assoc();
             indicator.innerHTML = "";
         }
 
+        
     </script>
 </body>
 </html>

@@ -9,7 +9,10 @@ $sql = "SELECT a.applicationid, a.firstname, a.lastname, a.resume, a.pds, a.tor,
 $result = $conn->query($sql);
 $email = '';
 ?>
-<h3>Job Applications</h3>
+<div class="top-bar">
+    <h3>Job Applications</h3>
+    <a href="includes/addjob.php" class="add-job-button">+ Make Job</a>
+</div>
 <div class="applications-table-container">
     
     <table class="applications-table">

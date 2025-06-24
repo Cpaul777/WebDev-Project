@@ -8,6 +8,12 @@ if (!isset($_SESSION['email'])) {
     header("Location: login.php");
     exit();
 }
+ 
+if (!($_SESSION['role'] == 'administrator') && !($_SESSION['role'] == 'Administrator')) {
+    echo 'it entered here?';
+    header("Location: employeePage.php");
+    exit();
+}
 
 // Grab da shit you need from workers table
 $sql = "SELECT workerId,firstName,lastName,department,role,basePay,overtimeRate FROM workers";

@@ -8,13 +8,20 @@ session_start();
 if (!isset($_SESSION['email'])) {
     header("Location: login.php");
     exit();
+} 
+
+if (!($_SESSION['role'] == 'administrator') && !($_SESSION['role'] == 'Administrator')) {
+    echo 'it entered here?';
+    header("Location: employeePage.php");
+    exit();
 }
-    $checkrateStmt = $conn->prepare("SELECT basePay,overtimeRate FROM workers WHERE workerId = ?");
-    $checkrateStmt->bind_param("s", $_POST['workerid']);
-    $checkrateStmt->execute();
-    $checkrateStmt->bind_result($basepay,$overtimerate);
-    $checkrateStmt->fetch();
-    $checkrateStmt->close();
+
+$checkrateStmt = $conn->prepare("SELECT basePay,overtimeRate FROM workers WHERE workerId = ?");
+$checkrateStmt->bind_param("s", $_POST['workerid']);
+$checkrateStmt->execute();
+$checkrateStmt->bind_result($basepay,$overtimerate);
+$checkrateStmt->fetch();
+$checkrateStmt->close();
 $date = date('Y-m-d');
 $id = $_POST['workerid'];
 $hours = $_POST['hours'];
