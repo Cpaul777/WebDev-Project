@@ -83,8 +83,6 @@ if ($uploadOk == 0) {;
     }
 }
 
-   
-
     echo '<script>
     alert("'.$state.' ");
     window.location.href = "../externalsites/jobs.php";

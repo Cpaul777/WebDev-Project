@@ -53,14 +53,14 @@
         <div class="job-featured">
             <h2>Featured Jobs</h2>
             <ul>
-                <li><a href="#"><img src="../img/finance_job.jpg" alt="">
+                <li><a href="jobs.php"><img src="../img/finance_job.jpg" alt="">
                 <h4>Finance Officer</h4>
                 <p></p>
                 </a></li>
-                <li><a href="#"><img src="../img/assistant.jpg" alt="">
+                <li><a href="jobs.php"><img src="../img/assistant.jpg" alt="">
                 <h4>Administrative Assistant</h4>
                 </a></li>
-                <li><a href="#"><img src="../img/clerk.jpg" alt="">
+                <li><a href="jobs.php"><img src="../img/clerk.jpg" alt="">
                 <h4>Assistant Clerk</h4>
                 </a></li>
             </ul>
@@ -68,16 +68,16 @@
         <div class="job-category">
             <h2>Job Categories</h2>
             <ul>
-                <li><a href="#"><img src="../img/public_safety.jpeg" alt="">Public Safety</a></li>
-                <li><a href="#"><img src="../img/administrative_city.jpeg" alt="">Administration</a></li>
-                <li><a href="#"><img src="../img/com_service.jpg" alt="">Community Service</a></li>
-                <li><a href="#"><img src="../img/finance_holder.jpg" alt="">Finance</a></li>
-                <li><a href="#"><img src="../img/hr_job.png" alt="">Human Resources</a></li>
+                <li><a href="jobs.php"><img src="../img/public_safety.jpeg" alt="">Public Safety</a></li>
+                <li><a href="jobs.php"><img src="../img/administrative_city.jpeg" alt="">Administration</a></li>
+                <li><a href="jobs.php"><img src="../img/com_service.jpg" alt="">Community Service</a></li>
+                <li><a href="jobs.php"><img src="../img/finance_holder.jpg" alt="">Finance</a></li>
+                <li><a href="jobs.php"><img src="../img/hr_job.png" alt="">Human Resources</a></li>
             </ul>
         </div>
     </div>
     
-    <div class="overlay">
+    <!-- <div class="overlay">
         <div class="modal">
             <img src="../img/logo-laspinas.png" alt="">
             <h2>Welcome to Las Piñas Job Portal</h2>
@@ -106,9 +106,10 @@
                     <button type="submit">Register</button>
                 </form>
             </div>
-            <p>By Signing in, you agree to our <a href="#" id="show-terms">Terms of Service and Privacy Policy</a></p>
+            <p>By Signing in, you agree to our <a href="#" id="show-terms">Terms of Service and Privacy Policy</a></p> -->
 
             <!-- Terms Modal -->
+<!--              
             <div class="terms-modal" id="terms-modal">
                 <div class="terms-content">
                     
@@ -150,7 +151,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <footer>
         <div class="footer-links">

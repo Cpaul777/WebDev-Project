@@ -176,8 +176,8 @@ $data = $result->fetch_assoc();
         .main-section {
             max-width: 1500px;
             margin: 32px auto 0 auto;
-            padding: 32px 20px 20px 20px;
-            background: var(--bg-color);
+            padding: 34px 34px 34px 34px;
+            background: white;
             border-radius: 16px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.04);
         }
@@ -210,6 +210,10 @@ $data = $result->fetch_assoc();
             margin-bottom: 18px;
         }
         
+        .main-section ul{
+            margin-left: 20px;
+        }
+
         .main-section .closingdate{
             color: #008F05;
         }
@@ -315,7 +319,6 @@ $data = $result->fetch_assoc();
 
         <p><?php echo $data['description'] ?></p>
 
-        <h2>Responsibilities</h2>
         <?php 
 
             // $responsibilities = explode(";", $data['responsibilities']);

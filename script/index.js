@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const urlParams = new URLSearchParams(location.search);
   const savedTab = urlParams.get('tab');
 
-
   if (savedTab) {
     const targetTab = document.querySelector(`[role="tab"][data-page="${savedTab}"]`);
     if (targetTab) {
@@ -37,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Using ternary to set the filterParams to whatever employeefilters return value is
             // or blank
             const filterParams = tabName[0] === 'employees' ? getEmployeeFilters() : '';
+            
             
             // Leavemanagement soon
 
@@ -73,6 +73,11 @@ async function loadContent(pageUrl, tabName, queryParams = '') {
 
     // Load resources
     loadTabResources(tabName);
+    if (pageUrl[0] === 'includes/jobs.php') {
+       if (typeof initApplicationModal === 'function') {
+        initApplicationModal();
+      }
+    }
   } catch (error) {
     // Error handling type shi
     console.error('Error loading content:', error);
@@ -197,4 +202,23 @@ function getEmployeeFilters(){
   return params.toString();
 }
 
-
+function initApplicationModal() {
+    document.querySelectorAll('.view-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.getElementById('modalApplicant').textContent = this.dataset.applicant + "'s Files";
+            let filesHtml = '';
+            if (this.dataset.pds) filesHtml += `<a href="../uploads/${this.dataset.pds}" target="_blank">Personal Data Sheet (PDS)</a>`;
+            if (this.dataset.resume) filesHtml += `<a href="../uploads/${this.dataset.resume}" target="_blank">Resume</a>`;
+            if (this.dataset.tor) filesHtml += `<a href="../uploads/${this.dataset.tor}" target="_blank">Transcript of Records (TOR)</a>`;
+            if (!filesHtml) filesHtml = '<em>No files uploaded.</em>';
+            document.getElementById('modalFiles').innerHTML = filesHtml;
+            document.getElementById('modalBg').classList.add('active');
+        });
+    });
+    document.getElementById('modalClose').onclick = function() {
+        document.getElementById('modalBg').classList.remove('active');
+    };
+    document.getElementById('modalBg').onclick = function(e) {
+        if (e.target === this) this.classList.remove('active');
+    };
+}

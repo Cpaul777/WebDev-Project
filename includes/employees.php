@@ -141,7 +141,6 @@ while ($row = mysqli_fetch_assoc($role_result)) {
                                         <form action="includes/editEmployee.php" method="post">
                                         <button class="btn btn-edit" name="id" type="submit" value="'.$id.'">Edit</button>
                                         </form>
-                                        
                                         <a href="includes/delete.php?id='.$id.'" onclick="return confirm(\'Are you sure?\') "><button class="btn btn-delete" type="button">delete</button></a>
                                         </div>
                                     </td>

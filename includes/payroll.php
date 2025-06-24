@@ -9,7 +9,6 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
-
 // Grab da shit you need from workers table
 $sql = "SELECT workerId,firstName,lastName,department,role,basePay,overtimeRate FROM workers";
 ?>
