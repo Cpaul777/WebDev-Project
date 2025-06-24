@@ -60,6 +60,8 @@ $renamedpds =  $target_dir .'pds'.$_POST['fn']. $_POST['ln'].$_POST['timestamp']
 $renamedresume =  $target_dir .'resume'.$_POST['fn']. $_POST['ln'].$_POST['timestamp'].'.'.$resumefiletype;
 
 $renamedtor =  $target_dir.'tor' .$_POST['fn']. $_POST['ln'].$_POST['timestamp'].'.'.$torfiletype;
+
+$status = "New";
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {;
 // if everything is ok, try to upload file
@@ -68,8 +70,8 @@ if ($uploadOk == 0) {;
     && move_uploaded_file($_FILES["tor"]["tmp_name"], $renamedtor) 
     && move_uploaded_file($_FILES["resume"]["tmp_name"], $renamedresume)) {
         $state = "The files has been uploaded.";
-        $stmt = $conn->prepare("INSERT INTO applications (firstname, lastname,email,pds, resume,tor,jobid) VALUES (?, ?,? , ?, ?, ?,?)");
-        $stmt->bind_param("sssssss", $_POST['fn'],$_POST['ln'],$_POST['email'], $renamedpds,$renamedresume,$renamedtor,$_POST['jobid']);
+        $stmt = $conn->prepare("INSERT INTO applications (firstname, lastname,email,pds, resume,tor,jobid, status) VALUES (?, ?,? , ?, ?, ?,?, ?)");
+        $stmt->bind_param("ssssssss", $_POST['fn'],$_POST['ln'],$_POST['email'], $renamedpds,$renamedresume,$renamedtor,$_POST['jobid'], $status);
         if($stmt->execute()){
             $state = "application successfully generated";
         }
@@ -88,9 +90,5 @@ if ($uploadOk == 0) {;
     window.location.href = "../externalsites/jobs.php";
     </script>';
     exit;
-
-    
-
- 
 
 ?>

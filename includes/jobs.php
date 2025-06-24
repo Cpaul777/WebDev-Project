@@ -68,8 +68,10 @@ $email = '';
         <button class="modal-close" id="modalClose">&times;</button>
         <h3 id="modalApplicant">Applicant Files</h3>
         <h4 class="email"><strong>Email:</strong> <?= $email?></h4>
-        <div class="modal-files" id="modalFiles">
-
+        <div class="modal-files" id="modalFiles"></div>
+        <div class="modal-actions">
+            <button class="accept-btn">Accept</button>
+            <button class="reject-btn">Reject</button>
         </div>
     </div>
 </div>
