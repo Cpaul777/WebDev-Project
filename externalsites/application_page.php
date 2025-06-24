@@ -363,6 +363,27 @@ $data = $result->fetch_assoc();
         label.personal-label {
             margin-bottom: 0;
         }
+
+        .upload-indicator {
+            margin-left: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            vertical-align: middle;
+        }
+
+        .remove-file-btn {
+            background: none;
+            border: none;
+            color: #e53935;
+            font-size: 1rem;
+            margin-left: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .remove-file-btn:hover {
+            color: #b71c1c;
+        }
+
         /* Remove box shadow and border radius for minimal look */
         /* ...existing code... */
         @media (max-width: 700px) {
@@ -430,26 +451,48 @@ $data = $result->fetch_assoc();
                     <div class="doc-upload-label">Personal Data Sheet (PDS)</div>
                     <label class="upload-btn">
                         Upload PDS
-                        <input type="file" name="pds" class="upload-input" required>
+                        <input type="file" name="pds" class="upload-input" required onchange="showUploadIndicator(this)">
+                        <span class="upload-indicator" ></span>
                     </label>
                 </div>
                 <div>
                     <div class="doc-upload-label">Resume</div>
                     <label class="upload-btn">
                         Upload Resume
-                        <input type="file" name="resume" class="upload-input" required>
+                        <input type="file" name="resume" class="upload-input" required onchange="showUploadIndicator(this)">
+                        <span class="upload-indicator"></span>
                     </label>
                 </div>
                 <div>
                     <div class="doc-upload-label">Transcript of Records (TOR)</div>
                     <label class="upload-btn">
                         Upload TOR
-                        <input type="file" name="tor" class="upload-input" required>
+                        <input type="file" name="tor" class="upload-input" required onchange="showUploadIndicator(this)">
+                        <span class="upload-indicator"></span>
                     </label>
                 </div>
                 <button type="submit" class="submit-btn">Submit Application</button>
             </div>
         </form>
     </div>
+
+    <script>
+        function showUploadIndicator(input) {
+            const indicator = input.parentElement.querySelector('.upload-indicator');
+            if (input.files && input.files.length > 0) {
+                indicator.innerHTML = `✔️ ${input.files[0].name} <button type="button" class="remove-file-btn" onclick="removeSelectedFile(this)">✖</button>`;
+                indicator.style.color = "#008F05";
+            } else {
+                indicator.textContent = "";
+            }
+        }
+        function removeSelectedFile(btn) {
+            const indicator = btn.parentElement;
+            const input = indicator.parentElement.querySelector('input[type=\"file\"]');
+            input.value = ""; // Clear the file input
+            indicator.innerHTML = "";
+        }
+
+    </script>
 </body>
 </html>
