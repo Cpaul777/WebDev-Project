@@ -188,15 +188,15 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
             <div class="info-grid">
               <div class="row"><small>Full Name:</small> <strong><?= $firstname .' '. $lastname?></strong></div>
               <div class="row"><small>Gender:</small> <strong><?=$gender?></strong></div>
-              <div class="row"><small>Date of Birth:</small> <strong>-</strong></div>
-              <div class="row"><small>Marital Status:</small> <strong>-</strong></div>
+              <div class="row"><small>Date of Birth:</small> <strong>12-03-1993</strong></div>
+              <div class="row"><small>Marital Status:</small> <strong>Married</strong></div>
               <div class="row"><small>Nationality:</small> <strong>Filipino</strong></div>
-              <div class="row"><small>National ID Number:</small> <strong>-</strong></div>
-              <div class="row"><small>Personal Tax ID:</small> <strong>-</strong></div>
+              <div class="row"><small>PhilSys ID:</small> <strong>1234-5678-9101</strong></div>
+              <div class="row"><small>TIN ID:</small> <strong>135-015-736</strong></div>
               <div class="row"><small>Email Address:</small> <strong><?=$email?></strong></div>
-              <div class="row"><small>Social Insurance:</small> <strong>-</strong></div>
-              <div class="row"><small>Health Insurance:</small> <strong>-</strong></div>
-              <div class="row"><small>Phone Number:</small> <strong>-</strong></div>
+              <div class="row"><small>GSIS :</small> <strong>69110900286</strong></div>
+              <div class="row"><small>PhilHealth ID:</small> <strong>12-000524278-9</strong></div>
+              <div class="row"><small>PAG-IBIG ID:</small> <strong>000421393606</strong></div>
             </div>
           </div>
           <div class="card">
