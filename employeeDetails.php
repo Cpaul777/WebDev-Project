@@ -298,8 +298,8 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
           </div>
         </div>
         <div class="profile-info-block">
-          <small>Phone Number</small>
-          <span>0915-854-7892</span>
+          <small>Employee ID</small>
+          <span>01-9921</span>
         </div>
         <div class="profile-info-block">
           <small>Department</small>
@@ -318,15 +318,15 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
             <div class="info-grid">
               <div class="row"><small>Full Name:</small> <strong><?= $firstname .' '. $lastname?></strong></div>
               <div class="row"><small>Gender:</small> <strong><?=$gender?></strong></div>
-              <div class="row"><small>Date of Birth:</small> <strong>-</strong></div>
-              <div class="row"><small>Marital Status:</small> <strong>-</strong></div>
+              <div class="row"><small>Date of Birth:</small> <strong>03-30-1995</strong></div>
+              <div class="row"><small>Marital Status:</small> <strong>Single</strong></div>
               <div class="row"><small>Nationality:</small> <strong>Filipino</strong></div>
-              <div class="row"><small>PhilSys ID:</small> <strong>-</strong></div>
-              <div class="row"><small>TIN ID:</small> <strong>-</strong></div>
+              <div class="row"><small>PhilSys ID:</small> <strong>1234-5678-9101</strong></div>
+              <div class="row"><small>TIN ID:</small> <strong>135-015-736</strong></div>
               <div class="row"><small>Email Address:</small> <strong><?=$email?></strong></div>
-              <div class="row"><small>GSIS:</small> <strong>-</strong></div>
-              <div class="row"><small>PhilHealth ID:</small> <strong>-</strong></div>
-              <div class="row"><small>Phone Number:</small> <strong>-</strong></div>
+              <div class="row"><small>GSIS:</small> <strong>69110900286</strong></div>
+              <div class="row"><small>PhilHealth ID:</small> <strong>12-000524278-9</strong></div>
+              <div class="row"><small>PAG-IBIG ID:</small> <strong>000421393606</strong></div>
             </div>
           </div>
           <div class="card">

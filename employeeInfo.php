@@ -159,8 +159,8 @@ $stmt = $conn->prepare("SELECT firstName, lastName, emailId, role, gender, depar
           </div>
         </div>
         <div class="profile-info-block">
-          <small>Phone Number</small>
-          <span>0915-854-7892</span>
+          <small>Employee ID</small>
+          <span>04-0514</span>
         </div>
         <div class="profile-info-block">
           <small>Department</small>
