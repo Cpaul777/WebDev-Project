@@ -5,10 +5,6 @@ session_start();
 
 // Check if the user is logged in, if
 // not then redirect them to the login page
-if (!isset($_SESSION['email'])) {
-    header("Location: ..//login.php");
-    exit();
-}
 
 $current_date = date('Y-m-d');
 
@@ -74,7 +70,7 @@ if ($uploadOk == 0) {;
     && move_uploaded_file($_FILES["resume"]["tmp_name"], $renamedresume)) {
         $state = "The files has been uploaded.";
         $stmt = $conn->prepare("INSERT INTO applications (firstname, lastname,email,pds, resume,tor,jobid, date_submitted, status) VALUES (?, ?,? , ?, ?, ?,?, ?, ?)");
-        $stmt->bind_param("ssssssss", $_POST['fn'],$_POST['ln'],$_POST['email'], $renamedpds,$renamedresume,$renamedtor,$_POST['jobid'], $current_date,$status);
+        $stmt->bind_param("sssssssss", $_POST['fn'],$_POST['ln'],$_POST['email'], $renamedpds,$renamedresume,$renamedtor,$_POST['jobid'], $current_date,$status);
         if($stmt->execute()){
             $state = "application successfully generated";
         }

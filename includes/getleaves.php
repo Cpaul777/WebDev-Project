@@ -39,6 +39,8 @@ $total_pending = $total_records_pending[0];
 $total_accepted = $total_records_accepted[0];
 $total_rejected = $total_records_rejected[0];
 
+
+
 ?>
 
 <div class="tab-content leave_management-tab" id="leave_management-panel" role="panel">
@@ -79,7 +81,7 @@ $total_rejected = $total_records_rejected[0];
                 </div>
 
                 <div class="filter-controls">
-                <select id="departmentFilter" class="filter-select">
+                <select id="department-filter" class="filter-select">
                     <option value="">All Departments</option>
                     <option value="Administration">Administration</option>
                     <option value="Legislative">Legislative</option>
@@ -89,14 +91,14 @@ $total_rejected = $total_records_rejected[0];
                     <option value="Maintenance / Public works">Maintenance / Public works</option>
                 </select>
 
-                <select id="statusFilter" class="filter-select">
+                <select id="status-filter" class="filter-select">
                     <option value="">All Status</option>
                     <option value="Pending">Pending</option>
                     <option value="Approved">Approved</option>
                     <option value="Rejected">Rejected</option>
                 </select>
 
-                <select id="leaveTypeFilter" class="filter-select">
+                <select id="leavetype-filter" class="filter-select">
                     <option value="">All Leave Types</option>
                     <option value="Vacation">Vacation</option>
                     <option value="Sick Leave">Sick Leave</option>

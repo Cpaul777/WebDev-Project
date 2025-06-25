@@ -35,7 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Since employees tab has filters
             // Using ternary to set the filterParams to whatever employeefilters return value is
             // or blank
-            const filterParams = tabName[0] === 'employees' ? getEmployeeFilters() : '';
+            // const filterParams = tabName[0] === 'employees' ? getEmployeeFilters() : '';
+            if (tabName[0] === 'employees'  || tabName[0] === 'getleaves'){
+              filterParams = getEmployeeFilters();
+            }
+            
+            
             
             
             // Leavemanagement soon
@@ -141,7 +146,7 @@ function updateActiveTab(activeTab, currentPage = 1){
       const department = document.getElementById('department-filter')?.value || '';
       const status = document.getElementById('status-filter')?.value || '';
       const role = document.getElementById('role-filter')?.value || '';
-
+      
       if (search) url.set('search', search);
       if (department) url.set('department', department);
       if (status) url.set('status', status);
@@ -190,13 +195,15 @@ function getEmployeeFilters(){
   const department = document.getElementById('department-filter')?.value || '';
   const status = document.getElementById('status-filter')?.value || '';
   const role = document.getElementById('role-filter')?.value || '';
+  const leavetype = document.getElementById('leavetype-filter')?.value || '';
 
   const params = new URLSearchParams();
   if (search) params.set('search', search);
   if (department) params.set('department', department);
   if (status) params.set('status', status);
   if (role) params.set('role', role);
-  
+  if (leavetype) params.set('leavetype', leavetype);
+
   // // Page
   // if (page) params.set('page', page)
   return params.toString();

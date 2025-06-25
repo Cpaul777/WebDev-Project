@@ -2,16 +2,7 @@
 include '../includes/db_connect.php';
 session_start();
 
-if (!isset($_SESSION['email'])) {
-    header("Location: ../login.php");
-    exit();
-} 
 
-if (!($_SESSION['role'] == 'administrator') && !($_SESSION['role'] == 'Administrator')) {
-    echo 'it entered here?';
-    header("Location: employeePage.php");
-    exit();
-}
 
 // Check if the user is logged in, if
 // not then redirect them to the login page

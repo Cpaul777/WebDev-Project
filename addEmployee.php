@@ -341,18 +341,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h3 style="text-align: left; color: #2e7d32;">Emergency Contact</h3>
 
             <label for="guardian">Guardian Name</label>
-            <input type="text" name="guardian" id="guardian" required pattern="[A-Za-z ]+" title="Letters and spaces only">
+            <input type="text" name="guardian" id="guardian" required pattern="[A-Za-z \-]+" title="Letters, spaces and dashes only">
 
             <label for="emergency_phone">Emergency Number</label>
-            <input type="text" name="emergency_phone" id="emergency_phone" required pattern="[0-9]{7,15}" maxlength="15" title="Enter a valid emergency number (numbers only)">
+            <input type="text" name="emergency_phone" id="emergency_phone" required pattern="[0-9\-]{7,15}" maxlength="15" title="Enter a valid emergency number (numbers only)">
 
             <label for="relationship">Relationship</label>
-            <input type="text" name="relationship" id="relationship" required pattern="[A-Za-z ]+" title="Letters and spaces only">
+            <input type="text" name="relationship" id="relationship" required pattern="[A-Za-z \-]+" title="Letters, spaces, and dashes only">
 
             <button type="submit" name="submit">Add</button>
             <input type="reset" value="Reset">
         </form>
     </div>
+    
     <script>
     function setNumericInput(id) {
         const el = document.getElementById(id);
@@ -366,6 +367,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     setNumericInput('national_id');
     setNumericInput('emergency_phone');
     // Postal code uses type=number, so browser will restrict input
+
+    (function() {
+    var dob = document.getElementById('dob');
+    if (dob) {
+        var today = new Date();
+        var year = today.getFullYear() - 18;
+        var month = (today.getMonth() + 1).toString().padStart(2, '0');
+        var day = today.getDate().toString().padStart(2, '0');
+        dob.max = year + '-' + month + '-' + day;
+    }
+})();
 </script>
 </body>
 </html>

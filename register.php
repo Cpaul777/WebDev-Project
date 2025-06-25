@@ -234,10 +234,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="email" name="email" id="email" placeholder="juan@gmail.com" required>
 
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="Password" required
-                pattern="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d!@#$%^&*]{8,32}$"
-                minlength="8" maxlength="32"
-                title="Password must be 8-32 characters, include at least one letter and one number."><br>
+           <input type="password" name="password" id="password" placeholder="Password" required
+    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*]{8,32}$"
+    minlength="8" maxlength="32"
+    title="Password must be 8-32 characters, include at least one letter and one number."><br>
             <select name="gender" id="gender">
                 <option value="MALE">MALE</option>
                 <option value="FEMALE">FEMALE</option>
@@ -332,6 +332,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     setNumericInput('national_id');
     setNumericInput('emergency_phone');
     // Postal code uses type=number, so browser will restrict input
+    (function() {
+    var dob = document.getElementById('dob');
+    if (dob) {
+        var today = new Date();
+        var year = today.getFullYear() - 18;
+        var month = (today.getMonth() + 1).toString().padStart(2, '0');
+        var day = today.getDate().toString().padStart(2, '0');
+        dob.max = year + '-' + month + '-' + day;
+    }
+})();
 </script>
 </body>
 </html>
