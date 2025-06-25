@@ -54,6 +54,11 @@ h3{
 .status-rejected { background: #e57373; color: #fff; }
 .view-btn { color: #008F05; font-weight: 600; cursor: pointer; background: none; border: none; }
 .view-btn:hover { text-decoration: underline; }
+.view-btn:disabled {
+    color: gray;
+    opacity: 40%;
+    text-decoration: none;
+}
 .modal-bg { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.18); z-index: 1000; justify-content: center; align-items: center; }
 .modal-bg.active { display: flex; }
 

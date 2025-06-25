@@ -38,10 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // const filterParams = tabName[0] === 'employees' ? getEmployeeFilters() : '';
             if (tabName[0] === 'employees'  || tabName[0] === 'getleaves'){
               filterParams = getEmployeeFilters();
+            }else{
+              filterParams = '';
             }
-            
-            
-            
             
             // Leavemanagement soon
 
@@ -220,6 +219,7 @@ function initApplicationModal() {
             if (!filesHtml) filesHtml = '<em>No files uploaded.</em>';
             document.getElementById('modalFiles').innerHTML = filesHtml;
             document.getElementById('modalBg').classList.add('active');
+            var appid = document.getElementById('modalAppId').value = this.dataset.appid;
         });
     });
     document.getElementById('modalClose').onclick = function() {

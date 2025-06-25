@@ -5,7 +5,24 @@ if (!isset($_SESSION['email'])) {
     header("Location: ../login.php");
     exit();
 }
-$sql = "SELECT a.applicationid, a.firstname, a.lastname, a.resume, a.pds, a.tor, a.email, a.jobid, a.date_submitted, a.status FROM applications a";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $appid = intval($_POST['applicationid']);
+    $status = $_POST['status'];
+    $stmt = $conn->prepare("UPDATE applications SET status = ? WHERE applicationid = ?");
+    $stmt->bind_param("si", $status, $appid);
+    if ($stmt->execute()) {
+        echo "success";
+    } else {
+        echo "error";
+    }
+    $stmt->close();
+    $conn->close();
+    exit;
+}
+
+$sql = "SELECT a.applicationid, a.firstname, a.lastname, a.resume, a.pds, a.tor, a.email, a.jobid, a.date_submitted, a.status FROM applications a WHERE NOT a.status = 'accepted'";
+
 $result = $conn->query($sql);
 $email = '';
 ?>
@@ -34,7 +51,8 @@ $email = '';
                 $stmt->store_result();
                 $stmt->bind_result($role);
                 $stmt->fetch();  
-                $email = $row['email'];    
+                $email = $row['email'];
+                $appid = $row['applicationid'];    
                 ?>
                 <tr>
                     <td>
@@ -56,13 +74,23 @@ $email = '';
                         <span class="<?= $badgeClass ?>"><?= htmlspecialchars($row['status']) ?></span>
                     </td>
                     <td>
-                        <button class="view-btn" data-id="<?= $row['jobid'] ?>" data-pds="<?= htmlspecialchars($row['pds']) ?>" data-resume="<?= htmlspecialchars($row['resume']) ?>" data-tor="<?= htmlspecialchars($row['tor']) ?>" data-applicant="<?= htmlspecialchars($row['firstname']) .' '. htmlspecialchars($row['lastname']) ?>">View</button>
+                        <button class="view-btn" data-id="<?= $row['jobid'] ?>" data-appid="<?= $row['applicationid']?>" data-pds="<?= htmlspecialchars($row['pds']) ?>" data-resume="<?= htmlspecialchars($row['resume']) ?>" data-tor="<?= htmlspecialchars($row['tor']) ?>" data-applicant="<?= htmlspecialchars($row['firstname']) .' '. htmlspecialchars($row['lastname']);
+                        ?>" <?php 
+                        if ($status === 'rejected') {
+                            echo'disabled';
+                        }elseif($status==='accepted') {
+                            echo 'disabled';
+                        } 
+                        
+                        ?>> View</button>
                     </td>
                 </tr>
             <?php endwhile; ?>
+        <?php $stmt->close()?>
         <?php else: ?>
             <tr><td colspan="5">No job applications found.</td></tr>
         <?php endif; ?>
+        
         </tbody>
     </table>
 </div>
@@ -73,6 +101,7 @@ $email = '';
         <h4 class="email"><strong>Email:</strong> <?= $email?></h4>
         <div class="modal-files" id="modalFiles"></div>
         <div class="modal-actions">
+            <input type="hidden" id="modalAppId" value="">
             <button class="accept-btn">Accept</button>
             <button class="reject-btn">Reject</button>
         </div>
